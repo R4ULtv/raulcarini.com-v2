@@ -12,6 +12,15 @@ export const metadata = {
   title: "Raul Carini",
   description:
     "Full Stack Developer working on solo projects and freelancing, currently based in Milan, Italy",
+  openGraph: {
+    title: "Raul Carini",
+    description:
+      "Full Stack Developer working on solo projects and freelancing, currently based in Milan, Italy",
+    url: new URL(process.env.VERCEL_URL || "http://localhost:3000"),
+    siteName: "Raul Carini",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
