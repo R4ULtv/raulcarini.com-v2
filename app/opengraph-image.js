@@ -1,4 +1,4 @@
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 export const alt = "Raul Carini";
@@ -9,7 +9,7 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default async function GET(request) {
+export default async function Image(){
   const fontData = await fetch(
     new URL("/assets/Geist-Black.ttf", import.meta.url)
   ).then((res) => res.arrayBuffer());
