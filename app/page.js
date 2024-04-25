@@ -1,5 +1,4 @@
 import Repositories from "@/components/Repositories";
-import Link from "next/link";
 
 export const dynamic = "force-static";
 
@@ -7,7 +6,7 @@ export default function Home() {
   return (
     <main className="space-y-20">
       <div>
-        <Link
+        <a
           href={"#about"}
           className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
           id="about"
@@ -16,26 +15,26 @@ export default function Home() {
           <span className="opacity-0 group-hover:opacity-90 duration-150">
             #
           </span>
-        </Link>
+        </a>
         <p className="text-zinc-600 dark:text-zinc-400">
           Hi! I'm a full-stack developer based in Milan, currently juggling
           projects and studies. On the professional side, I'm diving into
           exciting ventures like{" "}
-          <Link
+          <a
             href="https://www.shrly.cc/"
             target="_blank"
             className="underline-offset-2 underline hover:text-zinc-500"
           >
             Shortly
-          </Link>{" "}
+          </a>{" "}
           and the{" "}
-          <Link
+          <a
             href="https://www.shrly.cc/"
             target="_blank"
             className="underline-offset-2 underline hover:text-zinc-500"
           >
             PedeBeats
-          </Link>{" "}
+          </a>{" "}
           e-commerce platform.
         </p>
         <p className="text-zinc-600 dark:text-zinc-400 mt-2">
@@ -43,18 +42,18 @@ export default function Home() {
           there's more to me than code! When I'm not building, music takes
           center stage. I love producing tracks and experimenting with fresh
           sounds. If you are interested in my music check{" "}
-          <Link
+          <a
             href="/r/spotify"
             target="_blank"
             className="underline-offset-2 underline hover:text-zinc-500"
           >
             here
-          </Link>
+          </a>
           .
         </p>
       </div>
       <div>
-        <Link
+        <a
           href={"#projects"}
           className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
           id="projects"
@@ -63,9 +62,9 @@ export default function Home() {
           <span className="opacity-0 group-hover:opacity-90 duration-150">
             #
           </span>
-        </Link>
+        </a>
         <div className="flex flex-col gap-6 md:gap-4">
-          <Link
+          <a
             href="https://kits.pedebeats.com"
             target="_blank"
             className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
@@ -76,9 +75,9 @@ export default function Home() {
             <span className="text-zinc-600 dark:text-zinc-400">
               E-Commerce website for selling music production kits.
             </span>
-          </Link>
+          </a>
 
-          <Link
+          <a
             href="https://www.shrly.cc/"
             target="_blank"
             className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
@@ -90,9 +89,9 @@ export default function Home() {
               URL shortener website built with Next.js and Vercel, with
               analytics.
             </span>
-          </Link>
+          </a>
 
-          <Link
+          <a
             href="https://preview.beatslab.net/"
             target="_blank"
             className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
@@ -103,11 +102,11 @@ export default function Home() {
             <span className="text-zinc-600 dark:text-zinc-400">
               A website that sells beats and kits for producers and rappers.
             </span>
-          </Link>
+          </a>
         </div>
       </div>
       <div>
-        <Link
+        <a
           href={"#repositories"}
           className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
           id="repositories"
@@ -116,7 +115,7 @@ export default function Home() {
           <span className="opacity-0 group-hover:opacity-90 duration-150">
             #
           </span>
-        </Link>
+        </a>
 
         <Repositories />
       </div>

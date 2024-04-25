@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const lang = [
   {
     name: "JavaScript",
@@ -48,7 +46,7 @@ export default async function Repositories() {
     <div className="flex flex-col gap-6 md:gap-4">
       {data &&
         data.map((repo) => (
-          <Link
+          <a
             href={"/g/"+repo.name}
             rel="noopener noreferrer"
             key={repo.id}
@@ -86,7 +84,7 @@ export default async function Repositories() {
                 {repo.description ? repo.description : "No description."}
               </span>
             </div>
-          </Link>
+          </a>
         ))}
     </div>
   );
