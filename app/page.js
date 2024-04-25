@@ -17,11 +17,11 @@ export default function Home() {
             #
           </span>
         </Link>
-        <div className="flex flex-col gap-7 sm:gap-4">
+        <div className="flex flex-col gap-6 md:gap-4">
           <Link
             href="https://kits.pedebeats.com"
             target="_blank"
-            className="-mx-3 flex flex-col rounded-md px-3 no-underline sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
+            className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
           >
             <span className="font-medium text-zinc-800 dark:text-zinc-200">
               PedeBeats <span className="font-normal">• Dec 2023</span>
@@ -34,7 +34,7 @@ export default function Home() {
           <Link
             href="https://www.shrly.cc/"
             target="_blank"
-            className="-mx-3 flex flex-col rounded-md px-3 no-underline sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
+            className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
           >
             <span className="font-medium text-zinc-800 dark:text-zinc-200">
               Shortly <span className="font-normal">• Aug 2023</span>
@@ -48,7 +48,7 @@ export default function Home() {
           <Link
             href="https://preview.beatslab.net/"
             target="_blank"
-            className="-mx-3 flex flex-col rounded-md px-3 no-underline sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
+            className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
           >
             <span className="font-medium text-zinc-800 dark:text-zinc-200">
               BeatsLab <span className="font-normal">• Jun 2023</span>
