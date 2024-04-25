@@ -6,6 +6,9 @@ import Link from "next/link";
 import ThemeChanger from "@/components/ThemeChanger";
 
 export const metadata = {
+  metadataBase: process.env.VERCEL_URL
+    ? new URL(`https://${process.env.VERCEL_URL}`)
+    : new URL(`http://localhost:${process.env.PORT || 3000}`),
   title: "Raul Carini",
   description:
     "Full Stack Developer working on solo projects and freelancing, currently based in Milan, Italy",
