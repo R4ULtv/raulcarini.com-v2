@@ -42,6 +42,8 @@ export default async function Repositories() {
   );
   const data = await res.json();
 
+  if (!data || data?.message) return <div>No repositories found.</div>;
+
   return (
     <div className="flex flex-col gap-7 sm:gap-4">
       {data &&
@@ -54,7 +56,7 @@ export default async function Repositories() {
           >
             <div className="relative flex h-2 w-2 mt-2">
               <span
-                className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                className="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
                 style={{
                   backgroundColor: lang.find((l) => l.name === repo.language)
                     ?.color,
