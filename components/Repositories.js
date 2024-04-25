@@ -45,14 +45,14 @@ export default async function Repositories() {
   if (!data || data?.message) return <div>No repositories found.</div>;
 
   return (
-    <div className="flex flex-col gap-7 sm:gap-4">
+    <div className="flex flex-col gap-6 md:gap-4">
       {data &&
         data.map((repo) => (
           <Link
             href={repo.html_url}
             key={repo.id}
             target="_blank"
-            className="-mx-3 flex items-start gap-1.5 rounded-md px-3 no-underline sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
+            className="-mx-3 flex items-start gap-1.5 rounded-md py-1 px-3 no-underline sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
           >
             <div className="relative flex h-2 w-2 mt-2">
               <span
