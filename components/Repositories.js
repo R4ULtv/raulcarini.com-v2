@@ -49,7 +49,8 @@ export default async function Repositories() {
       {data &&
         data.map((repo) => (
           <Link
-            href={repo.html_url}
+            href={"/g/"+repo.name}
+            rel="noopener noreferrer"
             key={repo.id}
             target="_blank"
             className="-mx-3 flex items-start gap-1.5 rounded-md py-1 px-3 no-underline sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
@@ -81,7 +82,7 @@ export default async function Repositories() {
                   })}
                 </span>
               </span>
-              <span className="text-gray-600 dark:text-zinc-400">
+              <span className="text-zinc-600 dark:text-zinc-400">
                 {repo.description ? repo.description : "No description."}
               </span>
             </div>
