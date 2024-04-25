@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
     >
       <body className={GeistSans.className + " bg-zinc-100 dark:bg-zinc-900 selection:bg-zinc-300/50 dark:selection:bg-zinc-700/50 relative"}>
         <ThemeProvider attribute="class" enableSystem={false}>
-          <div className="max-w-2xl py-16 px-6 mx-auto" style={{minHeight: "calc(100vh - 45px)"}}>
+          <div className="max-w-3xl py-16 px-6 mx-auto" style={{minHeight: "calc(100vh - 45px)"}}>
             <header className="mb-32 flex items-start justify-between">
               <div className="flex flex-col items-start">
                 <Link
@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
             {children}
           </div>
           <footer className="border-t py-3 border-zinc-200 dark:border-zinc-800">
-            <div className="max-w-2xl px-6 mx-auto flex items-center justify-between text-sm text-zinc-600 dark:text-zinc-400">
+            <div className="max-w-3xl px-6 mx-auto flex items-center justify-between text-sm text-zinc-600 dark:text-zinc-400">
               <div className="flex gap-1.5">
                 <Link href={"https://github.com/R4ULtv"} className="hover:scale-110 duration-150">
                   <svg
