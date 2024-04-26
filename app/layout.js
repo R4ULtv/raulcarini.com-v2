@@ -1,5 +1,7 @@
 import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import "./globals.css";
 import Link from "next/link";
@@ -38,6 +40,8 @@ export default function RootLayout({ children }) {
           " bg-zinc-100 dark:bg-zinc-900 selection:bg-zinc-300/50 dark:selection:bg-zinc-700/50 relative"
         }
       >
+        <Analytics />
+        <SpeedInsights />
         <ThemeProvider attribute="class" enableSystem={false}>
           <div
             className="max-w-3xl py-16 px-6 mx-auto"
