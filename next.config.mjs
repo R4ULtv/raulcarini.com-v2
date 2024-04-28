@@ -1,4 +1,8 @@
 import createMDX from "@next/mdx";
+import rehypeSlug from "rehype-slug";
+import remarkGfm from "remark-gfm";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeHighlight from "rehype-highlight";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -41,7 +45,11 @@ const nextConfig = {
 };
 
 const withMDX = createMDX({
-  // Add markdown plugins here, as desired
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings, rehypeHighlight],
+  },
 });
 
 export default withMDX(nextConfig);
