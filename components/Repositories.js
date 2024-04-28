@@ -47,7 +47,7 @@ export default async function Repositories() {
       {data &&
         data.map((repo) => (
           <a
-            href={"/g/"+repo.name}
+            href={repo.html_url}
             rel="noopener noreferrer"
             key={repo.id}
             target="_blank"
