@@ -43,7 +43,7 @@ export default function Home() {
           center stage. I love producing tracks and experimenting with fresh
           sounds. If you are interested in my music check{" "}
           <a
-            href="/r/spotify"
+            href="https://open.spotify.com/artist/21DbatkhkYpxIpLfQ4LeUo"
             target="_blank"
             className="underline-offset-2 underline hover:text-zinc-500"
           >
