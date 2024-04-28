@@ -1,5 +1,5 @@
 import Repositories from "@/components/Repositories";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 
 export const dynamic = "force-static";
 
