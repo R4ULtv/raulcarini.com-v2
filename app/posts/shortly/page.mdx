@@ -1,4 +1,4 @@
-import CustomDate from "@/components/CustomDate";
+import TopNavPost from "@/components/TopNavPost";
 import shortly from "@/public/assets/shortly.png";
 import Image from "next/image";
 
@@ -25,9 +25,7 @@ export const metadata = {
   },
 };
 
-<CustomDate date={createdAt} />
-
-# Shortly
+<TopNavPost title={"Shortly"} date={createdAt} />
 
 <Image
   src={shortly}
