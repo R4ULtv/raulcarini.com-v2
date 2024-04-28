@@ -30,7 +30,7 @@ export default function Home() {
           </a>{" "}
           and the{" "}
           <a
-            href="https://www.shrly.cc/"
+            href="https://kits.pedebeats.com"
             target="_blank"
             className="underline-offset-2 underline hover:text-zinc-500"
           >
