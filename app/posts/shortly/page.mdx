@@ -4,6 +4,7 @@ import Image from "next/image";
 import home from "@/public/assets/shortly/home-page.png";
 import route from "@/public/assets/shortly/route-segments-to-path-segments.png";
 import file from "@/public/assets/shortly/page-special-file.png";
+import code_example from "@/public/assets/shortly/code_example.png";
 
 export const title = "Shortly - Raul Carini";
 export const description =
@@ -32,8 +33,7 @@ export const metadata = {
 
 <Image
   src={home}
-  width={854}
-  height={480}
+  width={720}
   quality={100}
   placeholder="blur"
   alt="Shortly home page"
@@ -102,7 +102,7 @@ Okay, now let's take a look at how to create and run a Next.js project.
 First, you need to have Node.js installed on your computer.
 Then, run the following command in the terminal: 
 
-```terminal
+```bash title="> terminal" 
 npx create-next-app@latest
 ```
 
@@ -113,8 +113,7 @@ For now, we will focus on the app folder. Inside this folder, we will manage all
 
 <Image
   src={route}
-  width={854}
-  height={480}
+  width={720}
   quality={100}
   placeholder="blur"
   alt="Route segments to path segments"
@@ -124,8 +123,7 @@ Each page is represented by its own folder and a file called `page.js`.
 
 <Image
   src={file}
-  width={854}
-  height={480}
+  width={720}
   quality={100}
   placeholder="blur"
   alt="page.js special file"
@@ -138,3 +136,25 @@ However, this is not the case, otherwise we would have to manually create hundre
 For this reason, Next.js offers dynamic pages.
 We can use a folder like `[id]`, which always contains a `page.js` file.
 This system allows us to use the ID (in this case, `xZV1`) to retrieve from the database the URL to which to redirect the user.
+
+```js title="> app/[id]/page.js" 
+import clientPromise from "@/lib/mongodb";
+import { redirect, notFound } from "next/navigation";
+
+export default async function HashPage({ params }) {
+  const client = await clientPromise;
+  const db = client.db("url-shortner");
+  const url = await db.collection("urls").findOne({ uid: params.id });
+
+  if (url) {
+    return redirect(url.link);
+  }
+  return notFound();
+}
+```
+
+As we've already seen, on this page we look for the ID within the collection or table (in the SQL world). 
+If we find it, we can redirect the user to the dedicated page. 
+Otherwise, the page response will be a common 404 "Not Found" error.
+
+Now that we understand how it works, the question arises: how do I manage this data?
