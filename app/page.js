@@ -113,7 +113,7 @@ export default function Home() {
           className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
           id="posts"
         >
-          Posts{" "}
+          Blogs{" "}
           <span className="opacity-0 group-hover:opacity-90 duration-150">
             #
           </span>
