@@ -50,8 +50,8 @@ const withMDX = createMDX({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
-      rehypeAutolinkHeadings,
-      [rehypePrettyCode, { keepBackground: false, theme: "one-dark-pro" }],
+      [rehypeAutolinkHeadings, { behavior: "wrap" }],
+      [rehypePrettyCode, { keepBackground: false, theme: "github-dark" }],
     ],
   },
 });
