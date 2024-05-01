@@ -52,9 +52,7 @@ My goal was to create a comprehensive application that encompassed all aspects o
 Along the way, I encountered a multitude of challenges that needed to be addressed:
 
 - **Database**: Selecting the most suitable database type, considering factors like cost, ease of implementation, and scalability.
-
 - **Authentication**: Implementing a robust user authentication system, defining roles and access permissions.
-
 - **Payments**: Integrating a payment gateway to handle subscription plans and recurring payments.
 
 These are just a few examples of the hurdles I faced. What initially seemed like a straightforward task of building a website turned out to be far more complex.
@@ -84,7 +82,7 @@ In other words, Node.js is used to execute JavaScript code on the server-side.
 **Okay, but then how was Shortly programmed?** Given the "simplicity" of this project, it was not necessary to have separate environments (front-end and back-end).
 For this reason, I decided to use Next.js, which combines all the advantages of React and Node.js.
 
-### How does Next Js work ?
+### How does Next Js work?
 
 But first, let's take a closer look at what Next.js actually is.
 Next.js is a React-based web development framework that simplifies and speeds up the creation of modern websites and web applications.
@@ -100,16 +98,16 @@ Think of Next.js as a supercharger for React that offers several additional feat
 In simple terms, Next.js helps you build React websites and web applications faster, easier, and more performantly.
 Okay, now let's take a look at how to create and run a Next.js project.
 First, you need to have Node.js installed on your computer.
-Then, run the following command in the terminal: 
+Then, run the following command in the terminal:
 
-```bash title="> terminal" 
+```bash title="> terminal"
 npx create-next-app@latest
 ```
 
 This command will automatically install all the dependencies and files needed to run the project.
 
 Once the installation is complete, you will find several files and folders.
-For now, we will focus on the app folder. Inside this folder, we will manage all the *routes* of our website.
+For now, we will focus on the app folder. Inside this folder, we will manage all the _routes_ of our website.
 
 <Image
   src={route}
@@ -137,7 +135,7 @@ For this reason, Next.js offers dynamic pages.
 We can use a folder like `[id]`, which always contains a `page.js` file.
 This system allows us to use the ID (in this case, `xZV1`) to retrieve from the database the URL to which to redirect the user.
 
-```js title="> app/[id]/page.js" 
+```js title="> app/[id]/page.js"
 import clientPromise from "@/lib/mongodb";
 import { redirect, notFound } from "next/navigation";
 
@@ -153,8 +151,37 @@ export default async function HashPage({ params }) {
 }
 ```
 
-As we've already seen, on this page we look for the ID within the collection or table (in the SQL world). 
-If we find it, we can redirect the user to the dedicated page. 
+As we've already seen, on this page we look for the ID within the collection or table (in the SQL world).
+If we find it, we can redirect the user to the dedicated page.
 Otherwise, the page response will be a common 404 "Not Found" error.
 
 Now that we understand how it works, the question arises: how do I manage this data?
+
+### Which database did I choose?
+
+The choice of database is one of the most important decisions in website design.
+In my case, I opted for MongoDB mainly for economic reasons, since its free plan offers 500 MB of storage without additional costs.
+But what is MongoDB?
+
+MongoDB is a NoSQL database management system that uses a document-based model.
+Unlike traditional relational databases (RDBMS), which store data in tables with fixed rows and columns, MongoDB stores data in structures called documents, similar to JavaScript Object Notation (JSON) objects.
+
+```json title="> mongodb document example"
+{
+  "_id": {
+    "$oid": "659691d8ea90c857365dc1f0"
+  },
+  "link": "https://www.youtube.com/",
+  "uid": "g9Zr",
+  "shortUrl": "https://shrly.cc/g9Zr",
+  "userId": {
+    "$oid": "6569f7f21648b7472e639022"
+  },
+  "status": "Active",
+  "createdAt": {
+    "$date": "2024-01-04T11:09:12.316Z"
+  },
+  "expiresAt": null,
+  "maxVisits": null
+}
+```
