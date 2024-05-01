@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
             className="max-w-3xl py-16 px-6 mx-auto"
             style={{ minHeight: "calc(100vh - 45px)" }}
           >
-            <header className="mb-32 flex items-start justify-between">
+            <header className="mb-16 flex items-start justify-between">
               <div className="flex flex-col items-start">
                 <Link
                   href={"/"}
