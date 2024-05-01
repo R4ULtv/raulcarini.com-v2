@@ -143,7 +143,9 @@ export default function RootLayout({ children }) {
                   </svg>
                 </a>
               </div>
-              <div className="font-medium">{new Date().getFullYear()}</div>
+              <Link href="/stats" className="font-medium">
+                {new Date().getFullYear()}
+              </Link>
             </div>
           </footer>
         </ThemeProvider>
