@@ -18,13 +18,19 @@ html.dark .shiki span {
   background-color: var(--shiki-dark-bg) !important;
 }
 
+h1 a,
+h2 a,
+h3 a {
+  text-decoration: none !important;
+}
+
 .shiki {
   counter-reset: step;
   counter-increment: step 0;
-  .line:not(:empty) {
+  .line:not(:last-child) {
     &::before {
       counter-increment: step;
-      @apply mr-6 inline-block w-4 border-transparent text-right text-neutral-600 content-[counter(step)];
+      @apply mr-6 inline-block w-4 border-transparent text-right text-zinc-400 dark:text-zinc-600 content-[counter(step)];
     }
   }
 }
