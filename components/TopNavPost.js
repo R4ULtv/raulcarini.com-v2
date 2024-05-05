@@ -1,7 +1,9 @@
+"use client";
+
 import moment from "moment";
 import Link from "next/link";
 
-export default function TopNavPost({ title, date, slug }) {
+export default function TopNavPost({ title, date }) {
   return (
     <>
       <h1 className="mb-1">
