@@ -1,9 +1,9 @@
-"use client";
-
-import moment from "moment";
 import Link from "next/link";
+import Date from "@/components/Date";
+import PageViews from "@/components/PageViews";
+import { Suspense } from "react";
 
-export default function TopNavPost({ title, date }) {
+export default function TopNavPost({ title, date, path }) {
   return (
     <>
       <h1 className="mb-1">
@@ -12,14 +12,12 @@ export default function TopNavPost({ title, date }) {
         </Link>
       </h1>
 
-      <span className="text-sm mb-1.5 flex items-center gap-1">
-        {date.toLocaleDateString("en-US", {
-          month: "long",
-          day: "numeric",
-          year: "numeric",
-        })}{" "}
-        ({moment(date).fromNow()})
-      </span>
+      <div className="flex items-center justify-between mb-1.5">
+        <Date date={date} />
+        <Suspense fallback={<></>}>
+          <PageViews path={path} />
+        </Suspense>
+      </div>
     </>
   );
 }
