@@ -1,4 +1,5 @@
 import { Redis } from "@upstash/redis";
+import numeral from "numeral";
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL,
@@ -9,6 +10,6 @@ export default async function PageViews({ path }) {
   const views = await redis.get(path)
 
   return (
-    <span className="text-sm">{views} views</span>
+    <span className="text-sm">{numeral(views).format("0a")} views</span>
   )
 }

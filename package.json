@@ -23,6 +23,7 @@
     "moment": "^2.30.1",
     "next": "14.2.3",
     "next-themes": "^0.3.0",
+    "numeral": "^2.0.6",
     "react": "^18",
     "react-dom": "^18",
     "rehype-autolink-headings": "^7.1.0",
