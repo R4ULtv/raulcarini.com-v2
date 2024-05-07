@@ -7,6 +7,9 @@ import rehypeShiki from "@shikijs/rehype";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  experimental: {
+    ppr: true,
+  },
 
   async redirects() {
     return [
