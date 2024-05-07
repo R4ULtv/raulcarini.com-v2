@@ -1,8 +1,5 @@
 import BackToTop from "@/components/BackToTop";
 
-export const revalidate = 300;
-export const runtime = "edge";
-
 export default function MdxLayout({ children }) {
   return (
     <>
