@@ -36,13 +36,15 @@ export const metadata = {
 
 <TopNavPost title={"Shortly"} date={createdAt} path={"/posts/shortly"} />
 
-<Image
-  src={home}
-  width={720}
-  quality={100}
-  placeholder="blur"
-  alt="Shortly home page"
-/>
+<a href="https://shrly.cc/" target="_blank">
+  <Image
+    src={home}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="Shortly home page"
+  />
+</a>
 
 Shortly is a web service that allows you to shorten **long and complex URLs** into **short and memorable links**.
 In simple terms, Shortly acts as an intermediary between the end user and the desired destination.
@@ -114,23 +116,33 @@ This command will automatically install all the dependencies and files needed to
 Once the installation is complete, you will find several files and folders.
 For now, we will focus on the app folder. Inside this folder, we will manage all the _routes_ of our website.
 
-<Image
-  src={route}
-  width={720}
-  quality={100}
-  placeholder="blur"
-  alt="Route segments to path segments"
-/>
+<a
+  href="https://nextjs.org/docs/app/building-your-application/routing/defining-routes"
+  target="_blank"
+>
+  <Image
+    src={route}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="Route segments to path segments"
+  />
+</a>
 
 Each page is represented by its own folder and a file called `page.js`.
 
-<Image
-  src={file}
-  width={720}
-  quality={100}
-  placeholder="blur"
-  alt="page.js special file"
-/>
+<a
+  href="https://nextjs.org/docs/app/building-your-application/routing/pages"
+  target="_blank"
+>
+  <Image
+    src={file}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="page.js special file"
+  />
+</a>
 
 Once you understand this, the rest is relatively simple. We need to keep in mind that in our case the folder must be dynamic.
 As we saw earlier, a URL like https://shrly.cc/xZVl might suggest the presence of a folder called `xZV1`.
@@ -168,13 +180,15 @@ The choice of database is one of the most important decisions in website design.
 In my case, I opted for MongoDB mainly for economic reasons, since its free plan offers 512 MB of storage without additional costs.
 But what is MongoDB?
 
-<Image
-  src={mongodb}
-  width={720}
-  quality={100}
-  placeholder="blur"
-  alt="mongodb"
-/>
+<a href="https://www.mongodb.com/" target="_blank">
+  <Image
+    src={mongodb}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="mongodb"
+  />
+</a>
 
 MongoDB is a NoSQL database management system that uses a document-based model.
 Unlike traditional relational databases (RDBMS), which store data in tables with fixed rows and columns, MongoDB stores data in structures called documents, similar to JavaScript Object Notation (JSON) objects.
@@ -208,19 +222,22 @@ Here are some of the key advantages of MongoDB over SQL databases:
   SQL databases can be more complex to use and learn, especially if you are not familiar with the SQL language.
 
 ### How can I authenticate my users?
+
 {/* TODO add code example with explanation */}
 
 Now that we've seen how the database and the main redirect functionality work, it's time to understand how users can register and keep their session active on our website.
 To manage this part, I used Next Auth, a complete open-source solution for authentication management in Next.js applications.
 It offers a range of features that simplify the user authentication and authorization process.
 
-<Image
-  src={nextAuth}
-  width={720}
-  quality={100}
-  placeholder="blur"
-  alt="next-auth"
-/>
+<a href="https://next-auth.js.org/" target="_blank">
+  <Image
+    src={nextAuth}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="next-auth"
+  />
+</a>
 
 The first choice to make is the type of session to use: JWT or database.
 The main difference lies in how session data is stored:
@@ -240,11 +257,20 @@ On my website, I have chosen to offer several login options, including Google an
 > For this reason, it is always advisable to use third-party providers that manage authentication more securely.
 
 ### How can I manage the payments?
+
 {/* TODO add code example with explanation */}
 
 There's just one last aspect to complete the website: how can users pay for the service and subscribe?
 
-<Image src={stripe} width={720} quality={100} placeholder="blur" alt="stripe" />
+<a href="https://stripe.com/" target="_blank">
+  <Image
+    src={stripe}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="stripe"
+  />
+</a>
 
 For payment processing, I chose Stripe, an online payment platform that allows businesses to accept payments from various sources, including:
 
@@ -275,35 +301,40 @@ The notification includes data about the event, which the other application can 
 In our case, when a user makes a payment, I receive all the payment data and what they purchased through webhooks.
 This allows me to easily manage subscriptions and different plans, as well as know when a subscription has expired and then remove the user's payment plan.
 
-<Image
-  src={stripeBilling}
-  width={720}
-  quality={100}
-  placeholder="blur"
-  alt="stripe"
-/>
+<a href="https://stripe.com/billing" target="_blank">
+  <Image
+    src={stripeBilling}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="stripe"
+  />
+</a>
 
 ### How can I visualize the data?
-Another key element of the website is the statistics page. 
-To create it, I used Tremor.so, an open-source React library that allows you to create dashboards and graphs quickly and easily. 
+
+Another key element of the website is the statistics page.
+To create it, I used Tremor.so, an open-source React library that allows you to create dashboards and graphs quickly and easily.
 It offers a series of pre-built components based on Tailwind CSS that allow you to display complex data in a clear and concise way.
 
+<a href="https://www.tremor.so/" target="_blank">
+  <Image
+    src={tremor}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="tremor"
+  />
+</a>
 
-<Image
-  src={tremor}
-  width={720}
-  quality={100}
-  placeholder="blur"
-  alt="tremor"
-/>
-
-Data analysis has become a crucial aspect of computer science in recent years. 
-In this field, data analysis is the process of extracting useful information from raw data. 
-It includes a series of techniques and tools for collecting, cleaning, transforming, and modeling data to discover patterns, trends, and relationships that would otherwise be hidden. 
+Data analysis has become a crucial aspect of computer science in recent years.
+In this field, data analysis is the process of extracting useful information from raw data.
+It includes a series of techniques and tools for collecting, cleaning, transforming, and modeling data to discover patterns, trends, and relationships that would otherwise be hidden.
 Data analysis results can be used to support decision-making, improve operational efficiency, and develop new products and services.
 
 ## Conclusion
-Shortly is much more than just a URL shortener. 
+
+Shortly is much more than just a URL shortener.
 It's a project that has allowed me to test my web programming skills, tackle complex challenges, and use cutting-edge technologies like Next.js, MongoDB, NextAuth, and Stripe.
 
 From a simple initial idea, Shortly has evolved into a complete web application, with authentication, subscription management, and data analysis features.
