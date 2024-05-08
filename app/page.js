@@ -24,7 +24,7 @@ export default function Home() {
           <a
             href="https://www.shrly.cc/"
             target="_blank"
-            className="underline-offset-2 underline hover:text-zinc-500"
+            className="underline-offset-2 underline font-medium text-zinc-700 hover:text-zinc-600 dark:text-zinc-300 dark:hover:text-zinc-400 duration-150"
           >
             Shortly
           </a>{" "}
@@ -32,7 +32,7 @@ export default function Home() {
           <a
             href="https://kits.pedebeats.com"
             target="_blank"
-            className="underline-offset-2 underline hover:text-zinc-500"
+            className="underline-offset-2 underline font-medium text-zinc-700 hover:text-zinc-600 dark:text-zinc-300 dark:hover:text-zinc-400 duration-150"
           >
             PedeBeats
           </a>{" "}
@@ -46,7 +46,7 @@ export default function Home() {
           <a
             href="https://open.spotify.com/artist/21DbatkhkYpxIpLfQ4LeUo"
             target="_blank"
-            className="underline-offset-2 underline hover:text-zinc-500"
+            className="underline-offset-2 underline font-medium text-zinc-700 hover:text-zinc-600 dark:text-zinc-300 dark:hover:text-zinc-400 duration-150"
           >
             here
           </a>
