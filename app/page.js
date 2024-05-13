@@ -149,6 +149,29 @@ export default function Home() {
 
         <Repositories />
       </div>
+
+      <div>
+        <a
+          href={"#more"}
+          className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
+          id="more"
+        >
+          More{" "}
+          <span className="opacity-0 group-hover:opacity-90 duration-150">
+            #
+          </span>
+        </a>
+        <p className="text-zinc-600 dark:text-zinc-400 mt-2">
+          Feel free to get in touch with me! You can reach me at{" "}
+          <a
+            href="mailto:contact@raulcarini.dev"
+            className="underline-offset-2 underline font-medium text-zinc-700 hover:text-zinc-600 dark:text-zinc-300 dark:hover:text-zinc-400 duration-150"
+          >
+            contact@raulcarini.dev
+          </a>
+          .
+        </p>
+      </div>
     </main>
   );
 }
