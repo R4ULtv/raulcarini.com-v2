@@ -1,0 +1,60 @@
+import TopNavPost from "@/components/TopNavPost";
+import Image from "next/image";
+import home from "@/public/assets/multi-region/home.png"
+
+export const title = "Multi-Region R2 Bucket System - Raul Carini";
+export const description =
+  "A multi-region system with Cloudflare Worker and Cloudflare R2 Buckets.";
+export const createdAt = new Date("2024-05-14");
+
+export const metadata = {
+  metadataBase: process.env.HOST_NAME,
+  title: title,
+  description: description,
+  openGraph: {
+    title: title,
+    description: description,
+    url: new URL(
+      `${process.env.HOST_NAME}/posts/multi-region-r2-bucket-system`
+    ),
+    images: [
+      {
+        url: `${process.env.HOST_NAME}/api/dynamic-og?title=CloudFlare%20Worker&description=Multi-Region%20R2%20Bucket%20Sysyem`,
+        width: 843,
+        height: 441,
+      },
+    ],
+  },
+};
+
+<TopNavPost
+  title={"Multi-Region R2 Bucket System"}
+  date={createdAt}
+  path={"/posts/multi-region-r2-bucket-system"}
+/>
+
+<a href="https://github.com/R4ULtv/multi-region-r2-bucket-system" target="_blank">
+  <Image
+    src={home}
+    width={720}
+    quality={100}
+    placeholder="blur"
+    alt="Shortly home page"
+  />
+</a>
+
+I want to create a system to download large files cheaply with a worldwide infrastructure. 
+Cloudflare is definitely the best option I've found, but there's a problem: the files are saved in a single region, for example in EEUR (Eastern Europe), so if I want to download a file from Singapore I have to connect to Vienna, for example, with obvious speed problems. 
+The solution is to upload the same file to different regions around the world to reduce download times. 
+
+Cloudflare provides 5 regions:
+
+- **WNAM** - Western North America
+- **ENAM** - Eastern North America
+- **WEUR** - Western Europe
+- **EEUR** - Eastern Europe
+- **APAC** - Asia-Pacific
+
+In this way, my large file can be downloaded at the maximum possible speed.
+
+## How do I manage the download system?
