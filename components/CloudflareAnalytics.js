@@ -1,5 +1,5 @@
 export default async function CloudflareAnalytics() {
-    // Define the GraphQL query to fetch data from the Cloudflare API.
+  // Define the GraphQL query to fetch data from the Cloudflare API.
   const query = `{
     viewer {
         zones(filter: { zoneTag: "${process.env.CLOUDFLARE_ZONE_TAG}" }) {
@@ -29,19 +29,22 @@ export default async function CloudflareAnalytics() {
         }
     }
 }`;
+  try {
+    const ref = await fetch("https://api.cloudflare.com/client/v4/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.CLOUDFLARE_API_KEY}`,
+      },
+      body: JSON.stringify({ query: query }),
+      next: { revalidate: 60 * 60 * 24 },
+    });
 
-  const ref = await fetch("https://api.cloudflare.com/client/v4/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.CLOUDFLARE_API_KEY}`,
-    },
-    body: JSON.stringify({ query: query }),
-    next: { revalidate: 60 * 60 * 24 },
-  });
+    // Parse the response from the API as JSON and extract the data.
+    const data = await ref.json();
 
-  // Parse the response from the API as JSON and extract the data.
-  const data = await ref.json();
-
-  return data;
+    return data;
+  } catch (error) {
+    return null;
+  }
 }
