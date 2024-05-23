@@ -4,7 +4,7 @@ export const runtime = "edge";
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const title = searchParams.get("title") || "Raul Carini";
-  const description = searchParams.get("description") || "Software Engineer";
+  const description = searchParams.get("description") || "Full-Stack Developer";
 
   const fontData = await fetch(
     new URL("/assets/Geist-Black.ttf", import.meta.url)
