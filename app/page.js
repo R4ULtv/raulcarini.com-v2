@@ -5,7 +5,7 @@ export const dynamic = "force-static";
 
 export default function Home() {
   return (
-    <main className="space-y-20">
+    <div className="space-y-20">
       <div>
         <a
           href={"#about"}
@@ -185,6 +185,6 @@ export default function Home() {
           .
         </p>
       </div>
-    </main>
+    </div>
   );
 }
