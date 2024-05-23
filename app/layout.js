@@ -41,8 +41,8 @@ export default function RootLayout({ children }) {
         }
       >
         <Analytics />
-        <SpeedInsights/>
-        
+        <SpeedInsights />
+
         <ThemeProvider attribute="class" enableSystem={false}>
           <div
             className="max-w-3xl py-16 px-6 mx-auto"
@@ -69,6 +69,7 @@ export default function RootLayout({ children }) {
               <div className="flex gap-2">
                 <a
                   href="https://github.com/R4ULtv"
+                  aria-label="GitHub"
                   target="_blank"
                   className="hover:scale-110 duration-150"
                 >
@@ -84,6 +85,7 @@ export default function RootLayout({ children }) {
                 </a>
                 <a
                   href="https://twitter.com/lil_poop__"
+                  aria-label="Twitter"
                   target="_blank"
                   className="hover:scale-110 duration-150"
                 >
@@ -99,6 +101,7 @@ export default function RootLayout({ children }) {
                 </a>
                 <a
                   href="https://www.youtube.com/@lil-poop"
+                  aria-label="Youtube"
                   target="_blank"
                   className="hover:scale-110 duration-150"
                 >
@@ -115,6 +118,7 @@ export default function RootLayout({ children }) {
 
                 <a
                   href="https://www.instagram.com/lil.poop__/"
+                  aria-label="Instagram"
                   target="_blank"
                   className="hover:scale-110 duration-150"
                 >
@@ -130,6 +134,7 @@ export default function RootLayout({ children }) {
                 </a>
                 <a
                   href="https://open.spotify.com/artist/21DbatkhkYpxIpLfQ4LeUo"
+                  aria-label="Spotify"
                   target="_blank"
                   className="hover:scale-110 duration-150"
                 >
