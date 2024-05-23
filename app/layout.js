@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
         <SpeedInsights />
 
         <ThemeProvider attribute="class" enableSystem={false}>
-          <div
+          <main
             className="max-w-3xl py-16 px-6 mx-auto"
             style={{ minHeight: "calc(100vh - 45px)" }}
           >
@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
               <ThemeChanger />
             </header>
             {children}
-          </div>
+          </main>
           <footer className="border-t py-3 border-zinc-200 dark:border-zinc-800">
             <div className="max-w-3xl px-6 mx-auto flex items-center justify-between text-sm text-zinc-600 dark:text-zinc-400">
               <div className="flex gap-2">
