@@ -35,7 +35,8 @@ export default async function Stats() {
 
   contryMap.forEach((location, index) => {
     const country = search(location.clientCountryName);
-    if (!country) return;
+    
+    if (!country || country.length === 0) return;
     locations.push({
       location: [country[0].geo.latitude, country[0].geo.longitude],
       size: ((index + 1) / contryMap.length) * weightRange + 0.03,
