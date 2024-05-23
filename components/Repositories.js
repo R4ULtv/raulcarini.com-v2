@@ -31,6 +31,10 @@ const lang = [
     name: "Go",
     color: "#00add8",
   },
+  {
+    name: "TypeScript",
+    color: "#2b7489",
+  }
 ];
 
 export default async function Repositories() {
