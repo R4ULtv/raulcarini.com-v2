@@ -1,6 +1,6 @@
 import TopNavPost from "@/components/TopNavPost";
 import Image from "next/image";
-import home from "@/public/assets/multi-region/home.png"
+import home from "@/public/assets/multi-region/home.png";
 
 export const title = "Multi-Region R2 Bucket System - Raul Carini";
 export const description =
@@ -33,7 +33,10 @@ export const metadata = {
   path={"/posts/multi-region-r2-bucket-system"}
 />
 
-<a href="https://github.com/R4ULtv/multi-region-r2-bucket-system" target="_blank">
+<a
+  href="https://github.com/R4ULtv/multi-region-r2-bucket-system"
+  target="_blank"
+>
   <Image
     src={home}
     width={720}
@@ -43,18 +46,122 @@ export const metadata = {
   />
 </a>
 
-I want to create a system to download large files cheaply with a worldwide infrastructure. 
-Cloudflare is definitely the best option I've found, but there's a problem: the files are saved in a single region, for example in EEUR (Eastern Europe), so if I want to download a file from Singapore I have to connect to Vienna, for example, with obvious speed problems. 
-The solution is to upload the same file to different regions around the world to reduce download times. 
+I want to create a system to download large files cheaply with a worldwide infrastructure.
+Cloudflare is definitely the best option I've found, but there's a problem: the files are saved in a single region, for example in EEUR (Eastern Europe), so if I want to download a file from Singapore I have to connect to Vienna, for example, with obvious speed problems.
+The solution is to upload the same file to different regions around the world to reduce download times.
 
 Cloudflare provides 5 regions:
 
-- **WNAM** - Western North America
-- **ENAM** - Eastern North America
-- **WEUR** - Western Europe
-- **EEUR** - Eastern Europe
-- **APAC** - Asia-Pacific
+```json
+[
+  { "name": "EU East - Vienna", "shortName": "EEUR" },
+  { "name": "EU West - Dublin", "shortName": "WEUR" },
+  { "name": "US East - Washington D.C.", "shortName": "ENAM" },
+  { "name": "US West - Los Angeles", "shortName": "WNAM" },
+  { "name": "Asia Pacific - Singapore", "shortName": "APAC" }
+]
+```
 
 In this way, my large file can be downloaded at the maximum possible speed.
 
-## How do I manage the download system?
+## How do I manage the Download System?
+
+First, let's go over how the code works to create a download using Cloudflare Workers.
+
+```js
+const object = await bucket.get(objectName, {
+  range: request.headers,
+  onlyIf: request.headers,
+});
+
+const headers = new Headers();
+object.writeHttpMetadata(headers);
+headers.set("etag", object.httpEtag);
+
+if (object.range) {
+  headers.set(
+    "content-range",
+    `bytes ${object.range.offset}-${object.range.end ?? object.size - 1}/${
+      object.size
+    }`
+  );
+}
+
+const status = object.body
+  ? request.headers.get("range") !== null
+    ? 206
+    : 200
+  : 304;
+
+return new Response(object.body, {
+  headers,
+  status,
+});
+```
+
+However, this code has a major problem: the file we want to download is taken from a previously selected `bucket` without considering where the request is coming from in order to optimize download times.
+
+The solution was to implement a system to download from the nearest `bucket`.
+This is calculated using the distance between geographic coordinates that are provided to us by Cloudflare.
+
+Obviously, this system is not precise because the coordinates are calculated by Cloudflare based on the IP address and therefore do not provide the exact location.
+Additionally, we do not know the exact location of the `bucket` but only the region in which it is located.
+However, this system provides us with a simple way to find the nearest `bucket`.
+
+These two functions work together to find the `nearestPosition` from the `userLocation`.
+
+```js
+// Calculates the distance between the user's location and a given position.
+const calculateDistance = (userLocation, position) => {
+  if (!userLocation || !position) {
+    return null;
+  }
+  return getDistance(userLocation, position);
+};
+
+// Finds the nearest position (R2 bucket) to the user's location.
+const findNearestPosition = (userLocation, positions) => {
+  if (!userLocation || positions.length === 0) {
+    return null;
+  }
+
+  const distances = positions.map((position) => ({
+    ...position,
+    distance: calculateDistance(userLocation, position),
+  }));
+
+  const nearestPosition = distances.reduce((minPosition, current) =>
+    current.distance < minPosition.distance ? current : minPosition
+  );
+  return nearestPosition.env;
+};
+```
+
+The first function calculates the actual distance between the `userLocation` and each bucket's position using the `geolib` library (check [here](https://www.npmjs.com/package/geolib) for more info about this package).
+
+The second function, which is the more important one, iterates through the `positions` of the various buckets in different regions and returns the closest `bucket`.
+
+### How do I manage Authentication?
+
+Now we have another problem with the previously explained system: everyone can download the files whenever and however they want.
+For this reason, let's look at an example of authentication together so we know when and how our files are downloaded.
+
+```js
+const token = request.headers.get("Authorization");
+if (token === null) {
+  return new Response("Missing Authorization header", { status: 401 });
+}
+
+const tokenParts = token.split(" ");
+if (tokenParts.length !== 2 || tokenParts[0] !== "Bearer") {
+  return new Response("Invalid Authorization header", { status: 401 });
+}
+
+// check if the tokens exist in the tokens set in upstash redis
+if (await redis.sismember("tokens", tokenParts[1])) {
+  return new Response("Invalid Token", { status: 401 });
+}
+```
+
+For this example, I have decided to use [Upstash Redis](https://upstash.com) due to its ease of implementation with [Cloudflare](https://www.cloudflare.com), but you can choose to use your preferred database.
+We check the headers of the request and verify if there is an `Authorization` header and if the token within it is present in our database.
