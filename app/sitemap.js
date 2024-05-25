@@ -12,5 +12,11 @@ export default function sitemap() {
         changeFrequency: 'monthly',
         priority: 0.8,
       },
+      {
+        url: 'https://www.raulcarini.dev/posts/multi-region-r2-bucket-system',
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.8,
+      },
     ]
   }
