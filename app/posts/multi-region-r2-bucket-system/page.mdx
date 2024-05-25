@@ -165,3 +165,35 @@ if (await redis.sismember("tokens", tokenParts[1])) {
 
 For this example, I have decided to use [Upstash Redis](https://upstash.com) due to its ease of implementation with [Cloudflare](https://www.cloudflare.com), but you can choose to use your preferred database.
 We check the headers of the request and verify if there is an `Authorization` header and if the token within it is present in our database.
+
+## How do I manage the Upload System?
+
+Regarding our Cloudflare worker, things get a bit complicated, but the important thing to understand is that the file is uploaded in multipart mode.
+This way, we avoid uploading a file larger than 50 megabytes directly to the server.
+It's not a good idea to do so, and Cloudflare itself doesn't allow it.
+Therefore, the file is uploaded in small parts of a chosen size.
+
+In this case, the important part of the whole Cloudflare worker process is knowing which bucket to upload the file to.
+Cloudflare cannot handle more than one bucket at a time for file uploads.
+Therefore, the management of multiple buckets is done "client-side" by a script that uploads to each bucket one at a time.
+
+```js
+var serverName = request.headers.get("X-Bucket-Name");
+if (serverName === null) {
+  return new Response(`Missing server name`, {
+    status: 400,
+  });
+}
+var server = positions.find((position) => position.shortName === serverName);
+
+if (server === undefined) {
+  return new Response(`Unknown server ${serverName}`, {
+    status: 400,
+  });
+}
+```
+
+In this code, we check which bucket name is chosen by the upload request and verify if it exists in our list of buckets mentioned at the beginning of this article.
+
+Now, "client-side," we just need to send an upload request along with the server name.
+For this task, I wrote a Python script that efficiently handles the upload of a file to multiple buckets. For more information, check [here](https://github.com/R4ULtv/multi-region-r2-bucket-system/blob/master/src/upload/README.md).
