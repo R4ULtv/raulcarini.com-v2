@@ -5,7 +5,7 @@ import Image from "next/image";
 import { createElement } from "react";
 import Link from "next/link";
 
-import rehypeShiki from "@shikijs/rehype";
+import { codeToHtml } from "shiki";
 
 function parseFrontmatter(fileContent) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
@@ -110,6 +110,15 @@ function createHeading(level) {
   return Heading;
 }
 
+async function CustomCode({ language, code }) {
+  const html = await codeToHtml(code, {
+    lang: language,
+    themes: { dark: "vitesse-dark", light: "vitesse-light" },
+  });
+  
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
 export function CustomMDX(props) {
   const components = {
     h1: createHeading(1),
@@ -120,27 +129,20 @@ export function CustomMDX(props) {
     h6: createHeading(6),
     Image: CustomImage,
     a: CustomLink,
+    pre: (props) => {
+      return (
+        <CustomCode
+          language={props.children.props.className.replace("language-", "")}
+          code={props.children.props.children.trim()}
+        />
+      );
+    },
   };
 
   return (
     <MDXRemote
       {...props}
       components={{ ...components, ...(props.components || {}) }}
-      options={{
-        mdxOptions: {
-          rehypePlugins: [
-            [
-              rehypeShiki,
-              {
-                themes: {
-                  light: "vitesse-light",
-                  dark: "vitesse-dark",
-                },
-              },
-            ],
-          ],
-        },
-      }}
     />
   );
 }
