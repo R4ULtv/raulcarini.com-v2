@@ -1,9 +1,10 @@
 import Repositories from "@/components/Repositories";
 import Link from "next/link";
-
-export const dynamic = "force-static";
+import { getBlogPosts } from "@/app/blog/utils";
 
 export default function Home() {
+  const allBlogs = getBlogPosts();
+
   return (
     <div className="space-y-20">
       <div>
@@ -56,41 +57,46 @@ export default function Home() {
 
       <div>
         <a
-          href={"#posts"}
+          href={"#blog"}
           className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
-          id="posts"
+          id="blog"
         >
-          Blogs{" "}
+          Blog{" "}
           <span className="opacity-0 group-hover:opacity-90 duration-150">
             #
           </span>
         </a>
         <div className="flex flex-col gap-6 md:gap-4">
-          <Link
-            href="/posts/multi-region-r2-bucket-system"
-            className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
-          >
-            <span className="font-medium text-zinc-800 dark:text-zinc-200">
-              Multi-Region R2 Bucket System{" "}
-              <span className="font-normal">• May 2024</span>
-            </span>
-            <span className="text-zinc-600 dark:text-zinc-400">
-              A multi-region system with Cloudflare Worker and Cloudflare R2
-              Buckets.
-            </span>
-          </Link>
-          <Link
-            href="/posts/shortly"
-            className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
-          >
-            <span className="font-medium text-zinc-800 dark:text-zinc-200">
-              Shortly <span className="font-normal">• April 2024</span>
-            </span>
-            <span className="text-zinc-600 dark:text-zinc-400">
-              A URL Shortening Service: Convert lengthy URLs into concise and
-              easy-to-share links.
-            </span>
-          </Link>
+          {allBlogs
+            .sort((a, b) => {
+              if (
+                new Date(a.metadata.createdAt) > new Date(b.metadata.createdAt)
+              ) {
+                return -1;
+              }
+              return 1;
+            })
+            .map((post, idx) => (
+              <Link
+                href={"/blog/" + post.slug}
+                key={idx}
+                className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
+              >
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">
+                  {post.metadata.title}{" "}
+                  <span className="font-normal">
+                    •{" "}
+                    {new Date(post.metadata.createdAt).toLocaleDateString(
+                      "en-US",
+                      { year: "numeric", month: "long" }
+                    )}
+                  </span>
+                </span>
+                <span className="text-zinc-600 dark:text-zinc-400">
+                  {post.metadata.description}
+                </span>
+              </Link>
+            ))}
         </div>
       </div>
 

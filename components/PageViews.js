@@ -7,6 +7,7 @@ const redis = new Redis({
 });
 
 export default async function PageViews({ path }) {
+  await redis.incr(path);
   const views = await redis.get(path)
 
   return (
