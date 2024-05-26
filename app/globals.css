@@ -41,7 +41,7 @@ html.dark .shiki span {
 .shiki {
   counter-reset: step;
   counter-increment: step 0;
-  .line:not(:last-child) {
+  .line{
     &::before {
       counter-increment: step;
       @apply mr-6 inline-block w-4 border-transparent text-right text-zinc-400 dark:text-zinc-600 content-[counter(step)];
