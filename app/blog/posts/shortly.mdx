@@ -1,47 +1,15 @@
-import TopNavPost from "@/components/TopNavPost";
-import Image from "next/image";
-
-import home from "@/public/assets/shortly/home-page.png";
-import route from "@/public/assets/shortly/route-segments-to-path-segments.png";
-import file from "@/public/assets/shortly/page-special-file.png";
-import code_example from "@/public/assets/shortly/code_example.png";
-import mongodb from "@/public/assets/shortly/mongodb.png";
-import nextAuth from "@/public/assets/shortly/next-auth.png";
-import stripe from "@/public/assets/shortly/stripe.png";
-import stripeBilling from "@/public/assets/shortly/stripe_billing.png";
-import tremor from "@/public/assets/shortly/tremor.png";
-
-export const title = "Shortly - Raul Carini";
-export const description =
-  "A URL Shortening Service: Convert lengthy URLs into concise and easy-to-share links.";
-export const createdAt = new Date("2024-04-24");
-
-export const metadata = {
-  metadataBase: process.env.HOST_NAME,
-  title: title,
-  description: description,
-  openGraph: {
-    title: title,
-    description: description,
-    url: new URL(`${process.env.HOST_NAME}/posts/shortly`),
-    images: [
-      {
-        url: `${process.env.HOST_NAME}/api/dynamic-og?title=Shortly&description=A%20URL%20Shortening%20Service`,
-        width: 843,
-        height: 441,
-      },
-    ],
-  },
-};
-
-<TopNavPost title={"Shortly"} date={createdAt} path={"/posts/shortly"} />
+---
+title: 'Shortly'
+createdAt: '2024-04-24'
+description: 'A URL Shortening Service: Convert lengthy URLs into concise and easy-to-share links.'
+---
 
 <a href="https://shrly.cc/" target="_blank">
   <Image
-    src={home}
+    src={"/assets/shortly/home-page.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="Shortly home page"
   />
 </a>
@@ -121,10 +89,10 @@ For now, we will focus on the app folder. Inside this folder, we will manage all
   target="_blank"
 >
   <Image
-    src={route}
+    src={"/assets/shortly/route-segments-to-path-segments.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="Route segments to path segments"
   />
 </a>
@@ -136,10 +104,10 @@ Each page is represented by its own folder and a file called `page.js`.
   target="_blank"
 >
   <Image
-    src={file}
+    src={"/assets/shortly/page-special-file.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="page.js special file"
   />
 </a>
@@ -182,10 +150,10 @@ But what is MongoDB?
 
 <a href="https://www.mongodb.com/" target="_blank">
   <Image
-    src={mongodb}
+    src={"/assets/shortly/mongodb.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="mongodb"
   />
 </a>
@@ -231,10 +199,10 @@ It offers a range of features that simplify the user authentication and authoriz
 
 <a href="https://next-auth.js.org/" target="_blank">
   <Image
-    src={nextAuth}
+    src={"/assets/shortly/next-auth.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="next-auth"
   />
 </a>
@@ -264,10 +232,10 @@ There's just one last aspect to complete the website: how can users pay for the 
 
 <a href="https://stripe.com/" target="_blank">
   <Image
-    src={stripe}
+    src={"/assets/shortly/stripe.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="stripe"
   />
 </a>
@@ -303,10 +271,10 @@ This allows me to easily manage subscriptions and different plans, as well as kn
 
 <a href="https://stripe.com/billing" target="_blank">
   <Image
-    src={stripeBilling}
+    src={"/assets/shortly/stripe_billing.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="stripe"
   />
 </a>
@@ -319,10 +287,10 @@ It offers a series of pre-built components based on Tailwind CSS that allow you 
 
 <a href="https://www.tremor.so/" target="_blank">
   <Image
-    src={tremor}
+    src={"/assets/shortly/tremor.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="tremor"
   />
 </a>

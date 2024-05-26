@@ -1,47 +1,18 @@
-import TopNavPost from "@/components/TopNavPost";
-import Image from "next/image";
-import home from "@/public/assets/multi-region/home.png";
-
-export const title = "Multi-Region R2 Bucket System - Raul Carini";
-export const description =
-  "A multi-region system with Cloudflare Worker and Cloudflare R2 Buckets.";
-export const createdAt = new Date("2024-05-26");
-
-export const metadata = {
-  metadataBase: process.env.HOST_NAME,
-  title: title,
-  description: description,
-  openGraph: {
-    title: title,
-    description: description,
-    url: new URL(
-      `${process.env.HOST_NAME}/posts/multi-region-r2-bucket-system`
-    ),
-    images: [
-      {
-        url: `${process.env.HOST_NAME}/api/dynamic-og?title=CloudFlare%20Worker&description=Multi-Region%20R2%20Bucket%20Sysyem`,
-        width: 843,
-        height: 441,
-      },
-    ],
-  },
-};
-
-<TopNavPost
-  title={"Multi-Region R2 Bucket System"}
-  date={createdAt}
-  path={"/posts/multi-region-r2-bucket-system"}
-/>
+---
+title: 'Multi-Region R2 Bucket System'
+createdAt: '2024-05-26'
+description: 'A multi-region system with Cloudflare Worker and Cloudflare R2 Buckets.'
+---
 
 <a
   href="https://github.com/R4ULtv/multi-region-r2-bucket-system"
   target="_blank"
 >
   <Image
-    src={home}
+    src={"/assets/multi-region/home.png"}
     width={720}
+    height={1280}
     quality={100}
-    placeholder="blur"
     alt="Shortly home page"
   />
 </a>
