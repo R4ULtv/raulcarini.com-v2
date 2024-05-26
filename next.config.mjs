@@ -5,6 +5,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/posts/:path*",
+        destination: "/blog/:path*",
+        permanent: true,
+      },
+      {
         source: "/r/youtube",
         destination: "https://www.youtube.com/@lil-poop",
         permanent: true,
