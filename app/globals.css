@@ -31,3 +31,20 @@ html.light {
 .prose *:hover > .anchor {
   @apply visible;
 }
+
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.shiki {
+  counter-reset: step;
+  counter-increment: step 0;
+  .line:not(:last-child) {
+    &::before {
+      counter-increment: step;
+      @apply mr-6 inline-block w-4 border-transparent text-right text-zinc-400 dark:text-zinc-600 content-[counter(step)];
+    }
+  }
+}
