@@ -5,7 +5,7 @@ import Image from "next/image";
 import { createElement } from "react";
 import Link from "next/link";
 
-import { codeToHtml } from "shiki";
+import { codeToHtml } from "shiki/bundle/web";
 
 function parseFrontmatter(fileContent) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
