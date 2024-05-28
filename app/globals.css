@@ -12,22 +12,36 @@ html.light {
   scrollbar-color: #a1a1aa transparent;
 }
 
+
+.prose .anchor {
+  @apply absolute invisible no-underline;
+
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.prose .anchor:after {
+  @apply text-zinc-300 dark:text-neutral-700;
+  content: "#";
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
+
 html.dark .shiki,
 html.dark .shiki span {
   color: var(--shiki-dark) !important;
   background-color: var(--shiki-dark-bg) !important;
 }
 
-h1 a,
-h2 a,
-h3 a {
-  text-decoration: none !important;
-}
-
 .shiki {
   counter-reset: step;
   counter-increment: step 0;
-  .line:not(:last-child) {
+  .line{
     &::before {
       counter-increment: step;
       @apply mr-6 inline-block w-4 border-transparent text-right text-zinc-400 dark:text-zinc-600 content-[counter(step)];

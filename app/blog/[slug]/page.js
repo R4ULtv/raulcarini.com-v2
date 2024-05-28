@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
-import { CustomMDX, getBlogPosts } from "@/app/blog/utils";
 import { Suspense } from "react";
+import { getBlogPosts } from "@/app/blog/utils";
+import { CustomMDX } from "@/components/mdx";
 import PageViews from "@/components/PageViews";
 import FormattedDate from "@/components/FormattedDate";
 
@@ -50,10 +51,11 @@ export default function Blog({ params }) {
 
       <div className="flex items-center justify-between mb-1.5">
         <FormattedDate date={new Date(post.metadata.createdAt)} />
-        <Suspense fallback={<></>}>
+        <Suspense fallback={<span className="h-5 w-9"></span>}>
           <PageViews path={params.slug} />
         </Suspense>
       </div>
+
       <CustomMDX source={post.content} />
     </>
   );

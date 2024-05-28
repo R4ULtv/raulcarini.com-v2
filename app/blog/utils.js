@@ -1,12 +1,5 @@
 import path from "path";
 import fs from "fs";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import Image from "next/image";
-
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeShiki from "@shikijs/rehype";
 
 function parseFrontmatter(fileContent) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
@@ -54,39 +47,4 @@ function getMDXData(dir) {
 
 export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
-}
-
-function CustomImage(props) {
-  return <Image {...props} />;
-}
-
-export function CustomMDX(props) {
-  const components = {
-    Image: CustomImage,
-  };
-
-  return (
-    <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
-      options={{
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          rehypePlugins: [
-            rehypeSlug,
-            [rehypeAutolinkHeadings, { behavior: "wrap" }],
-            [
-              rehypeShiki,
-              {
-                themes: {
-                  light: "vitesse-light",
-                  dark: "vitesse-dark",
-                },
-              },
-            ],
-          ],
-        },
-      }}
-    />
-  );
 }
