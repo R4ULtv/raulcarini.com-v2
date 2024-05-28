@@ -3,8 +3,7 @@ import Image from "next/image";
 import { createElement } from "react";
 import Link from "next/link";
 
-import { getHighlighterCore } from "shiki/core";
-import getWasm from "shiki/wasm";
+import { codeToHtml } from "shiki/bundle/web";
 
 function CustomImage(props) {
   return <Image {...props} />;
@@ -62,19 +61,7 @@ function createHeading(level) {
 }
 
 async function CustomCode({ language, code }) {
-  const highlighter = await getHighlighterCore({
-    themes: [
-      import("shiki/themes/vitesse-dark.mjs"),
-      import("shiki/themes/vitesse-light.mjs"),
-    ],
-    langs: [
-      import("shiki/langs/javascript.mjs"),
-      import("shiki/langs/json.mjs"),
-      import("shiki/langs/bash.mjs"),
-    ],
-    loadWasm: getWasm,
-  });
-  const html = highlighter.codeToHtml(code, {
+  const html = await codeToHtml(code, {
     lang: language,
     themes: { dark: "vitesse-dark", light: "vitesse-light" },
   });
