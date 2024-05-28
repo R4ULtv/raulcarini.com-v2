@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
-import { CustomMDX, getBlogPosts } from "@/app/blog/utils";
 import { Suspense } from "react";
+import { getBlogPosts } from "@/app/blog/utils";
+import { CustomMDX } from "@/components/mdx";
 import PageViews from "@/components/PageViews";
 import FormattedDate from "@/components/FormattedDate";
 
