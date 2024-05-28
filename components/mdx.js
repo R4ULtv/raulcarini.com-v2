@@ -70,6 +70,7 @@ async function CustomCode({ language, code }) {
     langs: [
       import("shiki/langs/javascript.mjs"),
       import("shiki/langs/json.mjs"),
+      import("shiki/langs/bash.mjs"),
     ],
     loadWasm: getWasm,
   });
