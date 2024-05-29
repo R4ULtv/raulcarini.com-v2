@@ -7,10 +7,8 @@ const redis = new Redis({
 });
 
 export default async function PageViews({ path }) {
-  await redis.incr(path);
-  const views = await redis.get(path)
+  await redis.incr("@blog/pageviews:" + path);
+  const views = await redis.get("@blog/pageviews:" + path);
 
-  return (
-    <span className="text-sm">{numeral(views).format("0a")} views</span>
-  )
+  return <span className="text-sm">{numeral(views).format("0a")} views</span>;
 }
