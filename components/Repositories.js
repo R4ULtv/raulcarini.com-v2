@@ -1,3 +1,5 @@
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+
 const lang = [
   {
     name: "JavaScript",
@@ -34,7 +36,7 @@ const lang = [
   {
     name: "TypeScript",
     color: "#2b7489",
-  }
+  },
 ];
 
 export default async function Repositories() {
@@ -55,39 +57,42 @@ export default async function Repositories() {
             rel="noopener noreferrer"
             key={repo.id}
             target="_blank"
-            className="-mx-3 flex items-start gap-1.5 rounded-md py-1 px-3 no-underline sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
+            className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
           >
-            <div className="relative flex h-2 w-2 mt-2">
-              <span
-                className="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                style={{
-                  backgroundColor: lang.find((l) => l.name === repo.language)
-                    ?.color,
-                }}
-              ></span>
-              <span
-                className="relative inline-flex rounded-full h-2 w-2 opacity-90"
-                style={{
-                  backgroundColor: lang.find((l) => l.name === repo.language)
-                    ?.color,
-                }}
-              ></span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                {repo.name}{" "}
-                <span className="font-normal">
-                  •{" "}
-                  {new Date(repo.created_at).toLocaleDateString("en-US", {
-                    month: "short",
-                    year: "numeric",
-                  })}
+            <div className="flex-1 flex gap-1.5">
+              <div className="relative flex h-2 w-2 mt-2">
+                <span
+                  className="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                  style={{
+                    backgroundColor: lang.find((l) => l.name === repo.language)
+                      ?.color,
+                  }}
+                ></span>
+                <span
+                  className="relative inline-flex rounded-full h-2 w-2 opacity-90"
+                  style={{
+                    backgroundColor: lang.find((l) => l.name === repo.language)
+                      ?.color,
+                  }}
+                ></span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">
+                  {repo.name}{" "}
+                  <span className="font-normal">
+                    •{" "}
+                    {new Date(repo.created_at).toLocaleDateString("en-US", {
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
                 </span>
-              </span>
-              <span className="text-zinc-600 dark:text-zinc-400">
-                {repo.description ? repo.description : "No description."}
-              </span>
+                <span className="text-zinc-600 dark:text-zinc-400">
+                  {repo.description ? repo.description : "No description."}
+                </span>
+              </div>
             </div>
+            <ArrowTopRightOnSquareIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150" />
           </a>
         ))}
     </div>

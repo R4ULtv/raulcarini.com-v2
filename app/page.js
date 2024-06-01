@@ -1,6 +1,30 @@
 import Repositories from "@/components/Repositories";
 import Link from "next/link";
 import { getBlogPosts } from "@/app/blog/utils";
+import { ArrowRightCircleIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+
+const projects = [
+  {
+    name: "PedeBeats",
+    description: "E-Commerce website for selling music production kits.",
+    date: new Date("2023-12-12"),
+    link: "https://kits.pedebeats.com",
+  },
+  {
+    name: "Shortly",
+    description:
+      "URL shortener website built with Next.js and Vercel, with analytics.",
+    date: new Date("2023-08-20"),
+    link: "https://www.shrly.cc",
+  },
+  {
+    name: "Beatslab",
+    description:
+      "A website that sells beats and kits for producers and rappers.",
+    date: new Date("2023-06-18"),
+    link: "https://pewview.beatslab.net",
+  },
+];
 
 export default function Home() {
   const allBlogs = getBlogPosts();
@@ -80,21 +104,24 @@ export default function Home() {
               <Link
                 href={"/blog/" + post.slug}
                 key={idx}
-                className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
+                className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
               >
-                <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                  {post.metadata.title}{" "}
-                  <span className="font-normal">
-                    •{" "}
-                    {new Date(post.metadata.createdAt).toLocaleDateString(
-                      "en-US",
-                      { year: "numeric", month: "long" }
-                    )}
+                <div className="flex-1 flex flex-col">
+                  <span className="font-medium text-zinc-800 dark:text-zinc-200">
+                    {post.metadata.title}{" "}
+                    <span className="font-normal">
+                      •{" "}
+                      {new Date(post.metadata.createdAt).toLocaleDateString(
+                        "en-US",
+                        { year: "numeric", month: "long" }
+                      )}
+                    </span>
                   </span>
-                </span>
-                <span className="text-zinc-600 dark:text-zinc-400">
-                  {post.metadata.description}
-                </span>
+                  <span className="text-zinc-600 dark:text-zinc-400">
+                    {post.metadata.description}
+                  </span>
+                </div>
+                <ArrowRightCircleIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150" />
               </Link>
             ))}
         </div>
@@ -112,45 +139,31 @@ export default function Home() {
           </span>
         </a>
         <div className="flex flex-col gap-6 md:gap-4">
-          <a
-            href="https://kits.pedebeats.com"
-            target="_blank"
-            className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
-          >
-            <span className="font-medium text-zinc-800 dark:text-zinc-200">
-              PedeBeats <span className="font-normal">• Dec 2023</span>
-            </span>
-            <span className="text-zinc-600 dark:text-zinc-400">
-              E-Commerce website for selling music production kits.
-            </span>
-          </a>
-
-          <a
-            href="https://www.shrly.cc/"
-            target="_blank"
-            className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
-          >
-            <span className="font-medium text-zinc-800 dark:text-zinc-200">
-              Shortly <span className="font-normal">• Aug 2023</span>
-            </span>
-            <span className="text-zinc-600 dark:text-zinc-400">
-              URL shortener website built with Next.js and Vercel, with
-              analytics.
-            </span>
-          </a>
-
-          <a
-            href="https://preview.beatslab.net/"
-            target="_blank"
-            className="-mx-3 flex flex-col rounded-md px-3 no-underline py-1 sm:py-3 hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
-          >
-            <span className="font-medium text-zinc-800 dark:text-zinc-200">
-              BeatsLab <span className="font-normal">• Jun 2023</span>
-            </span>
-            <span className="text-zinc-600 dark:text-zinc-400">
-              A website that sells beats and kits for producers and rappers.
-            </span>
-          </a>
+          {projects.map((project, idx) => (
+            <a
+              href={project.link}
+              target="_blank"
+              key={idx}
+              className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
+            >
+              <div className="flex flex-col no-underline flex-1">
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">
+                  {project.name}{" "}
+                  <span className="font-normal">
+                    •{" "}
+                    {project.date.toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                    })}
+                  </span>
+                </span>
+                <span className="text-zinc-600 dark:text-zinc-400">
+                  {project.description}
+                </span>
+              </div>
+              <ArrowTopRightOnSquareIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150" />
+            </a>
+          ))}
         </div>
       </div>
 
