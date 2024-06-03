@@ -51,7 +51,14 @@ export default function Blog({ params }) {
 
       <div className="flex items-center justify-between mb-1.5">
         <FormattedDate date={new Date(post.metadata.createdAt)} />
-        <Suspense fallback={<span className="h-5 w-9"></span>}>
+        <Suspense
+          fallback={
+            <span className="h-5 flex items-center gap-1 text-sm">
+              <div className="w-7 h-4 bg-zinc-200 dark:bg-zinc-800 animate-pulse aniam rounded"></div>{" "}
+              views
+            </span>
+          }
+        >
           <PageViews path={params.slug} />
         </Suspense>
       </div>
