@@ -2,16 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-html.dark {
+html.dark,
+div[cmdk-list] {
   scrollbar-width: thin;
   scrollbar-color: #3f3f46 transparent;
 }
 
-html.light {
+html.light,
+div[cmdk-list] {
   scrollbar-width: thin;
   scrollbar-color: #a1a1aa transparent;
 }
-
 
 .prose .anchor {
   @apply absolute invisible no-underline;
@@ -41,7 +42,7 @@ html.dark .shiki span {
 .shiki {
   counter-reset: step;
   counter-increment: step 0;
-  .line{
+  .line {
     &::before {
       counter-increment: step;
       @apply mr-6 inline-block w-4 border-transparent text-right text-zinc-400 dark:text-zinc-600 content-[counter(step)];
