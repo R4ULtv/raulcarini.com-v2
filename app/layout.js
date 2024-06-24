@@ -6,6 +6,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Link from "next/link";
 import ThemeChanger from "@/components/ThemeChanger";
+import CommandMenu from "@/components/CommandMenu";
+import { getBlogPosts } from "@/app/blog/utils";
+import getRepositories from "@/components/utils/getRepositories";
 
 export const metadata = {
   metadataBase: process.env.HOST_NAME,
@@ -27,7 +30,10 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const posts = getBlogPosts();
+  const repos = await getRepositories();
+
   return (
     <html
       lang="en"
@@ -149,9 +155,7 @@ export default function RootLayout({ children }) {
                   </svg>
                 </a>
               </div>
-              <Link href="/stats" className="font-medium">
-                {new Date().getFullYear()}
-              </Link>
+              <CommandMenu posts={posts} repos={repos} />
             </div>
           </footer>
         </ThemeProvider>
