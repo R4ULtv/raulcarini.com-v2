@@ -1,4 +1,5 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import getRepositories from "./utils/getRepositories";
 
 const lang = [
   {
@@ -40,18 +41,14 @@ const lang = [
 ];
 
 export default async function Repositories() {
-  const res = await fetch(
-    "https://api.github.com/users/R4ULtv/repos?sort=updated&per_page=5",
-    { next: { revalidate: 604800 } } // Revalidate every week
-  );
-  const data = await res.json();
+  const data = await getRepositories();
 
   if (!data || data?.message) return <div>No repositories found.</div>;
 
   return (
     <div className="flex flex-col gap-6 md:gap-4">
       {data &&
-        data.map((repo) => (
+        data.slice(0, 5).map((repo) => (
           <a
             href={repo.html_url}
             rel="noopener noreferrer"
