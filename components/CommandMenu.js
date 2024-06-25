@@ -1,12 +1,13 @@
 "use client";
 
 import {
-  AtSymbolIcon,
   BeakerIcon,
   ChartPieIcon,
   DocumentMagnifyingGlassIcon,
   HomeIcon,
   MapIcon,
+  MoonIcon,
+  SunIcon,
 } from "@heroicons/react/24/outline";
 import { Command } from "cmdk";
 import { useRouter } from "next/navigation";
@@ -18,6 +19,7 @@ import {
   DialogPanel,
   Transition,
 } from "@headlessui/react";
+import { useTheme } from "next-themes";
 
 const homePage = [
   {
@@ -30,45 +32,45 @@ const homePage = [
     slug: "stats",
     icon: <ChartPieIcon className="size-4" />,
   },
-  {
-    title: "Contact Me",
-    slug: "contact",
-    icon: <AtSymbolIcon className="size-4" />,
-  },
 ];
 
 export default function CommandMenu({ posts, repos }) {
+  const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState("home");
   const router = useRouter();
 
+  const changeTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   useEffect(() => {
     const down = (e) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setOpen((open) => !open);
         if (open) {
           setPage("home");
         }
       }
-      if (e.key === "f" && (e.metaKey || e.ctrlKey)) {
+      if ((e.metaKey || e.ctrlKey) && e.key === "f") {
         e.preventDefault();
         setPage("blog");
         setOpen(true);
+      }
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === "L") {
+        e.preventDefault();
+        changeTheme();
       }
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [theme, setTheme]);
 
   const handleSubmitPage = (slug) => {
     setOpen(false);
     if (page === "home") {
-      if (slug === "contact") {
-        window.location.href = "mailto:contact@raulcarni.dev";
-        return;
-      }
       router.push(`/${slug}`);
     }
   };
@@ -119,7 +121,11 @@ export default function CommandMenu({ posts, repos }) {
               transition
               className="max-w-xl w-full rounded-lg overflow-y-auto bg-zinc-100/95 dark:bg-zinc-900/95 backdrop-blur-xl ring-zinc-200 dark:ring-zinc-800 ring-2 shadow-2xl shadow-zinc-900/50 outline-none transition duration-150 ease-out data-[closed]:opacity-0 data-[closed]:scale-90"
             >
-              <Command label="Global Command Menu" className="outline-none">
+              <Command
+                label="Global Command Menu"
+                className="outline-none"
+                loop
+              >
                 <Command.Input
                   className="w-full text-sm bg-transparent font-semibold outline-none py-3 px-4 border-b-2 border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 placeholder:text-zinc-700 dark:placeholder:text-zinc-300"
                   placeholder="Search..."
@@ -191,6 +197,37 @@ export default function CommandMenu({ posts, repos }) {
                               <BeakerIcon className="size-4" />
                             </div>
                             Active Projects
+                          </div>
+                        </Command.Item>
+                      </Command.Group>
+
+                      <Command.Separator className="h-0.5 my-2 bg-zinc-200 dark:bg-zinc-800" />
+
+                      <Command.Group heading="Utility" label="Utility">
+                        <Command.Item
+                          onSelect={() => changeTheme()}
+                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                        >
+                          <div className="flex items-center gap-2 py-2 my-1 text-sm">
+                            <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
+                              {theme === "light" ? (
+                                <SunIcon className="size-4 group-hover:scale-110 duration-150" />
+                              ) : (
+                                <MoonIcon className="size-4 group-hover:scale-110 duration-150" />
+                              )}
+                            </div>
+                            Change Theme
+                          </div>
+                          <div className="flex justify-center items-center gap-1.5 text-xs">
+                            <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
+                              ⌘
+                            </span>
+                            <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
+                              ⇧
+                            </span>
+                            <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
+                              L
+                            </span>
                           </div>
                         </Command.Item>
                       </Command.Group>
