@@ -143,7 +143,7 @@ export default function CommandMenu({ posts, repos }) {
                           <Command.Item
                             onSelect={() => handleSubmitPage(item.slug)}
                             key={item.slug}
-                            className="flex justify-between items-center rounded-md px-2 cursor-pointer text-zinc-950 dark:text-zinc-50 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                            className="flex justify-between items-center rounded-md px-2 cursor-pointer select-none text-zinc-950 dark:text-zinc-50 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                           >
                             <div className="flex items-center gap-2 py-2 my-1 text-sm">
                               <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
@@ -160,7 +160,7 @@ export default function CommandMenu({ posts, repos }) {
                       <Command.Group heading="Search" label="Search">
                         <Command.Item
                           onSelect={() => setPage("blog")}
-                          className="flex justify-between items-center rounded-md px-2 cursor-pointer data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-2 py-2 my-1 text-sm">
                             <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
@@ -179,7 +179,7 @@ export default function CommandMenu({ posts, repos }) {
                         </Command.Item>
                         <Command.Item
                           onSelect={() => setPage("repositories")}
-                          className="flex justify-between items-center rounded-md px-2 cursor-pointer data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-2 py-2 my-1 text-sm">
                             <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
@@ -190,7 +190,7 @@ export default function CommandMenu({ posts, repos }) {
                         </Command.Item>
                         <Command.Item
                           onSelect={() => setPage("projects")}
-                          className="flex justify-between items-center rounded-md px-2 cursor-pointer data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-2 py-2 my-1 text-sm">
                             <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
@@ -206,7 +206,7 @@ export default function CommandMenu({ posts, repos }) {
                       <Command.Group heading="Utility" label="Utility">
                         <Command.Item
                           onSelect={() => changeTheme()}
-                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-2 py-2 my-1 text-sm">
                             <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
@@ -251,7 +251,7 @@ export default function CommandMenu({ posts, repos }) {
                             onSelect={() => handleSubmitBlog(item.slug)}
                             key={item.slug}
                             value={item.slug}
-                            className="flex flex-col items-start rounded-md px-2 cursor-pointer py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                            className="flex flex-col items-start rounded-md px-2 cursor-pointer select-none py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                           >
                             <div className="flex items-center gap-1 text-sm">
                               {item.metadata.title}
@@ -280,7 +280,7 @@ export default function CommandMenu({ posts, repos }) {
                           onSelect={() => handleSubmit(item.html_url)}
                           key={item.name}
                           value={item.name}
-                          className="flex flex-col items-start rounded-md px-2 cursor-pointer py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="flex flex-col items-start rounded-md px-2 cursor-pointer select-none py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-1 text-sm">
                             {item.name}
@@ -317,7 +317,7 @@ export default function CommandMenu({ posts, repos }) {
                           onSelect={() => handleSubmit(item.link)}
                           key={item.name}
                           value={item.name}
-                          className="flex flex-col items-start rounded-md px-2 cursor-pointer py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="flex flex-col items-start rounded-md px-2 cursor-pointer select-none py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-1 text-sm">
                             {item.name}
