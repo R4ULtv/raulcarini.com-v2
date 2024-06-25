@@ -128,8 +128,8 @@ export default function Home() {
               className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
             >
               <div className="flex flex-col no-underline flex-1">
-                <span className="font-medium text-zinc-800 dark:text-zinc-200">
-                  {project.name}{" "}
+                <div className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
+                  {project.name}
                   <span className="font-normal">
                     •{" "}
                     {project.date.toLocaleDateString("en-US", {
@@ -137,7 +137,12 @@ export default function Home() {
                       month: "short",
                     })}
                   </span>
-                </span>
+                  {project.archived && (
+                    <div className="ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center">
+                      Archived
+                    </div>
+                  )}
+                </div>
                 <span className="text-zinc-600 dark:text-zinc-400">
                   {project.description}
                 </span>

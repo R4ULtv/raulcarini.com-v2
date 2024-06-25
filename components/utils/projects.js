@@ -17,6 +17,7 @@ export const projects = [
     description:
       "A website that sells beats and kits for producers and rappers.",
     date: new Date("2023-06-18"),
-    link: "https://pewview.beatslab.net",
+    link: "https://preview.beatslab.net",
+    archived: true,
   },
 ];

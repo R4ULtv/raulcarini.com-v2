@@ -253,7 +253,7 @@ export default function CommandMenu({ posts, repos }) {
                             value={item.slug}
                             className="flex flex-col items-start rounded-md px-2 cursor-pointer py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                           >
-                            <div className="flex items-center gap-2 text-sm">
+                            <div className="flex items-center gap-1 text-sm">
                               {item.metadata.title}
                               <span className="font-normal">
                                 •{" "}
@@ -282,7 +282,7 @@ export default function CommandMenu({ posts, repos }) {
                           value={item.name}
                           className="flex flex-col items-start rounded-md px-2 cursor-pointer py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
-                          <div className="flex items-center gap-2 text-sm">
+                          <div className="flex items-center gap-1 text-sm">
                             {item.name}
                             <span className="font-normal">
                               •{" "}
@@ -294,6 +294,11 @@ export default function CommandMenu({ posts, repos }) {
                                 }
                               )}
                             </span>
+                            {item.archived && (
+                              <div className="ml-1.5 opacity-90 px-1 text-xs bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center">
+                                Archived
+                              </div>
+                            )}
                           </div>
                           <div className="text-xs text-zinc-700 dark:text-zinc-300">
                             {item.description
@@ -314,7 +319,7 @@ export default function CommandMenu({ posts, repos }) {
                           value={item.name}
                           className="flex flex-col items-start rounded-md px-2 cursor-pointer py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
-                          <div className="flex items-center gap-2 text-sm">
+                          <div className="flex items-center gap-1 text-sm">
                             {item.name}
                             <span className="font-normal">
                               •{" "}
@@ -323,6 +328,11 @@ export default function CommandMenu({ posts, repos }) {
                                 month: "long",
                               })}
                             </span>
+                            {item.archived && (
+                              <div className="ml-1.5 opacity-90 px-1 text-xs bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center">
+                                Archived
+                              </div>
+                            )}
                           </div>
                           <div className="text-xs text-zinc-700 dark:text-zinc-300">
                             {item.description

@@ -74,7 +74,7 @@ export default async function Repositories() {
                 ></span>
               </div>
               <div className="flex flex-col">
-                <span className="font-medium text-zinc-800 dark:text-zinc-200">
+                <div className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
                   {repo.name}{" "}
                   <span className="font-normal">
                     •{" "}
@@ -83,7 +83,12 @@ export default async function Repositories() {
                       year: "numeric",
                     })}
                   </span>
-                </span>
+                  {repo.archived && (
+                    <div className="ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center">
+                      Archived
+                    </div>
+                  )}
+                </div>
                 <span className="text-zinc-600 dark:text-zinc-400">
                   {repo.description ? repo.description : "No description."}
                 </span>
