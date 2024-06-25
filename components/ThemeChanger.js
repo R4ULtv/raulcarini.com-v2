@@ -22,9 +22,9 @@ export default function ThemeChanger() {
       className="flex justify-center items-center cursor-pointer group duration-150 text-gray-800 dark:text-gray-200 p-2"
     >
       {theme === "light" ? (
-        <SunIcon className="h-4 w-4 stroke-2  group-hover:scale-110 duration-150" />
+        <SunIcon className="size-4 group-hover:scale-110 duration-150" />
       ) : (
-        <MoonIcon className="h-4 w-4 stroke-2  group-hover:scale-110 duration-150" />
+        <MoonIcon className="size-4 group-hover:scale-110 duration-150" />
       )}
     </button>
   );
