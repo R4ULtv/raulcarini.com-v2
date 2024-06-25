@@ -47,23 +47,20 @@ export default function CommandMenu({ posts, repos }) {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
+        if (open) {
+          setPage("home");
+        }
       }
       if (e.key === "f" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setPage("blog");
-        setOpen((open) => !open);
+        setOpen(true);
       }
     };
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
-
-  useEffect(() => {
-    if (!open) {
-      setPage("home");
-    }
-  }, [open]);
 
   const handleSubmitPage = (slug) => {
     setOpen(false);
