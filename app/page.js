@@ -1,5 +1,5 @@
 import Repositories from "@/components/Repositories";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getBlogPosts } from "@/app/blog/utils";
 import {
   ArrowRightCircleIcon,
