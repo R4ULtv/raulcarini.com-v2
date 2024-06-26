@@ -20,17 +20,20 @@ import {
   Transition,
 } from "@headlessui/react";
 import { useTheme } from "next-themes";
+import { ArchiveBoxIcon, MegaphoneIcon } from "@heroicons/react/16/solid";
 
 const homePage = [
   {
     title: "Home",
     slug: "/",
-    icon: <HomeIcon className="size-4" />,
+    icon: <HomeIcon className="size-4 group-hover:scale-110 duration-150" />,
   },
   {
     title: "Stats",
     slug: "stats",
-    icon: <ChartPieIcon className="size-4" />,
+    icon: (
+      <ChartPieIcon className="size-4 group-hover:scale-110 duration-150" />
+    ),
   },
 ];
 
@@ -143,7 +146,7 @@ export default function CommandMenu({ posts, repos }) {
                           <Command.Item
                             onSelect={() => handleSubmitPage(item.slug)}
                             key={item.slug}
-                            className="flex justify-between items-center rounded-md px-2 cursor-pointer select-none text-zinc-950 dark:text-zinc-50 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                            className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none text-zinc-950 dark:text-zinc-50 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                           >
                             <div className="flex items-center gap-2 py-2 my-1 text-sm">
                               <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
@@ -160,11 +163,11 @@ export default function CommandMenu({ posts, repos }) {
                       <Command.Group heading="Search" label="Search">
                         <Command.Item
                           onSelect={() => setPage("blog")}
-                          className="flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-2 py-2 my-1 text-sm">
                             <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
-                              <DocumentMagnifyingGlassIcon className="size-4" />
+                              <DocumentMagnifyingGlassIcon className="size-4 group-hover:scale-110 duration-150" />
                             </div>
                             Blog Posts
                           </div>
@@ -179,22 +182,22 @@ export default function CommandMenu({ posts, repos }) {
                         </Command.Item>
                         <Command.Item
                           onSelect={() => setPage("repositories")}
-                          className="flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-2 py-2 my-1 text-sm">
                             <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
-                              <MapIcon className="size-4" />
+                              <MapIcon className="size-4 group-hover:scale-110 duration-150" />
                             </div>
                             Public Repositories
                           </div>
                         </Command.Item>
                         <Command.Item
                           onSelect={() => setPage("projects")}
-                          className="flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
+                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
                         >
                           <div className="flex items-center gap-2 py-2 my-1 text-sm">
                             <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
-                              <BeakerIcon className="size-4" />
+                              <BeakerIcon className="size-4 group-hover:scale-110 duration-150" />
                             </div>
                             Active Projects
                           </div>
@@ -264,6 +267,12 @@ export default function CommandMenu({ posts, repos }) {
                                   month: "long",
                                 })}
                               </span>
+                              {item.content === "" && (
+                                <div className="ml-1.5 opacity-90 px-1 text-xs bg-blue-200/50 dark:bg-blue-800/50 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-0.5">
+                                  <MegaphoneIcon className="size-2.5" />
+                                  Coming Soon
+                                </div>
+                              )}
                             </div>
                             <div className="text-xs text-zinc-700 dark:text-zinc-300">
                               {item.metadata.description}
@@ -295,7 +304,8 @@ export default function CommandMenu({ posts, repos }) {
                               )}
                             </span>
                             {item.archived && (
-                              <div className="ml-1.5 opacity-90 px-1 text-xs bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center">
+                              <div className="ml-1.5 opacity-90 px-1 text-xs bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-0.5">
+                                <ArchiveBoxIcon className="size-2.5" />
                                 Archived
                               </div>
                             )}
@@ -329,7 +339,8 @@ export default function CommandMenu({ posts, repos }) {
                               })}
                             </span>
                             {item.archived && (
-                              <div className="ml-1.5 opacity-90 px-1 text-xs bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center">
+                              <div className="ml-1.5 opacity-90 px-1 text-xs bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-0.5">
+                                <ArchiveBoxIcon className="size-2.5" />
                                 Archived
                               </div>
                             )}

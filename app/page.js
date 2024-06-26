@@ -6,6 +6,7 @@ import {
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
 import { projects } from "@/components/utils/projects";
+import { ArchiveBoxIcon, MegaphoneIcon } from "@heroicons/react/16/solid";
 
 export default function Home() {
   const allBlogs = getBlogPosts();
@@ -88,7 +89,7 @@ export default function Home() {
                 className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
               >
                 <div className="flex-1 flex flex-col">
-                  <span className="font-medium text-zinc-800 dark:text-zinc-200">
+                  <span className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
                     {post.metadata.title}{" "}
                     <span className="font-normal">
                       •{" "}
@@ -97,6 +98,12 @@ export default function Home() {
                         { year: "numeric", month: "long" }
                       )}
                     </span>
+                    {post.content === "" && (
+                      <div className="ml-1.5 opacity-90 px-1 text-sm bg-blue-200/50 dark:bg-blue-800/50 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
+                        <MegaphoneIcon className="size-3" />
+                        Coming Soon
+                      </div>
+                    )}
                   </span>
                   <span className="text-zinc-600 dark:text-zinc-400">
                     {post.metadata.description}
@@ -138,7 +145,8 @@ export default function Home() {
                     })}
                   </span>
                   {project.archived && (
-                    <div className="ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center">
+                    <div className="ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
+                      <ArchiveBoxIcon className="size-3" />
                       Archived
                     </div>
                   )}
