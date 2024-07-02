@@ -2,8 +2,17 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import { createElement } from "react";
 import Link from "next/link";
+import { YouTubeEmbed } from "@next/third-parties/google";
 
 import { codeToHtml } from "shiki/bundle/web";
+
+function CustomYoutubeEmbed(props) {
+  return (
+    <div className="rounded-md w-full aspect-video overflow-hidden my-8">
+      <YouTubeEmbed {...props} />
+    </div>
+  );
+}
 
 function CustomImage(props) {
   return <Image {...props} />;
@@ -78,6 +87,7 @@ export function CustomMDX(props) {
     h5: createHeading(5),
     h6: createHeading(6),
     Image: CustomImage,
+    YouTubeEmbed: CustomYoutubeEmbed,
     a: CustomLink,
     pre: (props) => {
       return (
