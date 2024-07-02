@@ -3,8 +3,22 @@ import Image from "next/image";
 import { createElement } from "react";
 import Link from "next/link";
 import { YouTubeEmbed } from "@next/third-parties/google";
+import { Tweet } from "react-tweet";
 
 import { codeToHtml } from "shiki/bundle/web";
+
+function CustomTweet(props) {
+  const components = {
+    AvatarImg: (props) => <Image {...props} className="my-0" />,
+    MediaImg: (props) => <Image {...props} fill className="my-0"/>,
+  };
+
+  return (
+    <div className="flex justify-center">
+      <Tweet {...props} components={components} />
+    </div>
+  );
+}
 
 function CustomYoutubeEmbed(props) {
   return (
@@ -88,6 +102,7 @@ export function CustomMDX(props) {
     h6: createHeading(6),
     Image: CustomImage,
     YouTubeEmbed: CustomYoutubeEmbed,
+    Tweet: CustomTweet,
     a: CustomLink,
     pre: (props) => {
       return (
