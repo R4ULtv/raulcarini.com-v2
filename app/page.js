@@ -7,6 +7,18 @@ import {
 } from "@heroicons/react/24/outline";
 import { projects } from "@/components/utils/projects";
 import { ArchiveBoxIcon, MegaphoneIcon } from "@heroicons/react/16/solid";
+import Image from "next/image";
+
+import dlynr from "@/public/assets/dlynr.png";
+import dlynr2 from "@/public/assets/dlynr2.png";
+import mont from "@/public/assets/mont.png";
+import campfire from "@/public/assets/campfire.png";
+import lake from "@/public/assets/lake.png";
+import tree from "@/public/assets/tree.png";
+
+import lake2 from "@/public/assets/lake2.png";
+import city from "@/public/assets/city.png";
+import sea from "@/public/assets/sea.png";
 
 export default function Home() {
   const allBlogs = getBlogPosts();
@@ -45,6 +57,58 @@ export default function Home() {
           </a>{" "}
           e-commerce platform.
         </p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 my-3">
+          <div className="relative">
+            <Image
+              src={campfire}
+              alt="Campfire"
+              placeholder="blur"
+              className="rounded-lg"
+            />
+          </div>
+          <div className="relative sm:row-span-2 row-span-1">
+            <Image
+              src={dlynr}
+              alt="Raul Carini"
+              placeholder="blur"
+              className="rounded-lg object-cover object-center absolute w-full h-full"
+            />
+          </div>
+          <div className="relative">
+            <Image
+              src={mont}
+              alt="Mountains"
+              placeholder="blur"
+              className="rounded-lg"
+            />
+          </div>
+          <div className="relative row-span-2 col-span-1">
+            <Image
+              src={dlynr2}
+              alt="Raul Carini"
+              placeholder="blur"
+              className="rounded-lg"
+            />
+          </div>
+          <div className="relative row-span-2 col-span-1">
+            <Image
+              src={tree}
+              alt="Raul Carini"
+              placeholder="blur"
+              className="rounded-lg"
+            />
+          </div>
+          <div className="relative">
+            <Image
+              src={lake}
+              alt="Lake"
+              placeholder="blur"
+              className="rounded-lg"
+            />
+          </div>
+        </div>
+
         <p className="text-zinc-600 dark:text-zinc-400 mt-2">
           My true passion lies in crafting websites that solve problems. But
           there's more to me than code! When I'm not building, music takes
@@ -59,6 +123,32 @@ export default function Home() {
           </a>
           .
         </p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-3">
+          <div className="relative">
+            <Image
+              src={sea}
+              alt="Sea view"
+              placeholder="blur"
+              className="rounded-lg"
+            />
+          </div>
+          <div className="relative">
+            <Image
+              src={lake2}
+              alt="Lake view"
+              placeholder="blur"
+              className="rounded-lg"
+            />
+          </div>
+          <div className="relative col-span-2 sm:col-span-1">
+            <Image
+              src={city}
+              alt="City with montains"
+              placeholder="blur"
+              className="rounded-lg"
+            />
+          </div>
+        </div>
       </div>
 
       <div>
@@ -90,16 +180,18 @@ export default function Home() {
               >
                 <div className="flex-1 flex flex-col">
                   <span className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
-                    {post.metadata.title}{" "}
-                    <span className="font-normal">
-                      •{" "}
-                      {new Date(post.metadata.createdAt).toLocaleDateString(
-                        "en-US",
-                        { year: "numeric", month: "long" }
-                      )}
-                    </span>
+                    <p>
+                      {post.metadata.title}{" "}
+                      <span className="font-normal">
+                        •{" "}
+                        {new Date(post.metadata.createdAt).toLocaleDateString(
+                          "en-US",
+                          { year: "numeric", month: "long" }
+                        )}
+                      </span>
+                    </p>
                     {post.content === "" && (
-                      <div className="ml-1.5 opacity-90 px-1 text-sm bg-blue-200/50 dark:bg-blue-800/50 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
+                      <div className="shrink-0 ml-1.5 opacity-90 px-1 text-sm bg-blue-200/50 dark:bg-blue-800/50 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
                         <MegaphoneIcon className="size-3" />
                         Coming Soon
                       </div>
@@ -109,7 +201,7 @@ export default function Home() {
                     {post.metadata.description}
                   </span>
                 </div>
-                <ArrowRightCircleIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150" />
+                <ArrowRightCircleIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
               </Link>
             ))}
         </div>
@@ -136,16 +228,18 @@ export default function Home() {
             >
               <div className="flex flex-col no-underline flex-1">
                 <div className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
-                  {project.name}
-                  <span className="font-normal">
-                    •{" "}
-                    {project.date.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                    })}
-                  </span>
+                  <p>
+                    {project.name}
+                    <span className="font-normal">
+                      •{" "}
+                      {project.date.toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                      })}
+                    </span>
+                  </p>
                   {project.archived && (
-                    <div className="ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
+                    <div className="shrink-0 ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
                       <ArchiveBoxIcon className="size-3" />
                       Archived
                     </div>
@@ -155,7 +249,7 @@ export default function Home() {
                   {project.description}
                 </span>
               </div>
-              <ArrowTopRightOnSquareIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150" />
+              <ArrowTopRightOnSquareIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
             </a>
           ))}
         </div>
