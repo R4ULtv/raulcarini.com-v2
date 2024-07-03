@@ -62,7 +62,7 @@ export default function Home() {
           <div className="relative">
             <Image
               src={campfire}
-              width={240}
+              width={320}
               alt="Campfire"
               placeholder="blur"
               className="rounded-lg"
@@ -71,7 +71,7 @@ export default function Home() {
           <div className="relative sm:row-span-2 row-span-1">
             <Image
               src={dlynr}
-              width={240}
+              width={320}
               alt="Raul Carini"
               placeholder="blur"
               className="rounded-lg object-cover object-center absolute w-full h-full"
@@ -80,7 +80,7 @@ export default function Home() {
           <div className="relative">
             <Image
               src={mont}
-              width={240}
+              width={320}
               alt="Mountains"
               placeholder="blur"
               className="rounded-lg"
@@ -89,7 +89,7 @@ export default function Home() {
           <div className="relative row-span-2 col-span-1">
             <Image
               src={dlynr2}
-              width={240}
+              width={320}
               alt="Raul Carini"
               placeholder="blur"
               className="rounded-lg"
@@ -98,7 +98,7 @@ export default function Home() {
           <div className="relative row-span-2 col-span-1">
             <Image
               src={tree}
-              width={240}
+              width={320}
               alt="Raul Carini"
               placeholder="blur"
               className="rounded-lg"
@@ -107,7 +107,7 @@ export default function Home() {
           <div className="relative">
             <Image
               src={lake}
-              width={240}
+              width={320}
               alt="Lake"
               placeholder="blur"
               className="rounded-lg"
@@ -133,7 +133,7 @@ export default function Home() {
           <div className="relative">
             <Image
               src={sea}
-              width={240}
+              width={320}
               alt="Sea view"
               placeholder="blur"
               className="rounded-lg"
@@ -142,7 +142,7 @@ export default function Home() {
           <div className="relative">
             <Image
               src={lake2}
-              width={240}
+              width={320}
               alt="Lake view"
               placeholder="blur"
               className="rounded-lg"
@@ -151,7 +151,7 @@ export default function Home() {
           <div className="relative col-span-2 sm:col-span-1">
             <Image
               src={city}
-              width={240}
+              width={640}
               alt="City with montains"
               placeholder="blur"
               className="rounded-lg"
