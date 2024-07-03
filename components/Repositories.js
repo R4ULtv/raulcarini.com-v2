@@ -76,16 +76,18 @@ export default async function Repositories() {
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
-                  {repo.name}{" "}
-                  <span className="font-normal">
-                    •{" "}
-                    {new Date(repo.created_at).toLocaleDateString("en-US", {
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </span>
+                  <p>
+                    {repo.name}{" "}
+                    <span className="font-normal">
+                      •{" "}
+                      {new Date(repo.created_at).toLocaleDateString("en-US", {
+                        month: "short",
+                        year: "numeric",
+                      })}
+                    </span>
+                  </p>
                   {repo.archived && (
-                    <div className="ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
+                    <div className="shrink-0 ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
                       <ArchiveBoxIcon className="size-3" />
                       Archived
                     </div>
@@ -96,7 +98,7 @@ export default async function Repositories() {
                 </span>
               </div>
             </div>
-            <ArrowTopRightOnSquareIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150" />
+            <ArrowTopRightOnSquareIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
           </a>
         ))}
     </div>
