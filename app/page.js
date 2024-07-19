@@ -55,7 +55,8 @@ export default function Home() {
           >
             PedeBeats
           </a>{" "}
-          e-commerce platform.
+          e-commerce platform. Soon, more projects that I am building in secret
+          will arrive.
         </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 my-3">
@@ -117,7 +118,7 @@ export default function Home() {
 
         <p className="text-zinc-600 dark:text-zinc-400 mt-2">
           My true passion lies in crafting websites that solve problems. But
-          there's more to me than code! When I'm not building, music takes
+          there's more to me than code! When I'm not developing, music takes
           center stage. I love producing tracks and experimenting with fresh
           sounds. If you are interested in my music check{" "}
           <a
@@ -238,7 +239,7 @@ export default function Home() {
               <div className="flex flex-col no-underline flex-1">
                 <div className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
                   <p>
-                    {project.name}
+                    {project.name}{" "}
                     <span className="font-normal">
                       •{" "}
                       {project.date.toLocaleDateString("en-US", {
