@@ -7,4 +7,4 @@ This is the newest version of my old portfolio, now with a better design. The we
 - Install the required dependencies (e.g., `npm install` or `yarn install`).
 - Run the website locally using the command `npm run dev` or `yarn dev`.
 - Customize the website with your information, projects, and style.
-- Deploy the website to a web hosting service like [Vercel](https://vercel.com).
+- Deploy the website to a web hosting service like [Vercel](https://vercel.com/new/clone?project-name=Simple%20Portfolio&repository-name=raulcarini.com-v2&repository-url=https%3A%2F%2Fgithub.com%2FR4ULtv%2Fraulcarini.com-v2).
