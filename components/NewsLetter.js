@@ -5,52 +5,47 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function AddContact({ firstName, lastName, email }) {
-  const contacts = await resend.contacts.list({
+  const { data } = await resend.contacts.list({
     audienceId: process.env.RESEND_AUDIENCE_ID,
   });
+  const existingContact = data.data.find((contact) => contact.email === email);
 
-  const contact = contacts.data.data.find((contact) => contact.email === email);
-
-  if (contact) {
-    contact.alreadyExists = true;
-    return contact;
+  if (existingContact) {
+    return { ...existingContact, alreadyExists: true };
   }
 
-  const data = resend.contacts.create({
+  return await resend.contacts.create({
     email: email,
     firstName: firstName,
     lastName: lastName,
     unsubscribed: false,
     audienceId: process.env.RESEND_AUDIENCE_ID,
   });
-  return data;
 }
 
 export async function ChangeContactStatus(contactId) {
-  const contact = await resend.contacts.get({
+  const { data: contact } = await resend.contacts.get({
     id: contactId,
     audienceId: process.env.RESEND_AUDIENCE_ID,
   });
 
-  if (!contact.data) {
+  if (!contact) {
     return {
       error:
-        "You are not subscribed to my newsletter. If you think this is an error, please contact us.",
+        "You are not subscribed to my newsletter. If you think this is an error, please contact me.",
     };
   }
 
-  if (contact.data.unsubscribed) {
+  if (contact.unsubscribed) {
     return {
       error:
-        "You are already unsubscribed. If you think this is an error, please contact us.",
+        "You are already unsubscribed. If you think this is an error, please contact me.",
     };
   }
 
-  const data = resend.contacts.update({
+  return await resend.contacts.update({
     id: contactId,
     audienceId: process.env.RESEND_AUDIENCE_ID,
     unsubscribed: true,
   });
-
-  return data;
 }
