@@ -1,13 +1,16 @@
-import Repositories from "@/components/Repositories";
+import Image from "next/image";
 import Link from "next/link";
-import { getBlogPosts } from "@/app/blog/utils";
+
 import {
   ArrowRightCircleIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
-import { projects } from "@/components/utils/projects";
 import { ArchiveBoxIcon, MegaphoneIcon } from "@heroicons/react/16/solid";
-import Image from "next/image";
+
+import { getBlogPosts } from "@/app/blog/utils";
+import { projects } from "@/components/utils/projects";
+import NewsLetterForm from "@/components/NewsLetterForm";
+import Repositories from "@/components/Repositories";
 
 import dlynr from "@/public/assets/dlynr.png";
 import dlynr2 from "@/public/assets/dlynr2.png";
@@ -278,6 +281,25 @@ export default function Home() {
         </a>
 
         <Repositories />
+      </div>
+
+      <div>
+        <a
+          href={"#newsletter"}
+          className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
+          id="newsletter"
+        >
+          Newsletter{" "}
+          <span className="opacity-0 group-hover:opacity-90 duration-150">
+            #
+          </span>
+        </a>
+        <p className="text-zinc-600 dark:text-zinc-400 mt-2">
+          If you want to stay updated on my latest projects and blog posts,
+          subscribe to my newsletter! You will receive an email every time that
+          there is a new post.
+        </p>
+        <NewsLetterForm />
       </div>
 
       <div>

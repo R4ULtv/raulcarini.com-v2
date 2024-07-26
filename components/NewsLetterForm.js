@@ -1,0 +1,159 @@
+"use client";
+
+import { Button, Field, Input, Label } from "@headlessui/react";
+import { useEffect, useState } from "react";
+import { AddContact, ChangeContactStatus } from "@/components/NewsLetter";
+import { toast } from "sonner";
+
+export default function NewsLetterForm() {
+  const [loading, setLoading] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contactId, setContactId] = useState(null);
+
+  useEffect(() => {
+    const contactId = localStorage.getItem("contact-id");
+    if (contactId) {
+      setContactId(localStorage.getItem("contact-id"));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (contactId) {
+      localStorage.setItem("contact-id", contactId);
+    }
+  }, [contactId]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    if (!firstName || !lastName || !email) return;
+
+    const data = await AddContact({ firstName, lastName, email });
+
+    if (data.error) {
+      setLoading(false);
+      toast.error("Something went wrong.", {
+        description: data.error,
+      });
+    } else {
+      if (data.alreadyExists) {
+        setContactId(data.id);
+        setLoading(false);
+
+        toast.warning("You are already subscribed!", {
+          description:
+            "This email is already been used. If you think this is an error, please contact us.",
+        });
+      } else {
+        setContactId(data.data.id);
+        setLoading(false);
+        toast.success("Thank you for subscribing!", {
+          description:
+            "You sign up for my newsletter. You will recive an email every time that's a new post.",
+        });
+      }
+    }
+  };
+
+  const handleUnSubscribe = async () => {
+    setLoading(true);
+    if (!contactId) return;
+
+    const data = await ChangeContactStatus(contactId);
+    setLoading(false);
+
+    if (data.error) {
+      setLoading(false);
+      toast.error("Something went wrong.", {
+        description: data.error,
+      });
+    } else {
+      setContactId(null);
+      localStorage.removeItem("contact-id");
+      setLoading(false);
+      toast.success("You have been unsubscribed!", {
+        description:
+          "You successfully unsubscribed from my newsletter. You will no longer recive emails.",
+      });
+    }
+  };
+
+  if (contactId) {
+    return (
+      <div className="flex flex-col gap-4 mt-4 text-sm">
+        <Field className="flex flex-col gap-1 w-full">
+          <Label>You are already subscribed!</Label>
+          <Button
+            onClick={handleUnSubscribe}
+            disabled={loading}
+            className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-none font-medium duration-75"
+          >
+            Unsubscribe
+          </Button>
+        </Field>
+      </div>
+    );
+  } else {
+    return (
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 mt-4 text-sm"
+      >
+        <div className="flex flex-col md:flex-row gap-3">
+          <Field className="flex flex-col gap-1 w-full">
+            <Label>First Name</Label>
+            <Input
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              disabled={loading}
+              name="first_name"
+              required
+              type="text"
+              placeholder="John"
+              autoComplete="given-name"
+              className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
+            />
+          </Field>
+          <Field className="flex flex-col gap-1 w-full">
+            <Label>Last Name</Label>
+            <Input
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              disabled={loading}
+              name="last_name"
+              required
+              type="text"
+              placeholder="Doe"
+              autoComplete="family-name"
+              className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
+            />
+          </Field>
+        </div>
+        <Field className="flex flex-col gap-1 w-full">
+          <Label>Email Address</Label>
+          <Input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
+            name="email"
+            required
+            type="email"
+            placeholder="jonhdoe@example.com"
+            autoComplete="email"
+            className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
+          />
+        </Field>
+        <Button
+          type="submit"
+          disabled={loading}
+          className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-none font-medium duration-75"
+        >
+          Subscribe
+        </Button>
+      </form>
+    );
+  }
+}
