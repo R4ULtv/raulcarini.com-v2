@@ -2,8 +2,9 @@
 
 import { Button, Field, Input, Label } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import { AddContact, ChangeContactStatus } from "@/components/NewsLetter";
 import { toast } from "sonner";
+
+import { AddContact, ChangeContactStatus } from "@/components/NewsLetter";
 
 export default function NewsLetterForm() {
   const [loading, setLoading] = useState(false);
@@ -29,41 +30,43 @@ export default function NewsLetterForm() {
     e.preventDefault();
     setLoading(true);
 
-    if (!firstName || !lastName || !email) return;
+    if (!firstName || !lastName || !email) {
+      setLoading(false);
+      return;
+    }
 
     const data = await AddContact({ firstName, lastName, email });
 
     if (data.error) {
-      setLoading(false);
       toast.error("Something went wrong.", {
         description: data.error,
       });
     } else {
       if (data.alreadyExists) {
         setContactId(data.id);
-        setLoading(false);
-
         toast.warning("You are already subscribed!", {
           description:
             "This email is already been used. If you think this is an error, please contact us.",
         });
       } else {
         setContactId(data.data.id);
-        setLoading(false);
         toast.success("Thank you for subscribing!", {
           description:
             "You sign up for my newsletter. You will recive an email every time that's a new post.",
         });
       }
     }
+    setLoading(false);
   };
 
   const handleUnSubscribe = async () => {
     setLoading(true);
-    if (!contactId) return;
+    if (!contactId) {
+      setLoading(false);
+      return;
+    }
 
     const data = await ChangeContactStatus(contactId);
-    setLoading(false);
 
     if (data.error) {
       setLoading(false);
@@ -79,13 +82,16 @@ export default function NewsLetterForm() {
           "You successfully unsubscribed from my newsletter. You will no longer recive emails.",
       });
     }
+    setLoading(false);
   };
 
   if (contactId) {
     return (
       <div className="flex flex-col gap-4 mt-4 text-sm">
         <Field className="flex flex-col gap-1 w-full">
-          <Label>You are already subscribed!</Label>
+          <Label className="text-zinc-600 dark:text-zinc-400">
+            You are already subscribed!
+          </Label>
           <Button
             onClick={handleUnSubscribe}
             disabled={loading}
