@@ -9,6 +9,7 @@ import ThemeChanger from "@/components/ThemeChanger";
 import CommandMenu from "@/components/CommandMenu";
 import { getBlogPosts } from "@/app/blog/utils";
 import getRepositories from "@/components/utils/getRepositories";
+import CustomToaster from "@/components/CustomToaster";
 
 export const metadata = {
   metadataBase: process.env.HOST_NAME,
@@ -158,6 +159,7 @@ export default async function RootLayout({ children }) {
               <CommandMenu posts={posts} repos={repos} />
             </div>
           </footer>
+          <CustomToaster/>
         </ThemeProvider>
       </body>
     </html>
