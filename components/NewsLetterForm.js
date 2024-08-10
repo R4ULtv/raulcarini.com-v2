@@ -46,7 +46,7 @@ export default function NewsLetterForm() {
         setContactId(data.id);
         toast.warning("You are already subscribed!", {
           description:
-            "This email is already been used. If you think this is an error, please contact us.",
+            "This email is already been used. If you think this is an error, please contact me.",
         });
       } else {
         setContactId(data.data.id);
@@ -155,9 +155,9 @@ export default function NewsLetterForm() {
         <Button
           type="submit"
           disabled={loading}
-          className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-none font-medium duration-75"
+          className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-none font-medium duration-75 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Subscribe
+          {loading ? "Loading..." : "Subscribe"}
         </Button>
       </form>
     );
