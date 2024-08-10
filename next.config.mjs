@@ -17,6 +17,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/blog",
+        destination: "/#blog",
+        permanent: true,
+      },
+      {
         source: "/r/youtube",
         destination: "https://www.youtube.com/@lil-poop",
         permanent: true,
