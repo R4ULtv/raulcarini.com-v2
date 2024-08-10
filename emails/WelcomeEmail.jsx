@@ -13,7 +13,7 @@ import {
   Text,
 } from "@react-email/components";
 
-export const WelcomeEmail = ({ fname, lname, ip, location }) => {
+export const WelcomeEmail = ({ fname, lname }) => {
   return (
     <Html>
       <Head />
@@ -24,8 +24,8 @@ export const WelcomeEmail = ({ fname, lname, ip, location }) => {
             <Section className="mt-6">
               <Img
                 src={`${process.env.HOST_NAME}/logo.png`}
-                width="40"
-                height="37"
+                width="44"
+                height="44"
                 alt="Raul Carini"
                 className="my-0 mx-auto"
               />
@@ -63,12 +63,7 @@ export const WelcomeEmail = ({ fname, lname, ip, location }) => {
               <span className="text-zinc-800">
                 {fname} {lname}
               </span>
-              . This email was sent from{" "}
-              <span className="text-zinc-800">{ip?.ip || ip}</span> located in{" "}
-              <span className="text-zinc-800">
-                {location?.city}, {location?.country || "Unwknown"}
-              </span>
-              . If you were not expecting to join my newsletter, you can ignore
+              .If you were not expecting to join my newsletter, you can ignore
               this email.
             </Text>
           </Container>
