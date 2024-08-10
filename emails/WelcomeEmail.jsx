@@ -13,7 +13,7 @@ import {
   Text,
 } from "@react-email/components";
 
-export const WelcomeEmail = ({ fname, lname }) => {
+export const WelcomeEmail = ({ fname, lname, email }) => {
   return (
     <Html>
       <Head />
@@ -63,8 +63,8 @@ export const WelcomeEmail = ({ fname, lname }) => {
               <span className="text-zinc-800">
                 {fname} {lname}
               </span>
-              .If you were not expecting to join my newsletter, you can ignore
-              this email.
+              at the {email} address. If you were not expecting to join my
+              newsletter, you can ignore this email.
             </Text>
           </Container>
         </Body>

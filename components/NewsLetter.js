@@ -19,7 +19,7 @@ export async function AddContact({ firstName, lastName, email }) {
     from: process.env.EMAIL_ADDRESS,
     to: email,
     subject: "Welcome to my newsletter",
-    react: <WelcomeEmail fname={firstName} lname={lastName} />,
+    react: <WelcomeEmail fname={firstName} lname={lastName} email={email} />,
     headers: {
       "X-Entity-Ref-ID": crypto.randomUUID(),
     },
