@@ -15,26 +15,11 @@ export async function AddContact({ firstName, lastName, email }) {
     return { ...existingContact, alreadyExists: true };
   }
 
-  const geolocation = await fetch(
-    process.env.HOST_NAME + "/api/geolocation"
-  ).then((res) => res.json());
-
-  const ipAddress = await fetch(process.env.HOST_NAME + "/api/ip-address").then(
-    (res) => res.json()
-  );
-
   await resend.emails.send({
     from: process.env.EMAIL_ADDRESS,
     to: email,
     subject: "Welcome to my newsletter",
-    react: (
-      <WelcomeEmail
-        fname={firstName}
-        lname={lastName}
-        ip={ipAddress}
-        location={geolocation}
-      />
-    ),
+    react: <WelcomeEmail fname={firstName} lname={lastName} />,
     headers: {
       "X-Entity-Ref-ID": crypto.randomUUID(),
     },
