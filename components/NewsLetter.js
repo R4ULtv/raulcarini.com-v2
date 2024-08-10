@@ -1,5 +1,6 @@
 "use server";
 
+import WelcomeEmail from "@/emails/WelcomeEmail";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -13,6 +14,37 @@ export async function AddContact({ firstName, lastName, email }) {
   if (existingContact) {
     return { ...existingContact, alreadyExists: true };
   }
+
+  const geolocation = await fetch(
+    process.env.HOST_NAME + "/api/geolocation"
+  ).then((res) => res.json());
+
+  const ipAddress = await fetch(process.env.HOST_NAME + "/api/ip-address").then(
+    (res) => res.json()
+  );
+
+  await resend.emails.send({
+    from: process.env.EMAIL_ADDRESS,
+    to: email,
+    subject: "Welcome to my newsletter",
+    react: (
+      <WelcomeEmail
+        fname={firstName}
+        lname={lastName}
+        ip={ipAddress}
+        location={geolocation}
+      />
+    ),
+    headers: {
+      "X-Entity-Ref-ID": crypto.randomUUID(),
+    },
+    tags: [
+      {
+        name: "category",
+        value: "welcome_email",
+      },
+    ],
+  });
 
   return await resend.contacts.create({
     email: email,
