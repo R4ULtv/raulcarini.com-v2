@@ -6,11 +6,12 @@ import { YouTubeEmbed } from "@next/third-parties/google";
 import { Tweet } from "react-tweet";
 
 import { codeToHtml } from "shiki/bundle/web";
+import { CopyToClipboard } from "@/components/CopyToClipboard";
 
 function CustomTweet(props) {
   const components = {
     AvatarImg: (props) => <Image {...props} className="my-0" />,
-    MediaImg: (props) => <Image {...props} fill className="my-0"/>,
+    MediaImg: (props) => <Image {...props} fill className="my-0" />,
   };
 
   return (
@@ -89,7 +90,12 @@ async function CustomCode({ language, code }) {
     themes: { dark: "vitesse-dark", light: "vitesse-light" },
   });
 
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div className="relative">
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <CopyToClipboard code={code} />
+    </div>
+  );
 }
 
 export function CustomMDX(props) {
