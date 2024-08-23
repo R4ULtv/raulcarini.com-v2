@@ -1,4 +1,4 @@
-<img alt="CloudFlare Worker - Multi-Region Download System" src="https://www.raulcarini.dev/api/dynamic-og">
+<img alt="Raul Carini - Full-Stack Developer" src="https://www.raulcarini.dev/api/dynamic-og">
 
 This is the newest version of my old portfolio, now with a better design. The website is built using Next.js 14, a React framework for building high-performance web applications.
 
