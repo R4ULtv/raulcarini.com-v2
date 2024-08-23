@@ -43,21 +43,35 @@ export default function Home() {
           Hi! I'm a full-stack developer based in Milan, currently juggling
           projects and studies. On the professional side, I'm diving into
           exciting ventures like{" "}
-          <a
-            href="https://www.shrly.cc/"
+          <Link
+            href="https://www.shrly.cc"
             target="_blank"
-            className="underline-offset-2 underline font-medium text-zinc-700 hover:text-zinc-600 dark:text-zinc-300 dark:hover:text-zinc-400 duration-150"
+            className="inline-flex items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
           >
+            <Image
+              src="/assets/icons/shortly.png"
+              width={14}
+              height={14}
+              alt="shortly logo"
+              className="mr-1"
+            />
             Shortly
-          </a>{" "}
+          </Link>{" "}
           and the{" "}
-          <a
+          <Link
             href="https://kits.pedebeats.com"
             target="_blank"
-            className="underline-offset-2 underline font-medium text-zinc-700 hover:text-zinc-600 dark:text-zinc-300 dark:hover:text-zinc-400 duration-150"
+            className="inline-flex items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
           >
+            <Image
+              src="/assets/icons/pedebeats.png"
+              width={14}
+              height={14}
+              alt="pedebeats logo"
+              className="mr-1"
+            />
             PedeBeats
-          </a>{" "}
+          </Link>{" "}
           e-commerce platform. Soon, more projects that I am building in secret
           will arrive.
         </p>
@@ -123,15 +137,22 @@ export default function Home() {
           My true passion lies in crafting websites that solve problems. But
           there's more to me than code! When I'm not developing, music takes
           center stage. I love producing tracks and experimenting with fresh
-          sounds. If you are interested in my music check{" "}
-          <a
+          sounds. If you are interested in my music check out on my{" "}
+          <Link
             href="https://open.spotify.com/artist/21DbatkhkYpxIpLfQ4LeUo"
             target="_blank"
-            className="underline-offset-2 underline font-medium text-zinc-700 hover:text-zinc-600 dark:text-zinc-300 dark:hover:text-zinc-400 duration-150"
+            className="inline-flex items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
           >
-            here
-          </a>
-          .
+            <Image
+              src="/assets/icons/spotify.png"
+              width={14}
+              height={14}
+              alt="spotify logo"
+              className="mr-1"
+            />
+            Spotify
+          </Link>{" "}
+          profile.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-3">
           <div className="relative">
