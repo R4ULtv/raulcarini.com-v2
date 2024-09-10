@@ -7,10 +7,10 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    animation: {
-      ping: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
-    },
     extend: {
+      animation: {
+        ping: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
+      },
       typography: {
         DEFAULT: {
           css: {
