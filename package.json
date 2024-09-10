@@ -29,9 +29,9 @@
     "numeral": "^2.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-email": "2.1.6",
+    "react-email": "^3.0.1",
     "react-tweet": "^3.2.1",
-    "resend": "^3.5.0",
+    "resend": "^4.0.0",
     "shiki": "^1.16.3",
     "sonner": "^1.5.0"
   },
