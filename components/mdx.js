@@ -118,6 +118,13 @@ export function CustomMDX(props) {
         />
       );
     },
+    code: (props) => {
+      return (
+        <code className="bg-zinc-200 dark:bg-zinc-800 px-1 py-0.5 rounded text-zinc-700 dark:text-zinc-300">
+          {props.children}
+        </code>
+      );
+    },
   };
 
   return (

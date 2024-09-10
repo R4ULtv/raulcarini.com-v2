@@ -10,6 +10,16 @@ module.exports = {
     animation: {
       ping: "ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
     },
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            "code::before": false,
+            "code::after": false,
+          },
+        },
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };
