@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { getBlogPosts } from "@/app/blog/utils";
 import { CustomMDX } from "@/components/mdx";
 import PageViews from "@/components/PageViews";
-import FormattedDate from "@/components/FormattedDate";
+import FormattedDate from "@/components/utils/FormattedDate";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();

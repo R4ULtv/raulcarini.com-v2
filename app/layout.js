@@ -9,7 +9,7 @@ import ThemeChanger from "@/components/ThemeChanger";
 import CommandMenu from "@/components/CommandMenu";
 import { getBlogPosts } from "@/app/blog/utils";
 import getRepositories from "@/components/utils/getRepositories";
-import CustomToaster from "@/components/CustomToaster";
+import CustomToaster from "@/components/ui/CustomToaster";
 
 export const metadata = {
   metadataBase: process.env.HOST_NAME,

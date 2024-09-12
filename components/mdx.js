@@ -6,7 +6,7 @@ import { YouTubeEmbed } from "@next/third-parties/google";
 import { Tweet } from "react-tweet";
 
 import { codeToHtml } from "shiki/bundle/web";
-import { CopyToClipboard } from "@/components/CopyToClipboard";
+import { CopyToClipboard } from "@/components/ui/CopyToClipboard";
 
 function CustomTweet(props) {
   const components = {
