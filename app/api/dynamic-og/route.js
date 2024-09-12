@@ -5,6 +5,7 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const title = searchParams.get("title") || "Raul Carini";
   const description = searchParams.get("description") || "Full-Stack Developer";
+  const theme = searchParams.get("theme") || "light";
 
   const fontData = await fetch(
     new URL("/assets/Geist-Black.ttf", import.meta.url)
@@ -12,8 +13,18 @@ export async function GET(request) {
 
   return new ImageResponse(
     (
-      <div tw="h-full w-full flex flex-col justify-center items-center p-14 bg-zinc-100">
-        <div tw="flex absolute top-10 right-10">
+      <div
+        tw={
+          "h-full w-full flex flex-col justify-center items-center p-14 " +
+          (theme === "light" ? "bg-zinc-100" : "bg-zinc-900")
+        }
+      >
+        <div
+          tw={
+            "flex absolute top-10 right-10 " +
+            (theme === "light" ? "text-zinc-800" : "text-zinc-200")
+          }
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -26,8 +37,22 @@ export async function GET(request) {
             />
           </svg>
         </div>
-        <span tw="text-center text-8xl text-zinc-800">{title}</span>
-        <span tw="mt-6 text-center text-4xl text-zinc-700">{description}</span>
+        <span
+          tw={
+            "text-center text-8xl " +
+            (theme === "light" ? "text-zinc-800" : "text-zinc-200")
+          }
+        >
+          {title}
+        </span>
+        <span
+          tw={
+            "mt-6 text-center text-4xl " +
+            (theme === "light" ? "text-zinc-700" : "text-zinc-300")
+          }
+        >
+          {description}
+        </span>
       </div>
     ),
     {
