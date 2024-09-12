@@ -9,18 +9,20 @@ import {
   MoonIcon,
   SunIcon,
 } from "@heroicons/react/24/outline";
-import { Command } from "cmdk";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { projects } from "@/components/utils/projects";
 import {
   Dialog,
   DialogBackdrop,
   DialogPanel,
   Transition,
 } from "@headlessui/react";
+
+import { Command } from "cmdk";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { ArchiveBoxIcon, MegaphoneIcon } from "@heroicons/react/16/solid";
+
+import { projects } from "@/components/utils/projects";
+import { Archived, ComingSoon, NewPost } from "@/components/ui/badges";
 
 const homePage = [
   {
@@ -267,12 +269,25 @@ export default function CommandMenu({ posts, repos }) {
                                   month: "long",
                                 })}
                               </span>
-                              {item.content === "" && (
-                                <div className="ml-1.5 opacity-90 px-1 text-xs bg-blue-200/50 dark:bg-blue-800/50 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-0.5">
-                                  <MegaphoneIcon className="size-2.5" />
-                                  Coming Soon
-                                </div>
+                              {(item.content === "" ||
+                                new Date(item.metadata.createdAt) >
+                                  new Date()) && (
+                                <ComingSoon
+                                  size="xs"
+                                  className="shrink-0 ml-1.5"
+                                />
                               )}
+                              {new Date(item.metadata.createdAt) >
+                                new Date(
+                                  Date.now() - 7 * 24 * 60 * 60 * 1000
+                                ) &&
+                                new Date(item.metadata.createdAt) <
+                                  new Date() && (
+                                  <NewPost
+                                    size="xs"
+                                    className="shrink-0 ml-1.5"
+                                  />
+                                )}
                             </div>
                             <div className="text-xs text-zinc-700 dark:text-zinc-300">
                               {item.metadata.description}
@@ -304,10 +319,7 @@ export default function CommandMenu({ posts, repos }) {
                               )}
                             </span>
                             {item.archived && (
-                              <div className="ml-1.5 opacity-90 px-1 text-xs bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-0.5">
-                                <ArchiveBoxIcon className="size-2.5" />
-                                Archived
-                              </div>
+                              <Archived size="xs" className="shrink-0 ml-1.5" />
                             )}
                           </div>
                           <div className="text-xs text-zinc-700 dark:text-zinc-300">
@@ -339,10 +351,7 @@ export default function CommandMenu({ posts, repos }) {
                               })}
                             </span>
                             {item.archived && (
-                              <div className="ml-1.5 opacity-90 px-1 text-xs bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-0.5">
-                                <ArchiveBoxIcon className="size-2.5" />
-                                Archived
-                              </div>
+                              <Archived size="xs" className="shrink-0 ml-1.5" />
                             )}
                           </div>
                           <div className="text-xs text-zinc-700 dark:text-zinc-300">

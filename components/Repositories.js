@@ -1,6 +1,6 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
-import getRepositories from "./utils/getRepositories";
-import { ArchiveBoxIcon } from "@heroicons/react/16/solid";
+import getRepositories from "@/components/utils/getRepositories";
+import { Archived } from "@/components/ui/badges";
 
 const lang = [
   {
@@ -87,10 +87,7 @@ export default async function Repositories() {
                     </span>
                   </p>
                   {repo.archived && (
-                    <div className="shrink-0 ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
-                      <ArchiveBoxIcon className="size-3" />
-                      Archived
-                    </div>
+                    <Archived size="sm" className="shrink-0 ml-1.5" />
                   )}
                 </div>
                 <span className="text-zinc-600 dark:text-zinc-400">

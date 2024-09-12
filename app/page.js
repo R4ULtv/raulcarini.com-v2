@@ -5,8 +5,8 @@ import {
   ArrowRightCircleIcon,
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
-import { ArchiveBoxIcon, MegaphoneIcon } from "@heroicons/react/16/solid";
 
+import { Archived, ComingSoon, NewPost } from "@/components/ui/badges";
 import { getBlogPosts } from "@/app/blog/utils";
 import { projects } from "@/components/utils/projects";
 import NewsLetterForm from "@/components/NewsLetterForm";
@@ -224,12 +224,15 @@ export default function Home() {
                         )}
                       </span>
                     </p>
-                    {post.content === "" && (
-                      <div className="shrink-0 ml-1.5 opacity-90 px-1 text-sm bg-blue-200/50 dark:bg-blue-800/50 text-blue-600 dark:text-blue-400 ring-1 ring-blue-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
-                        <MegaphoneIcon className="size-3" />
-                        Coming Soon
-                      </div>
+                    {(post.content === "" ||
+                      new Date(post.metadata.createdAt) > new Date()) && (
+                      <ComingSoon size="sm" className="shrink-0 ml-1.5" />
                     )}
+                    {new Date(post.metadata.createdAt) >
+                      new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) &&
+                      new Date(post.metadata.createdAt) < new Date() && (
+                        <NewPost size="sm" className="shrink-0 ml-1.5" />
+                      )}
                   </span>
                   <span className="text-zinc-600 dark:text-zinc-400">
                     {post.metadata.description}
@@ -273,10 +276,7 @@ export default function Home() {
                     </span>
                   </p>
                   {project.archived && (
-                    <div className="shrink-0 ml-1.5 opacity-90 px-1 text-sm bg-orange-200/50 dark:bg-orange-800/50 text-orange-600 dark:text-orange-400 ring-1 ring-orange-500/50 rounded-md min-w-[20px] flex justify-center items-center gap-1">
-                      <ArchiveBoxIcon className="size-3" />
-                      Archived
-                    </div>
+                    <Archived size="sm" className="shrink-0 ml-1.5" />
                   )}
                 </div>
                 <span className="text-zinc-600 dark:text-zinc-400">
