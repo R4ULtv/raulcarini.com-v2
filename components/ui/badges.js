@@ -1,4 +1,8 @@
-import { ArchiveBoxIcon, CursorArrowRaysIcon, MegaphoneIcon } from "@heroicons/react/16/solid";
+import {
+  ArchiveBoxIcon,
+  CursorArrowRaysIcon,
+  MegaphoneIcon,
+} from "@heroicons/react/16/solid";
 
 const sizes = [
   {
@@ -18,7 +22,7 @@ const sizes = [
   },
 ];
 
-export function ComingSoon({ className, size }) {
+export function ComingSoon({ className, size = "sm" }) {
   return (
     <div
       className={
@@ -34,7 +38,7 @@ export function ComingSoon({ className, size }) {
   );
 }
 
-export function Archived({ className, size }) {
+export function Archived({ className, size = "sm" }) {
   return (
     <div
       className={
@@ -50,18 +54,20 @@ export function Archived({ className, size }) {
   );
 }
 
-export function NewPost({ className, size }) {
-    return (
-      <div
-        className={
-          "opacity-90 px-1 bg-green-200/50 dark:bg-green-800/50 text-green-600 dark:text-green-400 ring-1 ring-green-500/50 rounded min-w-[20px] flex justify-center items-center gap-1 " +
-          className
-        }
-      >
-        <CursorArrowRaysIcon className={sizes.find((s) => s.size === size)["icon"]} />
-        <span className={sizes.find((s) => s.size === size)["text"]}>
-          New Post
-        </span>
-      </div>
-    );
-  }
+export function NewPost({ className, size = "sm" }) {
+  return (
+    <div
+      className={
+        "opacity-90 px-1 bg-green-200/50 dark:bg-green-800/50 text-green-600 dark:text-green-400 ring-1 ring-green-500/50 rounded min-w-[20px] flex justify-center items-center gap-1 " +
+        className
+      }
+    >
+      <CursorArrowRaysIcon
+        className={sizes.find((s) => s.size === size)["icon"]}
+      />
+      <span className={sizes.find((s) => s.size === size)["text"]}>
+        New Post
+      </span>
+    </div>
+  );
+}
