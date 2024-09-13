@@ -7,6 +7,7 @@ import { Tweet } from "react-tweet";
 
 import { codeToHtml } from "shiki/bundle/web";
 import { CopyToClipboard } from "@/components/ui/CopyToClipboard";
+import { TwitterBadge } from "@/components/ui/badges";
 
 function CustomTweet(props) {
   const components = {
@@ -109,6 +110,7 @@ export function CustomMDX(props) {
     Image: CustomImage,
     YouTubeEmbed: CustomYoutubeEmbed,
     Tweet: CustomTweet,
+    TwitterBadge: TwitterBadge,
     a: CustomLink,
     pre: (props) => {
       return (
