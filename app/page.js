@@ -27,6 +27,7 @@ import tree from "@/public/assets/tree.png";
 import lake2 from "@/public/assets/lake2.png";
 import city from "@/public/assets/city.png";
 import sea from "@/public/assets/sea.png";
+import FullScreenImage from "@/components/ui/FullScreenImage";
 
 export default function Home() {
   const allBlogs = getBlogPosts();
@@ -67,57 +68,52 @@ export default function Home() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 my-3">
           <div className="relative">
-            <Image
+            <FullScreenImage
               src={campfire}
               width={320}
               alt="Campfire"
               placeholder="blur"
-              className="rounded-lg"
             />
           </div>
           <div className="relative sm:row-span-2 row-span-1">
-            <Image
+            <FullScreenImage
               src={dlynr}
               width={320}
               alt="Raul Carini"
               placeholder="blur"
-              className="rounded-lg object-cover object-center absolute w-full h-full"
+              className="object-cover object-center absolute w-full h-full"
             />
           </div>
           <div className="relative">
-            <Image
+            <FullScreenImage
               src={mont}
               width={320}
               alt="Mountains"
               placeholder="blur"
-              className="rounded-lg"
             />
           </div>
           <div className="relative row-span-2 col-span-1">
-            <Image
+            <FullScreenImage
               src={dlynr2}
               width={320}
               alt="Raul Carini"
               placeholder="blur"
-              className="rounded-lg"
             />
           </div>
           <div className="relative row-span-2 col-span-1">
-            <Image
+            <FullScreenImage
               src={tree}
               width={320}
               alt="Raul Carini"
               placeholder="blur"
-              className="rounded-lg"
             />
           </div>
           <div className="relative">
-            <Image
+            <FullScreenImage
               src={lake}
               width={320}
               alt="Lake"
               placeholder="blur"
-              className="rounded-lg"
             />
           </div>
         </div>
@@ -137,30 +133,27 @@ export default function Home() {
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-3">
           <div className="relative">
-            <Image
+            <FullScreenImage
               src={sea}
               width={320}
               alt="Sea view"
               placeholder="blur"
-              className="rounded-lg"
             />
           </div>
           <div className="relative">
-            <Image
+            <FullScreenImage
               src={lake2}
               width={320}
               alt="Lake view"
               placeholder="blur"
-              className="rounded-lg"
             />
           </div>
           <div className="relative col-span-2 sm:col-span-1">
-            <Image
+            <FullScreenImage
               src={city}
               width={640}
               alt="City with montains"
               placeholder="blur"
-              className="rounded-lg"
             />
           </div>
         </div>
