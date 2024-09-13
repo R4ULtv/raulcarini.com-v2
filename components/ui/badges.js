@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import {
   ArchiveBoxIcon,
   CursorArrowRaysIcon,
@@ -21,6 +24,44 @@ const sizes = [
     text: "text-base",
   },
 ];
+
+export function ExternalLink({ href, src, alt, text }) {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      className="inline-flex not-prose items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={14}
+        height={14}
+        className="mr-1 rounded-full"
+      />
+      <span>{text}</span>
+    </Link>
+  );
+}
+
+export function TwitterBadge({ src, username }) {
+  return (
+    <Link
+      href={"https://x.com/" + username}
+      target="_blank"
+      className="inline-flex not-prose items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+    >
+      <Image
+        src={"https://pbs.twimg.com/profile_images/" + src}
+        alt={"profile image " + username}
+        width={14}
+        height={14}
+        className="mr-1 rounded-full"
+      />
+      <span>{username}</span>
+    </Link>
+  );
+}
 
 export function ComingSoon({ className, size = "sm" }) {
   return (

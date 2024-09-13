@@ -6,7 +6,12 @@ import {
   ArrowTopRightOnSquareIcon,
 } from "@heroicons/react/24/outline";
 
-import { Archived, ComingSoon, NewPost } from "@/components/ui/badges";
+import {
+  Archived,
+  ComingSoon,
+  ExternalLink,
+  NewPost,
+} from "@/components/ui/badges";
 import { getBlogPosts } from "@/app/blog/utils";
 import { projects } from "@/components/utils/projects";
 import NewsLetterForm from "@/components/NewsLetterForm";
@@ -43,35 +48,19 @@ export default function Home() {
           Hi! I'm a full-stack developer based in Milan, currently juggling
           projects and studies. On the professional side, I'm diving into
           exciting ventures like{" "}
-          <Link
-            href="https://www.shrly.cc"
-            target="_blank"
-            className="inline-flex items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
-          >
-            <Image
-              src="/assets/icons/shortly.png"
-              width={14}
-              height={14}
-              alt="shortly logo"
-              className="mr-1"
-            />
-            Shortly
-          </Link>{" "}
+          <ExternalLink
+            href={"https://www.shrly.cc"}
+            src={"/assets/icons/shortly.png"}
+            alt={"shortly logo"}
+            text={"Shortly"}
+          />{" "}
           and the{" "}
-          <Link
-            href="https://kits.pedebeats.com"
-            target="_blank"
-            className="inline-flex items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
-          >
-            <Image
-              src="/assets/icons/pedebeats.png"
-              width={14}
-              height={14}
-              alt="pedebeats logo"
-              className="mr-1"
-            />
-            PedeBeats
-          </Link>{" "}
+          <ExternalLink
+            href={"https://kits.pedebeats.com"}
+            src={"/assets/icons/pedebeats.png"}
+            alt={"pedebeats logo"}
+            text={"PedeBeats"}
+          />{" "}
           e-commerce platform. Soon, more projects that I am building in secret
           will arrive.
         </p>
@@ -138,20 +127,12 @@ export default function Home() {
           there's more to me than code! When I'm not developing, music takes
           center stage. I love producing tracks and experimenting with fresh
           sounds. If you are interested in my music check out on my{" "}
-          <Link
-            href="https://open.spotify.com/artist/21DbatkhkYpxIpLfQ4LeUo"
-            target="_blank"
-            className="inline-flex items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
-          >
-            <Image
-              src="/assets/icons/spotify.png"
-              width={14}
-              height={14}
-              alt="spotify logo"
-              className="mr-1"
-            />
-            Spotify
-          </Link>{" "}
+          <ExternalLink
+            href={"https://open.spotify.com/artist/21DbatkhkYpxIpLfQ4LeUo"}
+            src={"/assets/icons/spotify.png"}
+            alt={"spotify logo"}
+            text={"Spotify"}
+          />{" "}
           profile.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-3">
