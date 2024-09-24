@@ -1,7 +1,7 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import { createElement } from "react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { Tweet } from "react-tweet";
 
