@@ -53,9 +53,7 @@ export default function Blog({ params }) {
         <FormattedDate date={new Date(post.metadata.createdAt)} />
         {post.content !== "" &&
           new Date(post.metadata.createdAt) < new Date() && (
-            <Suspense fallback={<span className="h-5 w-9"></span>}>
-              <PageViews path={params.slug} />
-            </Suspense>
+            <PageViews path={params.slug} />
           )}
       </div>
 
