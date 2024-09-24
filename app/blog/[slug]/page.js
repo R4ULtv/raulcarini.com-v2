@@ -51,11 +51,12 @@ export default function Blog({ params }) {
 
       <div className="flex items-center justify-between mb-1.5">
         <FormattedDate date={new Date(post.metadata.createdAt)} />
-        {post.content !== "" && (
-          <Suspense fallback={<span className="h-5 w-9"></span>}>
-            <PageViews path={params.slug} />
-          </Suspense>
-        )}
+        {post.content !== "" ||
+          (post.createdAt < new Date().toISOString() && (
+            <Suspense fallback={<span className="h-5 w-9"></span>}>
+              <PageViews path={params.slug} />
+            </Suspense>
+          ))}
       </div>
 
       {post.content !== "" ? (
