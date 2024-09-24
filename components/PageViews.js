@@ -1,14 +1,33 @@
-import { Redis } from "@upstash/redis";
+"use client";
+
+import { useEffect, useState } from "react";
 import numeral from "numeral";
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+export default function PageViews({ path }) {
+  const [views, setViews] = useState(null);
 
-export default async function PageViews({ path }) {
-  await redis.incr("@blog/pageviews:" + path);
-  const views = await redis.get("@blog/pageviews:" + path);
+  useEffect(() => {
+    const addViews = async () => {
+      await fetch("/api/views/" + path, {
+        method: "POST",
+      });
+    };
+
+    addViews();
+  }, []);
+
+  useEffect(() => {
+    const fetchViews = async () => {
+      const data = await fetch("/api/views/" + path).then((res) => res.json());
+      setViews(data);
+    };
+
+    fetchViews();
+  }, []);
+
+  if (!views) {
+    return null;
+  }
 
   return <span className="text-sm">{numeral(views).format("0a")} views</span>;
 }
