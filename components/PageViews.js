@@ -29,5 +29,5 @@ export default function PageViews({ path }) {
     return null;
   }
 
-  return <span className="text-sm">{numeral(views).format("0a")} views</span>;
+  return <span className="text-sm">{numeral(views).format("0.0a")} views</span>;
 }
