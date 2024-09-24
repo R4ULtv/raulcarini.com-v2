@@ -52,7 +52,7 @@ function CustomLink(props) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
-function slugify(str) {
+export function slugify(str) {
   return str
     .toString()
     .toLowerCase()
