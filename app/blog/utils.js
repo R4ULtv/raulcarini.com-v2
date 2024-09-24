@@ -1,5 +1,6 @@
 import path from "path";
 import fs from "fs";
+import { slugify } from "@/components/mdx";
 
 function parseFrontmatter(fileContent) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
@@ -31,16 +32,31 @@ function readMDXFile(filePath) {
   return parseFrontmatter(rawContent);
 }
 
+function getHeadings(content) {
+  let headingRegex = /#{1,6}\s*(.*)/g;
+  let match;
+  let headings = [];
+
+  while ((match = headingRegex.exec(content)) !== null) {
+    let level = match[0].split(' ')[0].length;
+    headings.push({ level, text: match[1], id: slugify(match[1]) });
+  }
+
+  return headings;
+}
+
 function getMDXData(dir) {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
     const slug = path.basename(file, path.extname(file));
+    const headings = getHeadings(content);
 
     return {
       metadata,
       slug,
       content,
+      headings,
     };
   });
 }
