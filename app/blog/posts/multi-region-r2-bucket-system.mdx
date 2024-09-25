@@ -1,7 +1,7 @@
 ---
-title: 'Multi-Region R2 Bucket System'
-createdAt: '2024-05-26'
-description: 'A multi-region system with Cloudflare Worker and Cloudflare R2 Buckets.'
+title: "Multi-Region R2 Bucket System"
+createdAt: "2024-05-26"
+description: "A multi-region system with Cloudflare Worker and Cloudflare R2 Buckets."
 ---
 
 <a
@@ -171,15 +171,16 @@ Now, "client-side," we just need to send an upload request along with the server
 For this task, I wrote a Python script that efficiently handles the upload of a file to multiple buckets. For more information, check [here](https://github.com/R4ULtv/multi-region-r2-bucket-system/blob/master/src/upload/README.md).
 
 ## What is the cost of all this?
-The cost of this project is primarily from Cloudflare, which is entirely free for our usage as long as we don't exceed the limits of **100k** requests per day for Cloudflare Workers and **1 million** requests per month to a single bucket. 
+
+The cost of this project is primarily from Cloudflare, which is entirely free for our usage as long as we don't exceed the limits of **100k** requests per day for Cloudflare Workers and **1 million** requests per month to a single bucket.
 This isn't an issue because, with multiple buckets, the requests are distributed based on where the file is downloaded from.
 
-The only real cost of this project is storage, which is **10GB** per month and then **$0.015** per GB-month. 
+The only real cost of this project is storage, which is **10GB** per month and then **$0.015** per GB-month.
 This is quite affordable compared to many other options, costing us about **$15** per month for a terabyte of space.
-There's a significant difference compared to AWS S3, where the same usage could cost up to **$500** per month. 
+There's a significant difference compared to AWS S3, where the same usage could cost up to **$500** per month.
 For more information, check the official Cloudflare page [here](https://r2-calculator.cloudflare.com/).
 
-I believe this system I've created is the most convenient, fast, and cost-effective solution I could find. 
+I believe this system I've created is the most convenient, fast, and cost-effective solution I could find.
 There might be a better solution for the "mess" I had to create for this project, but this one works well for our needs.
 
 For more information, on how to use this project, consult my github repository at this [link](https://github.com/R4ULtv/multi-region-r2-bucket-system).
