@@ -1,68 +1,49 @@
 "use client";
+import { useEffect, useState } from "react";
 
-import { Button } from "@headlessui/react";
-import { Bars3BottomRightIcon } from "@heroicons/react/16/solid";
-import { useCallback, useState } from "react";
-import { Drawer } from "vaul";
+export default function TableOfContent({ headings }) {
+  const [currentId, setCurrentId] = useState("");
 
-export default function TableOfTable({ headings }) {
-  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const handleHashChange = () => {
+      const id = window.location.hash.replace("#", "");
+      setCurrentId(id);
+    };
 
-  const scrollToHeading = useCallback(async (id) => {
-    setOpen(false);
+    // Set initial ID
+    handleHashChange();
 
-    // wait 350ms
-    await new Promise((resolve) => setTimeout(resolve, 350));
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange);
 
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    // Cleanup listener on unmount
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
   }, []);
 
   return (
-    <Drawer.Root direction="right" open={open} onOpenChange={setOpen}>
-      <Drawer.Trigger asChild>
-        <Button
-          aria-label="Table of Contents"
-          className="flex justify-center items-center cursor-pointer group duration-150 text-gray-800 dark:text-gray-200"
-        >
-          <Bars3BottomRightIcon className="size-4 group-hover:scale-110 duration-150" />
-        </Button>
-      </Drawer.Trigger>
-      <Drawer.Portal>
-        <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-        <Drawer.Content className="flex flex-col rounded-l-xl h-full w-[400px] mt-24 fixed bottom-0 right-0 bg-zinc-100 dark:bg-zinc-900 outline-none">
-          <div className="p-4 flex-1 h-full overflow-auto">
-            <div className="max-w-md mx-auto">
-              <Drawer.Title className="font-medium mb-4">
-                Table of Contents
-              </Drawer.Title>
-              <ul className="space-y-2">
-                {headings.map((heading) => (
-                  <li
-                    key={heading.id}
-                    style={{ marginLeft: `${(heading.level - 2) * 16}px` }}
-                  >
-                    <a
-                      onClick={(e) => {
-                        e.preventDefault();
-                        scrollToHeading(heading.id);
-                      }}
-                      className="text-blue-600 hover:underline"
-                    >
-                      {heading.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Drawer.Content>
-      </Drawer.Portal>
-    </Drawer.Root>
+    <div className="not-prose p-4 max-w-sm space-y-3 text-sm max-h-full">
+      <h2 className="font-semibold">On This Page</h2>
+      <ul className="space-y-2">
+        {headings.map((heading, index) => (
+          <li
+            key={index}
+            style={{ marginLeft: `${(heading.level - 2) * 20}px` }}
+          >
+            <a
+              href={"#" + heading.id}
+              className={`hover:underline font-medium ${
+                currentId === heading.id
+                  ? "text-blue-600 dark:text-blue-400"
+                  : "text-zinc-700 dark:text-zinc-300"
+              }`}
+            >
+              {heading.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
