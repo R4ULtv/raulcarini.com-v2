@@ -3,6 +3,7 @@ import { getBlogPosts } from "@/app/blog/utils";
 import { CustomMDX } from "@/components/mdx";
 import PageViews from "@/components/PageViews";
 import FormattedDate from "@/components/utils/FormattedDate";
+import TableOfTable from "@/components/ui/TableOfContent";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -46,7 +47,11 @@ export default function Blog({ params }) {
 
   return (
     <>
-      <h1 className="mb-1 font-bold">{post.metadata.title}</h1>
+      <div className="flex items-center justify-between mb-1">
+        <h1 className="font-bold">{post.metadata.title}</h1>
+
+        <TableOfTable headings={post.headings} />
+      </div>
 
       <div className="flex items-center justify-between mb-1.5">
         <FormattedDate date={new Date(post.metadata.createdAt)} />
