@@ -22,6 +22,7 @@ export function generateMetadata({ params }) {
     metadataBase: process.env.HOST_NAME,
     title: post.metadata.title + " - Raul Carini",
     description: post.metadata.description,
+    keywords: post.metadata.keywords,
     openGraph: {
       title: post.metadata.title + " - Raul Carini",
       description: post.metadata.description,
