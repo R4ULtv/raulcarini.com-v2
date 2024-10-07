@@ -22,12 +22,12 @@ export default function FullScreenImage(props) {
       >
         <DialogBackdrop
           transition
-          className="fixed inset-0 backdrop-blur transition duration-150 ease-in-out data-[closed]:opacity-0"
+          className="fixed inset-0 backdrop-blur transition duration-150 ease-out data-[closed]:opacity-0"
         />
         <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
           <DialogPanel
             transition
-            className="transition duration-150 ease-in-out data-[closed]:opacity-0 data-[closed]:scale-90 flex items-center justify-center"
+            className="transition duration-150 ease-out data-[closed]:opacity-0 data-[closed]:scale-75 flex items-center justify-center"
           >
             <Image
               {...props}

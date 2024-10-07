@@ -124,7 +124,7 @@ export default function CommandMenu({ posts, repos }) {
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="max-w-xl w-full rounded-lg overflow-y-auto bg-zinc-100/95 dark:bg-zinc-900/95 backdrop-blur-xl ring-zinc-200 dark:ring-zinc-800 ring-2 shadow-2xl shadow-zinc-900/50 outline-none transition duration-150 ease-out data-[closed]:opacity-0 data-[closed]:scale-90"
+              className="max-w-xl w-full rounded-lg overflow-y-auto bg-zinc-100/95 dark:bg-zinc-900/95 backdrop-blur-xl ring-zinc-200 dark:ring-zinc-800 ring-2 shadow-2xl shadow-zinc-900/50 outline-none transition duration-150 ease-out data-[closed]:opacity-0 data-[closed]:scale-75"
             >
               <Command
                 label="Global Command Menu"
@@ -371,7 +371,7 @@ export default function CommandMenu({ posts, repos }) {
                         Home
                       </span>
                       <Transition show={page !== "home"}>
-                        <span className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center transition ease-in-out duration-100 data-[closed]:opacity-0 data-[enter]:data-[closed]:translate-x-full data-[leave]:data-[closed]:translate-x-full">
+                        <span className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center transition ease-out duration-100 data-[closed]:opacity-0 data-[enter]:data-[closed]:translate-x-full data-[leave]:data-[closed]:translate-x-full">
                           {page.charAt(0).toUpperCase() + page.slice(1)}
                         </span>
                       </Transition>
