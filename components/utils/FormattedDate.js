@@ -1,6 +1,6 @@
 "use client";
 
-import moment from "moment";
+import { formatRelativeTime } from "@/components/utils/moment";
 
 export default function FormattedDate({ date }) {
   return (
@@ -10,7 +10,7 @@ export default function FormattedDate({ date }) {
         day: "numeric",
         year: "numeric",
       })}{" "}
-      ({moment(date).fromNow()})
+      ({formatRelativeTime(date)})
     </span>
   );
 }
