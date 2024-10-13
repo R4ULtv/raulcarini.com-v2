@@ -26,7 +26,7 @@ export function generateMetadata({ params }) {
     openGraph: {
       title: post.metadata.title + " - Raul Carini",
       description: post.metadata.description,
-      url: new URL(`${process.env.HOST_NAME}/posts/shortly`),
+      url: new URL(`${process.env.HOST_NAME}/posts/${params.slug}`),
       images: [
         {
           url: `${process.env.HOST_NAME}/api/dynamic-og?title=${post.metadata.title}&description=${post.metadata.description}`,
