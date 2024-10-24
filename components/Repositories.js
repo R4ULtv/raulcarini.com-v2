@@ -16,29 +16,17 @@ const lang = [
     color: "#f34b7d",
   },
   {
-    name: "Java",
-    color: "#b07219",
-  },
-  {
-    name: "PHP",
-    color: "#4f5d95",
-  },
-  {
-    name: "C#",
-    color: "#178600",
-  },
-  {
     name: "Ruby",
     color: "#701516",
-  },
-  {
-    name: "Go",
-    color: "#00add8",
   },
   {
     name: "TypeScript",
     color: "#2b7489",
   },
+  {
+    name: "MDX",
+    color: "#fcb32c",
+  }
 ];
 
 export default async function Repositories() {
