@@ -193,7 +193,7 @@ export default function Home() {
                         •{" "}
                         {new Date(post.metadata.createdAt).toLocaleDateString(
                           "en-US",
-                          { year: "numeric", month: "long" }
+                          { year: "numeric", month: "long" },
                         )}
                       </span>
                     </p>
@@ -214,51 +214,6 @@ export default function Home() {
                 <ArrowRightCircleIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
               </Link>
             ))}
-        </div>
-      </div>
-
-      <div>
-        <a
-          href={"#projects"}
-          className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
-          id="projects"
-        >
-          Active Projects{" "}
-          <span className="opacity-0 group-hover:opacity-90 duration-150">
-            #
-          </span>
-        </a>
-        <div className="flex flex-col gap-6 md:gap-4">
-          {projects.map((project, idx) => (
-            <a
-              href={project.link}
-              target="_blank"
-              key={idx}
-              className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
-            >
-              <div className="flex flex-col no-underline flex-1">
-                <div className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
-                  <p>
-                    {project.name}{" "}
-                    <span className="font-normal">
-                      •{" "}
-                      {project.date.toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "short",
-                      })}
-                    </span>
-                  </p>
-                  {project.archived && (
-                    <Archived size="sm" className="shrink-0 ml-1.5" />
-                  )}
-                </div>
-                <span className="text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </span>
-              </div>
-              <ArrowTopRightOnSquareIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
-            </a>
-          ))}
         </div>
       </div>
 
