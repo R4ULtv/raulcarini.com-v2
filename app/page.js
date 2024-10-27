@@ -12,7 +12,6 @@ import {
   NewPost,
 } from "@/components/ui/badges";
 import { getBlogPosts } from "@/app/blog/utils";
-import { projects } from "@/components/utils/projects";
 import NewsLetterForm from "@/components/NewsLetterForm";
 import Repositories from "@/components/Repositories";
 
