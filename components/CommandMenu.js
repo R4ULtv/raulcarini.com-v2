@@ -21,7 +21,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-import { projects } from "@/components/utils/projects";
 import { Archived, ComingSoon, NewPost } from "@/components/ui/badges";
 
 const homePage = [
@@ -193,17 +192,6 @@ export default function CommandMenu({ posts, repos }) {
                             Public Repositories
                           </div>
                         </Command.Item>
-                        <Command.Item
-                          onSelect={() => setPage("projects")}
-                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
-                        >
-                          <div className="flex items-center gap-2 py-2 my-1 text-sm">
-                            <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
-                              <BeakerIcon className="size-4 group-hover:scale-110 duration-150" />
-                            </div>
-                            Active Projects
-                          </div>
-                        </Command.Item>
                       </Command.Group>
 
                       <Command.Separator className="h-0.5 my-2 bg-zinc-200 dark:bg-zinc-800" />
@@ -263,7 +251,7 @@ export default function CommandMenu({ posts, repos }) {
                               <span className="font-normal">
                                 •{" "}
                                 {new Date(
-                                  item.metadata.createdAt
+                                  item.metadata.createdAt,
                                 ).toLocaleDateString("en-US", {
                                   year: "numeric",
                                   month: "long",
@@ -279,7 +267,7 @@ export default function CommandMenu({ posts, repos }) {
                               )}
                               {new Date(item.metadata.createdAt) >
                                 new Date(
-                                  Date.now() - 7 * 24 * 60 * 60 * 1000
+                                  Date.now() - 7 * 24 * 60 * 60 * 1000,
                                 ) &&
                                 new Date(item.metadata.createdAt) <
                                   new Date() && (
@@ -315,40 +303,8 @@ export default function CommandMenu({ posts, repos }) {
                                 {
                                   year: "numeric",
                                   month: "long",
-                                }
+                                },
                               )}
-                            </span>
-                            {item.archived && (
-                              <Archived size="xs" className="shrink-0 ml-1.5" />
-                            )}
-                          </div>
-                          <div className="text-xs text-zinc-700 dark:text-zinc-300">
-                            {item.description
-                              ? item.description
-                              : "No description."}
-                          </div>
-                        </Command.Item>
-                      ))}
-                    </Command.Group>
-                  )}
-
-                  {page === "projects" && (
-                    <Command.Group label="Active Projects">
-                      {projects.map((item) => (
-                        <Command.Item
-                          onSelect={() => handleSubmit(item.link)}
-                          key={item.name}
-                          value={item.name}
-                          className="flex flex-col items-start rounded-md px-2 cursor-pointer select-none py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
-                        >
-                          <div className="flex items-center gap-1 text-sm">
-                            {item.name}
-                            <span className="font-normal">
-                              •{" "}
-                              {new Date(item.date).toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "long",
-                              })}
                             </span>
                             {item.archived && (
                               <Archived size="xs" className="shrink-0 ml-1.5" />
