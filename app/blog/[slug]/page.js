@@ -3,6 +3,7 @@ import { getBlogPosts } from "@/app/blog/utils";
 import { CustomMDX } from "@/components/mdx";
 import PageViews from "@/components/PageViews";
 import FormattedDate from "@/components/utils/FormattedDate";
+import AiAssistanceInfo from "@/components/ui/AiAssistanceInfo";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -47,7 +48,10 @@ export default function Blog({ params }) {
 
   return (
     <>
-      <h1 className="mb-1 font-bold">{post.metadata.title}</h1>
+      <div className="flex items-center gap-2">
+        <h1 className="mb-1 font-bold ">{post.metadata.title}</h1>
+        {post.metadata.ai && <AiAssistanceInfo />}
+      </div>
 
       <div className="flex items-center justify-between mb-1.5">
         <FormattedDate date={new Date(post.metadata.createdAt)} />
