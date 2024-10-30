@@ -24,7 +24,11 @@ function parseFrontmatter(fileContent) {
 }
 
 function getMDXFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx" || path.extname(file) === ".md");
+  return fs
+    .readdirSync(dir)
+    .filter(
+      (file) => path.extname(file) === ".mdx" || path.extname(file) === ".md",
+    );
 }
 
 function readMDXFile(filePath) {
@@ -38,7 +42,7 @@ function getHeadings(content) {
   let headings = [];
 
   while ((match = headingRegex.exec(content)) !== null) {
-    let level = match[0].split(' ')[0].length;
+    let level = match[0].split(" ")[0].length;
     headings.push({ level, text: match[1], id: slugify(match[1]) });
   }
 
@@ -63,4 +67,12 @@ function getMDXData(dir) {
 
 export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+}
+
+export function generateShortSlug(string) {
+  return string
+    .toLowerCase()
+    .replace(/[aeiou]/g, "")
+    .replace(/[^a-z0-9]/g, "")
+    .slice(0, 6);
 }
