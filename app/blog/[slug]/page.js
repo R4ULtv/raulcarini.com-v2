@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
-import { getBlogPosts } from "@/app/blog/utils";
+import { generateShortSlug, getBlogPosts } from "@/app/blog/utils";
 import { CustomMDX } from "@/components/mdx";
 import PageViews from "@/components/PageViews";
 import FormattedDate from "@/components/utils/FormattedDate";
 import AiAssistanceInfo from "@/components/ui/AiAssistanceInfo";
+import ShareDialog from "@/components/ShareDialog";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -48,9 +49,16 @@ export default function Blog({ params }) {
 
   return (
     <>
-      <div className="flex items-center gap-2">
-        <h1 className="mb-1 font-bold ">{post.metadata.title}</h1>
-        {post.metadata.ai && <AiAssistanceInfo />}
+      <div className="flex items-center justify-between gap-1.5 mb-1">
+        <div className="flex items-center gap-1.5">
+          <h1 className="mb-0 font-bold ">{post.metadata.title}</h1>
+          <AiAssistanceInfo />
+        </div>
+        <ShareDialog
+          slug={
+            post.metadata.shortSlug || generateShortSlug(post.metadata.title)
+          }
+        />
       </div>
 
       <div className="flex items-center justify-between mb-1.5">
