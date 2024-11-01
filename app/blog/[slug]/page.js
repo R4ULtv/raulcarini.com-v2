@@ -48,7 +48,7 @@ export default function Blog({ params }) {
   }
 
   return (
-    <>
+    <article className="prose max-w-none prose-hr:my-6 prose-strong:text-zinc-700 dark:prose-strong:text-zinc-300 prose-img:rounded-md prose-a:underline-offset-2 prose-a:underline prose-a:font-medium prose-a:text-zinc-700 dark:prose-a:text-zinc-300 dark:prose-invert prose-zinc mx-auto prose-headings:font-semibold dark:prose-headings:text-zinc-200 prose-headings:text-zinc-800 prose-p:text-zinc-600 dark:prose-p:text-zinc-400 prose-li:text-zinc-600 dark:prose-li:text-zinc-400 prose-h1:text-3xl prose-h1:font-bold prose-h2:text-xl prose-h3:text-lg prose-img:shadow-lg prose-pre:bg-transparent prose-figure:bg-zinc-800 dark:prose-figure:bg-black/50 prose-figcaption:px-3 prose-figcaption:py-2 prose-figcaption:border-b prose-figcaption:border-zinc-600 dark:prose-figcaption:border-zinc-800 prose-figcaption:text-zinc-400 prose-figure:rounded-md duration-150">
       <div className="flex items-center justify-between gap-1.5 mb-1">
         <div className="flex items-center gap-1.5">
           <h1 className="mb-0 font-bold ">{post.metadata.title}</h1>
@@ -82,6 +82,6 @@ export default function Blog({ params }) {
           </div>
         </div>
       )}
-    </>
+    </article>
   );
 }
