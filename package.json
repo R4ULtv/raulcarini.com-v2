@@ -29,7 +29,7 @@
     "numeral": "^2.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-email": "^3.0.1",
+    "react-email": "^3.0.2",
     "react-tweet": "^3.2.1",
     "resend": "^4.0.0",
     "shiki": "^1.22.1",
