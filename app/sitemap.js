@@ -1,7 +1,7 @@
 import { getBlogPosts } from "@/app/blog/utils";
 
 export default function sitemap() {
-  const allBlogs = getBlogPosts();
+  const posts = getBlogPosts();
 
   return [
     {
@@ -10,11 +10,11 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 1,
     },
-    ...allBlogs.map((blog) => ({
+    ...posts.map((blog) => ({
       url: `https://www.raulcarini.dev/blog/${blog.slug}`,
       lastModified: new Date(blog.metadata.createdAt),
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: blog.metadata.type === "project" ? 0.8 : 0.5,
     })),
   ];
 }
