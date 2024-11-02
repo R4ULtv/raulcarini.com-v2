@@ -1,17 +1,8 @@
 import { Link } from "next-view-transitions";
 
-import {
-  ArrowRightCircleIcon,
-  ArrowTopRightOnSquareIcon,
-} from "@heroicons/react/24/outline";
-
-import {
-  Archived,
-  ComingSoon,
-  ExternalLink,
-  NewPost,
-} from "@/components/ui/badges";
+import { ExternalLink } from "@/components/ui/badges";
 import { getBlogPosts } from "@/app/blog/utils";
+import RowPost from "@/components/ui/RowPost";
 import NewsLetterForm from "@/components/NewsLetterForm";
 import Repositories from "@/components/Repositories";
 
@@ -31,7 +22,7 @@ export default function Home() {
   const allBlogs = getBlogPosts();
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-10 sm:space-y-16">
       <div>
         <a
           href={"#about"}
@@ -178,41 +169,18 @@ export default function Home() {
               }
               return 1;
             })
+            .slice(0, 5)
             .map((post, idx) => (
-              <Link
-                href={"/blog/" + post.slug}
-                key={idx}
-                className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 duration-150"
-              >
-                <div className="flex-1 flex flex-col">
-                  <span className="flex items-center gap-1.5 font-medium text-zinc-800 dark:text-zinc-200">
-                    <p>
-                      {post.metadata.title}{" "}
-                      <span className="font-normal">
-                        •{" "}
-                        {new Date(post.metadata.createdAt).toLocaleDateString(
-                          "en-US",
-                          { year: "numeric", month: "long" },
-                        )}
-                      </span>
-                    </p>
-                    {(post.content === "" ||
-                      new Date(post.metadata.createdAt) > new Date()) && (
-                      <ComingSoon size="sm" className="shrink-0 ml-1.5" />
-                    )}
-                    {new Date(post.metadata.createdAt) >
-                      new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) &&
-                      new Date(post.metadata.createdAt) < new Date() && (
-                        <NewPost size="sm" className="shrink-0 ml-1.5" />
-                      )}
-                  </span>
-                  <span className="text-zinc-600 dark:text-zinc-400">
-                    {post.metadata.description}
-                  </span>
-                </div>
-                <ArrowRightCircleIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
-              </Link>
+              <RowPost key={idx} post={post} />
             ))}
+          <div className="flex items-center justify-start">
+            <Link
+              href="/blog/categories"
+              className="py-1 text-sm text-zinc-700 dark:text-zinc-300"
+            >
+              Load more blog posts...
+            </Link>
+          </div>
         </div>
       </div>
 
