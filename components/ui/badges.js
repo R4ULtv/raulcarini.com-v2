@@ -5,6 +5,7 @@ import {
   ArchiveBoxIcon,
   BriefcaseIcon,
   CursorArrowRaysIcon,
+  DocumentTextIcon,
   MegaphoneIcon,
   UserGroupIcon,
 } from "@heroicons/react/16/solid";
@@ -142,6 +143,24 @@ export function Updates({ className, size = "sm" }) {
       <UserGroupIcon className={sizes.find((s) => s.size === size)["icon"]} />
       <span className={sizes.find((s) => s.size === size)["text"]}>
         Updates
+      </span>
+    </div>
+  );
+}
+
+export function Article({ className, size = "sm" }) {
+  return (
+    <div
+      className={
+        "opacity-90 px-1.5 bg-zinc-200/50 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500/50 rounded min-w-[20px] flex justify-center items-center gap-1 " +
+        className
+      }
+    >
+      <DocumentTextIcon
+        className={sizes.find((s) => s.size === size)["icon"]}
+      />
+      <span className={sizes.find((s) => s.size === size)["text"]}>
+        Articles
       </span>
     </div>
   );
