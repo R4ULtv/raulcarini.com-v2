@@ -2,15 +2,14 @@ import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Link, ViewTransitions } from "next-view-transitions";
 
 import "./globals.css";
-import { Link } from "next-view-transitions";
 import ThemeChanger from "@/components/ThemeChanger";
 import CommandMenu from "@/components/CommandMenu";
 import { getBlogPosts } from "@/app/blog/utils";
 import getRepositories from "@/components/utils/getRepositories";
 import CustomToaster from "@/components/ui/CustomToaster";
-import { ViewTransitions } from "next-view-transitions";
 
 export const metadata = {
   metadataBase: process.env.HOST_NAME,
@@ -54,10 +53,10 @@ export default async function RootLayout({ children }) {
 
           <ThemeProvider attribute="class" enableSystem={false}>
             <main
-              className="max-w-3xl py-16 px-6 mx-auto"
+              className="max-w-3xl py-10 sm:py-16 px-4 sm:px-6 mx-auto"
               style={{ minHeight: "calc(100vh - 45px)" }}
             >
-              <header className="mb-16 flex items-start justify-between">
+              <header className="mb-10 sm:mb-16 flex items-start justify-between">
                 <div className="flex flex-col items-start">
                   <Link
                     href={"/"}
