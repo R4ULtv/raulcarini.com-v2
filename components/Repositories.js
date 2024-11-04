@@ -83,7 +83,7 @@ export default async function Repositories() {
                 </span>
               </div>
             </div>
-            <ArrowTopRightOnSquareIcon className="size-4 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
+            <ArrowTopRightOnSquareIcon className="size-4 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
           </a>
         ))}
     </div>
