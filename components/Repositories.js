@@ -1,4 +1,4 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
 import getRepositories from "@/components/utils/getRepositories";
 import { Archived } from "@/components/ui/badges";
 
@@ -26,7 +26,7 @@ const lang = [
   {
     name: "MDX",
     color: "#fcb32c",
-  }
+  },
 ];
 
 export default async function Repositories() {
@@ -83,7 +83,7 @@ export default async function Repositories() {
                 </span>
               </div>
             </div>
-            <ArrowTopRightOnSquareIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
+            <ArrowTopRightOnSquareIcon className="size-4 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden group-hover:block" />
           </a>
         ))}
     </div>

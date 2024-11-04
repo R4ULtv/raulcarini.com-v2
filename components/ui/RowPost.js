@@ -45,7 +45,7 @@ export default function RowPost({ post, category = true }) {
           {post.metadata.description}
         </span>
       </div>
-      <ChevronDoubleRightIcon className="h-5 w-5 stroke-2 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden sm:group-hover:block" />
+      <ChevronDoubleRightIcon className="size-4 text-zinc-600 dark:text-zinc-400 opacity-0 group-hover:opacity-50 duration-150 hidden sm:group-hover:block" />
     </Link>
   );
 }
