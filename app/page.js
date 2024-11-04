@@ -19,7 +19,13 @@ import sea from "@/public/assets/sea.png";
 import FullScreenImage from "@/components/ui/FullScreenImage";
 
 export default function Home() {
-  const allBlogs = getBlogPosts();
+  const posts = getBlogPosts();
+  const projectPosts = posts.filter((post) => post.metadata.type === "project");
+  const lastUpdate = posts
+    .filter((post) => post.metadata.type === "update")
+    .sort(
+      (a, b) => new Date(b.metadata.createdAt) - new Date(a.metadata.createdAt),
+    )[0];
 
   return (
     <div className="space-y-10 sm:space-y-16">
@@ -160,7 +166,8 @@ export default function Home() {
           </span>
         </a>
         <div className="flex flex-col gap-6 md:gap-4">
-          {allBlogs
+          <RowPost post={lastUpdate} />
+          {projectPosts
             .sort((a, b) => {
               if (
                 new Date(a.metadata.createdAt) > new Date(b.metadata.createdAt)
@@ -169,7 +176,7 @@ export default function Home() {
               }
               return 1;
             })
-            .slice(0, 5)
+            .slice(0, 4)
             .map((post, idx) => (
               <RowPost key={idx} post={post} />
             ))}
