@@ -24,11 +24,26 @@ function parseFrontmatter(fileContent) {
 }
 
 function getMDXFiles(dir) {
-  return fs
-    .readdirSync(dir)
-    .filter(
-      (file) => path.extname(file) === ".mdx" || path.extname(file) === ".md",
-    );
+  const isMDXFile = (filename) => /\.(mdx|md)$/.test(filename);
+  const items = fs.readdirSync(dir);
+
+  return items.reduce((mdxFiles, item) => {
+    const fullPath = path.join(dir, item);
+
+    if (fs.statSync(fullPath).isDirectory()) {
+      const dirFiles = fs
+        .readdirSync(fullPath)
+        .filter(isMDXFile)
+        .map((file) => path.join(item, file));
+      return [...mdxFiles, ...dirFiles];
+    }
+
+    if (isMDXFile(item)) {
+      mdxFiles.push(item);
+    }
+
+    return mdxFiles;
+  }, []);
 }
 
 function readMDXFile(filePath) {
