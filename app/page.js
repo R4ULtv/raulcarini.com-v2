@@ -17,6 +17,7 @@ import lake2 from "@/public/assets/lake2.png";
 import city from "@/public/assets/city.png";
 import sea from "@/public/assets/sea.png";
 import FullScreenImage from "@/components/ui/FullScreenImage";
+import GithubTable from "@/components/GithubTable";
 
 export default function Home() {
   const posts = getBlogPosts();
@@ -36,7 +37,7 @@ export default function Home() {
           id="about"
         >
           About{" "}
-          <span className="opacity-0 group-hover:opacity-90 duration-150">
+          <span className="opacity-0 group-hover:opacity-90 transition-opacity ease-out">
             #
           </span>
         </a>
@@ -161,7 +162,7 @@ export default function Home() {
           id="blog"
         >
           Blog{" "}
-          <span className="opacity-0 group-hover:opacity-90 duration-150">
+          <span className="opacity-0 group-hover:opacity-90 transition-opacity ease-out">
             #
           </span>
         </a>
@@ -193,12 +194,26 @@ export default function Home() {
 
       <div>
         <a
+          href={"#contributions"}
+          className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
+          id="contributions"
+        >
+          Github Contributions{" "}
+          <span className="opacity-0 group-hover:opacity-90 transition-opacity ease-out">
+            #
+          </span>
+        </a>
+        <GithubTable />
+      </div>
+
+      <div>
+        <a
           href={"#repositories"}
           className="py-5 sm:py-4 block font-medium text-zinc-800 dark:text-zinc-200 group"
           id="repositories"
         >
           Public Repositories{" "}
-          <span className="opacity-0 group-hover:opacity-90 duration-150">
+          <span className="opacity-0 group-hover:opacity-90 transition-opacity ease-out">
             #
           </span>
         </a>
@@ -213,7 +228,7 @@ export default function Home() {
           id="newsletter"
         >
           Newsletter{" "}
-          <span className="opacity-0 group-hover:opacity-90 duration-150">
+          <span className="opacity-0 group-hover:opacity-90 transition-opacity ease-out">
             #
           </span>
         </a>
@@ -232,7 +247,7 @@ export default function Home() {
           id="more"
         >
           More{" "}
-          <span className="opacity-0 group-hover:opacity-90 duration-150">
+          <span className="opacity-0 group-hover:opacity-90 transition-opacity ease-out">
             #
           </span>
         </a>
