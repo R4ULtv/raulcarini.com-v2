@@ -10,11 +10,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/posts/:path*",
-        destination: "/blog/:path*",
-        permanent: true,
-      },
-      {
         source: "/blog",
         destination: "/blog/categories",
         permanent: true,
