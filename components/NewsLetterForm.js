@@ -1,6 +1,5 @@
 "use client";
 
-import { Button, Field, Input, Label } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -88,18 +87,18 @@ export default function NewsLetterForm() {
   if (contactId) {
     return (
       <div className="flex flex-col gap-4 mt-4 text-sm">
-        <Field className="flex flex-col gap-1 w-full">
-          <Label className="text-zinc-600 dark:text-zinc-400">
+        <div className="flex flex-col gap-1 w-full">
+          <label className="text-zinc-600 dark:text-zinc-400">
             You are already subscribed!
-          </Label>
-          <Button
+          </label>
+          <button
             onClick={handleUnSubscribe}
             disabled={loading}
             className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-none font-medium duration-75"
           >
             Unsubscribe
-          </Button>
-        </Field>
+          </button>
+        </div>
       </div>
     );
   } else {
@@ -109,9 +108,9 @@ export default function NewsLetterForm() {
         className="flex flex-col gap-4 mt-4 text-sm"
       >
         <div className="flex flex-col md:flex-row gap-3">
-          <Field className="flex flex-col gap-1 w-full">
-            <Label>First Name</Label>
-            <Input
+          <div className="flex flex-col gap-1 w-full">
+            <label htmlFor="first_name">First Name</label>
+            <input
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               disabled={loading}
@@ -122,10 +121,10 @@ export default function NewsLetterForm() {
               autoComplete="given-name"
               className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
             />
-          </Field>
-          <Field className="flex flex-col gap-1 w-full">
-            <Label>Last Name</Label>
-            <Input
+          </div>
+          <div className="flex flex-col gap-1 w-full">
+            <label htmlFor="last_name">Last Name</label>
+            <input
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               disabled={loading}
@@ -136,11 +135,11 @@ export default function NewsLetterForm() {
               autoComplete="family-name"
               className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
             />
-          </Field>
+          </div>
         </div>
-        <Field className="flex flex-col gap-1 w-full">
-          <Label>Email Address</Label>
-          <Input
+        <div className="flex flex-col gap-1 w-full">
+          <label htmlFor="email">Email Address</label>
+          <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={loading}
@@ -151,14 +150,14 @@ export default function NewsLetterForm() {
             autoComplete="email"
             className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
           />
-        </Field>
-        <Button
+        </div>
+        <button
           type="submit"
           disabled={loading}
           className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-none font-medium duration-75 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Loading..." : "Subscribe"}
-        </Button>
+        </button>
       </form>
     );
   }
