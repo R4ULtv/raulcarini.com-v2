@@ -11,7 +11,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPage({ params }) {
+export default async function BlogPage(props) {
+  const params = await props.params;
   const posts = getBlogPosts().filter(
     (post) => post.metadata.type === params.category,
   );
