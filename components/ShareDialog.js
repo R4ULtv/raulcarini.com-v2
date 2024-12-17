@@ -33,7 +33,7 @@ export default function ShareDialog({ slug }) {
     <>
       <Button
         onClick={() => setIsOpen(true)}
-        className="outline-none text-zinc-200 p-1 group"
+        className="outline-none text-zinc-800 dark:text-zinc-200 p-1 group"
       >
         <ShareIcon className="size-4 group-hover:scale-110 transition duration-75 ease-out" />
       </Button>
@@ -52,28 +52,25 @@ export default function ShareDialog({ slug }) {
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="w-full bg-zinc-900 max-w-md overflow-hidden rounded-xl p-6 shadow-xl transition ease-out data-[closed]:opacity-0 data-[closed]:scale-50"
+              className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 max-w-md overflow-hidden rounded-xl p-6 shadow-xl transition ease-out data-[closed]:opacity-0 data-[closed]:scale-50"
             >
               <DialogTitle
                 as="h3"
-                className="text-lg font-medium leading-6 text-zinc-100"
+                className="text-lg font-medium leading-6 text-zinc-800 dark:text-zinc-200"
               >
                 Copy the Link
               </DialogTitle>
               <div className="mt-1.5">
-                <Description className="text-sm text-zinc-500">
+                <Description className="text-sm text-zinc-600 dark:text-zinc-400">
                   Copy this link to share this blog post:
                 </Description>
-                <div className="mt-3 relative">
-                  <input
-                    type="text"
-                    readOnly
-                    value={link}
-                    className="w-full text-zinc-200 bg-transparent rounded-lg border border-zinc-800 px-3 py-2 text-sm outline-none"
-                  />
+                <div className="mt-3 relative text-zinc-800 dark:text-zinc-200">
+                  <p className="w-full bg-transparent rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2 text-sm outline-none">
+                    {link.replace("https://", "")}
+                  </p>
                   <Button
                     onClick={copyToClipboard}
-                    className="absolute top-1.5 right-2 p-1 text-zinc-200 group"
+                    className="absolute top-1.5 right-2 p-1 group"
                   >
                     {copied ? (
                       <svg
