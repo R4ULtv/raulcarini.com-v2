@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import {
-  Button,
   Description,
   Dialog,
   DialogBackdrop,
@@ -31,12 +30,12 @@ export default function ShareDialog({ slug }) {
 
   return (
     <>
-      <Button
+      <button
         onClick={() => setIsOpen(true)}
         className="outline-none text-zinc-800 dark:text-zinc-200 p-1 group"
       >
         <ShareIcon className="size-4 group-hover:scale-110 transition duration-75 ease-out" />
-      </Button>
+      </button>
 
       <Dialog
         open={isOpen}
@@ -68,7 +67,7 @@ export default function ShareDialog({ slug }) {
                   <p className="w-full bg-transparent rounded-lg border border-zinc-200 dark:border-zinc-800 px-3 py-2 text-sm outline-none">
                     {link.replace("https://", "")}
                   </p>
-                  <Button
+                  <button
                     onClick={copyToClipboard}
                     className="absolute top-1.5 right-2 p-1 group"
                   >
@@ -104,7 +103,7 @@ export default function ShareDialog({ slug }) {
                         ></path>
                       </svg>
                     )}
-                  </Button>
+                  </button>
                 </div>
               </div>
             </DialogPanel>
