@@ -47,15 +47,15 @@ export function ExternalLink({ href, src, alt, text }) {
   );
 }
 
-export function TwitterBadge({ src, username }) {
+export function TwitterBadge({ username }) {
   return (
     <Link
       href={"https://x.com/" + username}
       target="_blank"
       className="inline-flex not-prose items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
     >
-      <Image
-        src={"https://pbs.twimg.com/profile_images/" + src}
+      <img
+        src={"https://unavatar.io/twitter/" + username}
         alt={"profile image " + username}
         width={14}
         height={14}
