@@ -1,7 +1,9 @@
 import { getBlogPosts } from "@/app/blog/utils";
 
 export default function sitemap() {
-  const posts = getBlogPosts();
+  const posts = getBlogPosts().sort(
+    (a, b) => new Date(a.metadata.createdAt) - new Date(b.metadata.createdAt)
+  );
 
   return [
     {
