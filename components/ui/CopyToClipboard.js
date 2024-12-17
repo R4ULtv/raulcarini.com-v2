@@ -22,7 +22,7 @@ export const CopyToClipboard = ({ code }) => {
 
   return (
     <button
-      className="absolute right-2 top-2 p-0.5 border border-zinc-200 dark:border-zinc-800 rounded-md z-[2] backdrop-blur-2xl"
+      className="absolute right-2 top-2 p-0.5 border border-zinc-200 dark:border-zinc-800 rounded-md z-[2] bg-white dark:bg-[#121212]"
       onClick={handleCopy}
     >
       {copied ? (
