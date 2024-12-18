@@ -15,8 +15,8 @@ export default function sitemap() {
     ...posts.map((blog) => ({
       url: `https://www.raulcarini.dev/blog/${blog.slug}`,
       lastModified: new Date(blog.metadata.createdAt),
-      changeFrequency: "monthly",
-      priority: blog.metadata.type === "project" ? 0.8 : 0.5,
+      changeFrequency: "yearly",
+      priority: blog.metadata.type === "project" ? 0.7 : 0.5,
     })),
   ];
 }
