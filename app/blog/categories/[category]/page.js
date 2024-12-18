@@ -5,13 +5,14 @@ import RowPost from "@/components/ui/RowPost";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
+  const uniqueCategories = [...new Set(posts.map(post => post.metadata.type))];
 
-  return posts.map((post) => ({
-    category: post.metadata.category,
+  return uniqueCategories.map((category) => ({
+    category: category,
   }));
 }
 
-export default async function BlogPage(props) {
+export default async function CategoryPage(props) {
   const params = await props.params;
   const posts = getBlogPosts().filter(
     (post) => post.metadata.type === params.category,
