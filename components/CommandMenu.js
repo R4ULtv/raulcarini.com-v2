@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  BeakerIcon,
   ChartPieIcon,
   DocumentMagnifyingGlassIcon,
   HomeIcon,
@@ -56,11 +55,6 @@ export default function CommandMenu({ posts, repos }) {
         if (open) {
           setPage("home");
         }
-      }
-      if ((e.metaKey || e.ctrlKey) && e.key === "f") {
-        e.preventDefault();
-        setPage("blog");
-        setOpen(true);
       }
       if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === "L") {
         e.preventDefault();
@@ -172,14 +166,6 @@ export default function CommandMenu({ posts, repos }) {
                             </div>
                             Blog Posts
                           </div>
-                          <div className="flex justify-center items-center gap-1.5 text-xs">
-                            <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
-                              ⌘
-                            </span>
-                            <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
-                              F
-                            </span>
-                          </div>
                         </Command.Item>
                         <Command.Item
                           onSelect={() => setPage("repositories")}
@@ -251,7 +237,7 @@ export default function CommandMenu({ posts, repos }) {
                               <span className="font-normal">
                                 •{" "}
                                 {new Date(
-                                  item.metadata.createdAt,
+                                  item.metadata.createdAt
                                 ).toLocaleDateString("en-US", {
                                   year: "numeric",
                                   month: "long",
@@ -267,7 +253,7 @@ export default function CommandMenu({ posts, repos }) {
                               )}
                               {new Date(item.metadata.createdAt) >
                                 new Date(
-                                  Date.now() - 7 * 24 * 60 * 60 * 1000,
+                                  Date.now() - 7 * 24 * 60 * 60 * 1000
                                 ) &&
                                 new Date(item.metadata.createdAt) <
                                   new Date() && (
@@ -303,7 +289,7 @@ export default function CommandMenu({ posts, repos }) {
                                 {
                                   year: "numeric",
                                   month: "long",
-                                },
+                                }
                               )}
                             </span>
                             {item.archived && (
