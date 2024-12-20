@@ -1,6 +1,12 @@
 "use client";
 
-import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  Transition,
+} from "@headlessui/react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -18,7 +24,7 @@ export default function FullScreenImage(props) {
       <Dialog
         open={isOpen}
         onClose={() => setIsOpen(false)}
-        className="relative z-50"
+        className="relative z-50 group"
       >
         <DialogBackdrop
           transition
@@ -36,6 +42,11 @@ export default function FullScreenImage(props) {
               className="max-w-[90vw] max-h-[90vh] w-full h-full rounded-lg"
             />
           </DialogPanel>
+          <Transition show={isOpen}>
+            <button onClick={() => setIsOpen(false)} className="absolute top-5 right-5">
+              <XMarkIcon className="size-6 text-zinc-800 dark:text-zinc-200" />
+            </button>
+          </Transition>
         </div>
       </Dialog>
     </>
