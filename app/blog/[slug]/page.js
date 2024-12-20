@@ -27,12 +27,10 @@ export async function generateMetadata(props) {
     description: post.metadata.description,
     keywords: post.metadata.keywords,
     openGraph: {
-      title: post.metadata.title + " - Raul Carini",
-      description: post.metadata.description,
       url: new URL(`${process.env.HOST_NAME}/posts/${params.slug}`),
       images: [
         {
-          url: `${process.env.HOST_NAME}/api/dynamic-og?title=${post.metadata.title}&description=${post.metadata.description}`,
+          url: `/api/dynamic-og?title=${post.metadata.title}&description=${post.metadata.description}`,
           width: 843,
           height: 441,
         },

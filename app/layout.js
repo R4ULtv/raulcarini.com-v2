@@ -17,13 +17,10 @@ export const metadata = {
   description:
     "Full Stack Developer working on solo projects and freelancing, currently based in Milan, Italy",
   openGraph: {
-    title: "Raul Carini",
-    description:
-      "Full Stack Developer working on solo projects and freelancing, currently based in Milan, Italy",
     url: process.env.HOST_NAME,
     images: [
       {
-        url: `${process.env.HOST_NAME}/api/dynamic-og`,
+        url: `/api/dynamic-og`,
         width: 843,
         height: 441,
       },
@@ -79,7 +76,7 @@ export default async function RootLayout({ children }) {
                     href="https://github.com/R4ULtv"
                     aria-label="GitHub"
                     target="_blank"
-                    className="hover:scale-110 duration-150"
+                    className="hover:scale-110 duration-75 transition-transform ease-out"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -92,10 +89,10 @@ export default async function RootLayout({ children }) {
                     </svg>
                   </a>
                   <a
-                    href="https://twitter.com/lil_poop__"
-                    aria-label="Twitter"
+                    href="https://x.com/lil_poop__"
+                    aria-label="X"
                     target="_blank"
-                    className="hover:scale-110 duration-150"
+                    className="hover:scale-110 duration-75 transition-transform ease-out"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +108,7 @@ export default async function RootLayout({ children }) {
                     href="https://www.youtube.com/@lil-poop"
                     aria-label="Youtube"
                     target="_blank"
-                    className="hover:scale-110 duration-150"
+                    className="hover:scale-110 duration-75 transition-transform ease-out"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +125,7 @@ export default async function RootLayout({ children }) {
                     href="https://www.instagram.com/lil.poop__/"
                     aria-label="Instagram"
                     target="_blank"
-                    className="hover:scale-110 duration-150"
+                    className="hover:scale-110 duration-75 transition-transform ease-out"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +141,7 @@ export default async function RootLayout({ children }) {
                     href="https://open.spotify.com/artist/21DbatkhkYpxIpLfQ4LeUo"
                     aria-label="Spotify"
                     target="_blank"
-                    className="hover:scale-110 duration-150"
+                    className="hover:scale-110 duration-75 transition-transform ease-out"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
