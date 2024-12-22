@@ -18,8 +18,11 @@ export const formatRelativeTime = (inputDate) => {
   } else if (diffInSeconds < 86400) {
     const hours = Math.floor(diffInSeconds / 3600);
     return `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
-  } else {
+  } else if (diffInSeconds < 2592000) {
     const days = Math.floor(diffInSeconds / 86400);
     return `${days} ${days === 1 ? "day" : "days"} ago`;
+  } else {
+    const months = Math.floor(diffInSeconds / 2592000);
+    return `${months} ${months === 1 ? "month" : "months"} ago`;
   }
 };
