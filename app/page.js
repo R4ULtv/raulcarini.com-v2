@@ -16,7 +16,7 @@ import tree from "@/public/assets/tree.png";
 import lake2 from "@/public/assets/lake2.png";
 import city from "@/public/assets/city.png";
 import sea from "@/public/assets/sea.png";
-import FullScreenImage from "@/components/ui/FullScreenImage";
+import FullScreenImage from "@/components/FullScreenImage";
 import GithubTable from "@/components/GithubTable";
 
 export default function Home() {

@@ -3,7 +3,7 @@ import { generateShortSlug, getBlogPosts } from "@/app/blog/utils";
 import { CustomMDX } from "@/components/mdx";
 import PageViews from "@/components/PageViews";
 import FormattedDate from "@/components/utils/FormattedDate";
-import AiAssistanceInfo from "@/components/ui/AiAssistanceInfo";
+import AiAssistanceInfo from "@/components/AiAssistanceInfo";
 import ShareDialog from "@/components/ShareDialog";
 
 export async function generateStaticParams() {

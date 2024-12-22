@@ -7,7 +7,7 @@ import { Link, ViewTransitions } from "next-view-transitions";
 import "./globals.css";
 import ThemeChanger from "@/components/ThemeChanger";
 import CommandMenu from "@/components/CommandMenu";
-import { getBlogPosts } from "@/app/blog/utils";
+import { getBlogPostsMetadata } from "@/app/blog/utils";
 import getRepositories from "@/components/utils/getRepositories";
 import CustomToaster from "@/components/ui/CustomToaster";
 
@@ -29,7 +29,7 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const posts = getBlogPosts();
+  const posts = getBlogPostsMetadata();
   const repos = await getRepositories();
 
   return (
