@@ -80,8 +80,24 @@ function getMDXData(dir) {
   });
 }
 
+function getMDXMetadata(dir) {
+  const mdxFiles = getMDXFiles(dir);
+  return mdxFiles.map((file) => {
+    const { metadata } = readMDXFile(path.join(dir, file));
+    const slug = path.basename(file, path.extname(file));
+    return {
+      metadata,
+      slug,
+    };
+  });
+}
+
 export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
+}
+
+export function getBlogPostsMetadata() {
+  return getMDXMetadata(path.join(process.cwd(), "app", "blog", "posts"));
 }
 
 export function generateShortSlug(string) {
