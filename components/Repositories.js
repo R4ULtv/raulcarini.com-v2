@@ -2,7 +2,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
 import getRepositories from "@/components/utils/getRepositories";
 import { Archived } from "@/components/ui/badges";
 
-const lang = [
+export const lang = [
   {
     name: "JavaScript",
     color: "#f1e05a",
