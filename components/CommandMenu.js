@@ -1,87 +1,130 @@
 "use client";
 
+import { useEffect, useState, useMemo, useCallback } from "react";
 import {
-  ChartPieIcon,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command";
+import {
+  BeakerIcon,
+  BriefcaseIcon,
   DocumentMagnifyingGlassIcon,
+  DocumentTextIcon,
   HomeIcon,
   MapIcon,
   MoonIcon,
   SunIcon,
-} from "@heroicons/react/24/outline";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  Transition,
-} from "@headlessui/react";
-
-import { Command } from "cmdk";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+  UserGroupIcon,
+} from "@heroicons/react/16/solid";
+import { useTransitionRouter } from "next-view-transitions";
 import { useTheme } from "next-themes";
+import { lang } from "@/components/Repositories";
 
-import { Archived, ComingSoon, NewPost } from "@/components/ui/badges";
-
-const homePage = [
-  {
-    title: "Home",
-    slug: "/",
-    icon: <HomeIcon className="size-4 group-hover:scale-110 duration-150" />,
-  },
-  {
-    title: "Stats",
-    slug: "stats",
-    icon: (
-      <ChartPieIcon className="size-4 group-hover:scale-110 duration-150" />
-    ),
-  },
-];
+const DATE_FORMAT_OPTIONS = {
+  year: "numeric",
+  month: "long",
+};
 
 export default function CommandMenu({ posts, repos }) {
+  const router = useTransitionRouter();
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
-  const [page, setPage] = useState("home");
-  const router = useRouter();
+  const [category, setCategory] = useState("Home");
 
-  const changeTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
+  const handleChangePage = useCallback(
+    (slug) => {
+      setOpen(false);
+      router.push(slug);
+    },
+    [router],
+  );
 
-  useEffect(() => {
-    const down = (e) => {
+  const handleKeyDown = useCallback(
+    (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setOpen((open) => !open);
-        if (open) {
-          setPage("home");
-        }
       }
       if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === "L") {
         e.preventDefault();
-        changeTheme();
+        setTheme(theme === "dark" ? "light" : "dark");
       }
-    };
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === "F") {
+        e.preventDefault();
+        setOpen(true);
+        setCategory("Blog");
+      }
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === "G") {
+        e.preventDefault();
+        setOpen(true);
+        setCategory("Repos");
+      }
+      if (e.key === "ArrowLeft" && category !== "Home") {
+        e.preventDefault();
+        setCategory("Home");
+      }
+    },
+    [theme, setTheme, category, setCategory],
+  );
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, [theme, setTheme]);
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
 
-  const handleSubmitPage = (slug) => {
-    setOpen(false);
-    if (page === "home") {
-      router.push(`/${slug}`);
-    }
-  };
+  const groupedPosts = useMemo(() => {
+    const grouped = posts.reduce((acc, post) => {
+      const category = post.metadata.type;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(post);
+      return acc;
+    }, {});
 
-  const handleSubmitBlog = (slug) => {
-    setOpen(false);
-    router.push(`/blog/${slug}`);
-  };
+    Object.keys(grouped).forEach((category) => {
+      grouped[category].sort(
+        (a, b) =>
+          new Date(b.metadata.createdAt) - new Date(a.metadata.createdAt),
+      );
+    });
 
-  const handleSubmit = (slug) => {
-    setOpen(false);
-    router.push(slug);
-  };
+    return grouped;
+  }, [posts]);
+
+  const languageColors = useMemo(() => {
+    return repos.reduce((acc, repo) => {
+      if (!acc[repo.language]) {
+        acc[repo.language] = lang.find((l) => l.name === repo.language)?.color;
+      }
+      return acc;
+    }, {});
+  }, [repos]);
+
+  const renderPost = useCallback(
+    (post, icon) => (
+      <CommandItem
+        key={post.slug}
+        onSelect={() => handleChangePage(`/blog/${post.slug}`)}
+      >
+        {icon}
+        <span>{post.metadata.title}</span>
+        <span className="text-xs text-zinc-600 dark:text-zinc-400">
+          {new Date(post.metadata.createdAt).toLocaleDateString(
+            "en-US",
+            DATE_FORMAT_OPTIONS,
+          )}
+        </span>
+      </CommandItem>
+    ),
+    [handleChangePage],
+  );
 
   return (
     <>
@@ -89,248 +132,163 @@ export default function CommandMenu({ posts, repos }) {
         className="flex justify-center items-center gap-1.5 text-xs"
         onClick={() => setOpen((open) => !open)}
       >
-        <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
+        <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 tracking-widest ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
           ⌘K
         </span>
       </button>
 
-      <Dialog
+      <CommandDialog
         open={open}
-        as="div"
-        className="relative z-10 focus:outline-none"
-        onClose={setOpen}
-        onKeyDown={(e) => {
-          if (e.key === "Escape" || (e.key === "Tab" && e.shiftKey)) {
-            e.preventDefault();
-            if (page === "home") {
-              setOpen(false);
-            }
-            setPage("home");
-          }
+        onOpenChange={(open) => {
+          setOpen(open);
+          if (!open) setCategory("Home");
         }}
+        className="border-zinc-200 dark:border-zinc-800"
       >
-        <DialogBackdrop
-          transition
-          className="fixed inset-0 bg-zinc-900/50 transition duration-150 ease-out data-[closed]:opacity-0"
-        />
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
-            <DialogPanel
-              transition
-              className="max-w-xl w-full rounded-lg overflow-y-auto bg-zinc-100/95 dark:bg-zinc-900/95 backdrop-blur-xl ring-zinc-200 dark:ring-zinc-800 ring-2 shadow-2xl shadow-zinc-900/50 outline-none transition duration-150 ease-out data-[closed]:opacity-0 data-[closed]:scale-75"
-            >
-              <Command
-                label="Global Command Menu"
-                className="outline-none"
-                loop
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          {category === "Home" && (
+            <>
+              <CommandGroup heading="Suggestions">
+                <CommandItem onSelect={() => handleChangePage("/")}>
+                  <HomeIcon />
+                  <span>Home</span>
+                </CommandItem>
+                <CommandItem
+                  onSelect={() => handleChangePage("/blog/categories")}
+                >
+                  <DocumentTextIcon />
+                  <span>Blog Page</span>
+                </CommandItem>
+                <CommandItem disabled>
+                  <BeakerIcon />
+                  <span>Projects Page</span>
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandSeparator />
+
+              <CommandGroup heading="Works">
+                <CommandItem onSelect={() => setCategory("Blog")}>
+                  <DocumentMagnifyingGlassIcon />
+                  <span>Blog Posts</span>
+                  <CommandShortcut>⌘ ⇧ F</CommandShortcut>
+                </CommandItem>
+                <CommandItem onSelect={() => setCategory("Repos")}>
+                  <MapIcon />
+                  <span>Repositories</span>
+                  <CommandShortcut>⌘ ⇧ G</CommandShortcut>
+                </CommandItem>
+                <CommandItem disabled>
+                  <BriefcaseIcon />
+                  <span>Projects</span>
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandSeparator />
+
+              <CommandGroup heading="Utils">
+                <CommandItem
+                  onSelect={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
+                  {theme === "light" ? (
+                    <SunIcon className="size-4 group-hover:scale-110 duration-150" />
+                  ) : (
+                    <MoonIcon className="size-4 group-hover:scale-110 duration-150" />
+                  )}
+                  <span>Change Theme</span>
+                  <CommandShortcut>⌘ ⇧ L</CommandShortcut>
+                </CommandItem>
+              </CommandGroup>
+            </>
+          )}
+          {category === "Blog" && (
+            <>
+              <CommandGroup heading="Projects">
+                {groupedPosts["project"]?.map((post) =>
+                  renderPost(post, <BriefcaseIcon />),
+                )}
+              </CommandGroup>
+
+              <CommandSeparator />
+
+              <CommandGroup heading="Articles">
+                {groupedPosts["article"]?.map((post) =>
+                  renderPost(post, <DocumentTextIcon />),
+                )}
+              </CommandGroup>
+
+              <CommandSeparator />
+
+              <CommandGroup heading="Updates">
+                {groupedPosts["update"]?.map((post) =>
+                  renderPost(post, <UserGroupIcon />),
+                )}
+              </CommandGroup>
+            </>
+          )}
+
+          {category === "Repos" && (
+            <>
+              <CommandGroup heading="Repositories">
+                {repos.map((repo) => (
+                  <CommandItem
+                    key={repo.id}
+                    onSelect={() => window.open(repo.html_url, "_blank")}
+                  >
+                    <div className="relative flex h-2 w-2">
+                      <span
+                        className="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                        style={{
+                          backgroundColor: languageColors[repo.language],
+                        }}
+                      ></span>
+                      <span
+                        className="relative inline-flex rounded-full h-2 w-2 opacity-90"
+                        style={{
+                          backgroundColor: languageColors[repo.language],
+                        }}
+                      ></span>
+                    </div>
+                    <span>{repo.name}</span>
+                    <span className="text-xs text-zinc-600 dark:text-zinc-400">
+                      {new Date(repo.created_at).toLocaleDateString(
+                        "en-US",
+                        DATE_FORMAT_OPTIONS,
+                      )}
+                    </span>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </>
+          )}
+        </CommandList>
+
+        <div className="w-full text-sm px-3 py-1.5 border-t border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => setCategory("Home")}
+                className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center"
               >
-                <Command.Input
-                  className="w-full text-sm bg-transparent font-semibold outline-none py-3 px-4 border-b-2 border-zinc-200 dark:border-zinc-800 text-zinc-800 dark:text-zinc-200 placeholder:text-zinc-700 dark:placeholder:text-zinc-300"
-                  placeholder="Search..."
-                  data-headlessui-state="autofocus"
-                  data-autofocus
-                />
-                <Command.List className="overflow-y-auto command-menu-list py-2 max-h-96 [&_div[cmdk-group]]:px-2 [&_div[cmdk-group-heading]]:mb-2 [&_div[cmdk-group-heading]]:text-sm [&_div[cmdk-group-heading]]:font-semibold [&_div[cmdk-group-heading]]:text-zinc-400">
-                  <Command.Empty className="py-2 ml-3 my-1 text-sm">
-                    No results found.
-                  </Command.Empty>
-                  {page === "home" && (
-                    <>
-                      <Command.Group heading="Suggestions" label="Suggestions">
-                        {homePage.map((item) => (
-                          <Command.Item
-                            onSelect={() => handleSubmitPage(item.slug)}
-                            key={item.slug}
-                            className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none text-zinc-950 dark:text-zinc-50 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
-                          >
-                            <div className="flex items-center gap-2 py-2 my-1 text-sm">
-                              <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
-                                {item.icon}
-                              </div>
-                              {item.title}
-                            </div>
-                          </Command.Item>
-                        ))}
-                      </Command.Group>
-
-                      <Command.Separator className="h-0.5 my-2 bg-zinc-200 dark:bg-zinc-800" />
-
-                      <Command.Group heading="Search" label="Search">
-                        <Command.Item
-                          onSelect={() => setPage("blog")}
-                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
-                        >
-                          <div className="flex items-center gap-2 py-2 my-1 text-sm">
-                            <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
-                              <DocumentMagnifyingGlassIcon className="size-4 group-hover:scale-110 duration-150" />
-                            </div>
-                            Blog Posts
-                          </div>
-                        </Command.Item>
-                        <Command.Item
-                          onSelect={() => setPage("repositories")}
-                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
-                        >
-                          <div className="flex items-center gap-2 py-2 my-1 text-sm">
-                            <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
-                              <MapIcon className="size-4 group-hover:scale-110 duration-150" />
-                            </div>
-                            Public Repositories
-                          </div>
-                        </Command.Item>
-                      </Command.Group>
-
-                      <Command.Separator className="h-0.5 my-2 bg-zinc-200 dark:bg-zinc-800" />
-
-                      <Command.Group heading="Utility" label="Utility">
-                        <Command.Item
-                          onSelect={() => changeTheme()}
-                          className="group flex justify-between items-center rounded-md px-2 cursor-pointer select-none data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
-                        >
-                          <div className="flex items-center gap-2 py-2 my-1 text-sm">
-                            <div className="p-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 ring-1 ring-zinc-500 rounded-md">
-                              {theme === "light" ? (
-                                <SunIcon className="size-4 group-hover:scale-110 duration-150" />
-                              ) : (
-                                <MoonIcon className="size-4 group-hover:scale-110 duration-150" />
-                              )}
-                            </div>
-                            Change Theme
-                          </div>
-                          <div className="flex justify-center items-center gap-1.5 text-xs">
-                            <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
-                              ⌘
-                            </span>
-                            <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
-                              ⇧
-                            </span>
-                            <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md min-w-[20px] h-5 flex justify-center items-center">
-                              L
-                            </span>
-                          </div>
-                        </Command.Item>
-                      </Command.Group>
-                    </>
-                  )}
-
-                  {page === "blog" && (
-                    <Command.Group label="Blog Posts">
-                      {posts
-                        .sort((a, b) => {
-                          if (
-                            new Date(a.metadata.createdAt) >
-                            new Date(b.metadata.createdAt)
-                          ) {
-                            return -1;
-                          }
-                          return 1;
-                        })
-                        .map((item) => (
-                          <Command.Item
-                            onSelect={() => handleSubmitBlog(item.slug)}
-                            key={item.slug}
-                            value={item.slug}
-                            className="flex flex-col items-start rounded-md px-2 cursor-pointer select-none py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
-                          >
-                            <div className="flex items-center gap-1 text-sm">
-                              {item.metadata.title}
-                              <span className="font-normal">
-                                •{" "}
-                                {new Date(
-                                  item.metadata.createdAt
-                                ).toLocaleDateString("en-US", {
-                                  year: "numeric",
-                                  month: "long",
-                                })}
-                              </span>
-                              {(item.content === "" ||
-                                new Date(item.metadata.createdAt) >
-                                  new Date()) && (
-                                <ComingSoon
-                                  size="xs"
-                                  className="shrink-0 ml-1.5"
-                                />
-                              )}
-                              {new Date(item.metadata.createdAt) >
-                                new Date(
-                                  Date.now() - 7 * 24 * 60 * 60 * 1000
-                                ) &&
-                                new Date(item.metadata.createdAt) <
-                                  new Date() && (
-                                  <NewPost
-                                    size="xs"
-                                    className="shrink-0 ml-1.5"
-                                  />
-                                )}
-                            </div>
-                            <div className="text-xs text-zinc-700 dark:text-zinc-300">
-                              {item.metadata.description}
-                            </div>
-                          </Command.Item>
-                        ))}
-                    </Command.Group>
-                  )}
-
-                  {page === "repositories" && (
-                    <Command.Group label="Public Repositories">
-                      {repos.map((item) => (
-                        <Command.Item
-                          onSelect={() => handleSubmit(item.html_url)}
-                          key={item.name}
-                          value={item.name}
-                          className="flex flex-col items-start rounded-md px-2 cursor-pointer select-none py-2 my-1 data-[selected=true]:bg-zinc-800/5 dark:data-[selected=true]:bg-zinc-200/5"
-                        >
-                          <div className="flex items-center gap-1 text-sm">
-                            {item.name}
-                            <span className="font-normal">
-                              •{" "}
-                              {new Date(item.created_at).toLocaleDateString(
-                                "en-US",
-                                {
-                                  year: "numeric",
-                                  month: "long",
-                                }
-                              )}
-                            </span>
-                            {item.archived && (
-                              <Archived size="xs" className="shrink-0 ml-1.5" />
-                            )}
-                          </div>
-                          <div className="text-xs text-zinc-700 dark:text-zinc-300">
-                            {item.description
-                              ? item.description
-                              : "No description."}
-                          </div>
-                        </Command.Item>
-                      ))}
-                    </Command.Group>
-                  )}
-                </Command.List>
-                <div className="w-full text-sm px-3 py-2 border-t-2 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1.5">
-                      <span className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center">
-                        Home
-                      </span>
-                      <Transition show={page !== "home"}>
-                        <span className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center transition ease-out duration-100 data-[closed]:opacity-0 data-[enter]:data-[closed]:translate-x-full data-[leave]:data-[closed]:translate-x-full">
-                          {page.charAt(0).toUpperCase() + page.slice(1)}
-                        </span>
-                      </Transition>
-                    </div>
-                    <div className="flex items-center gap-1.5 select-none">
-                      <span className="text-xs font-bold">Open Page</span>
-                      <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md w-5 h-5 flex justify-center items-center">
-                        ↵
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Command>
-            </DialogPanel>
+                Home
+              </button>
+              {category !== "Home" && (
+                <span className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center">
+                  {category}
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-1.5 select-none">
+              <span className="text-xs font-bold">Open/Use</span>
+              <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md w-5 h-5 flex justify-center items-center">
+                ↵
+              </span>
+            </div>
           </div>
         </div>
-      </Dialog>
+      </CommandDialog>
     </>
   );
 }
