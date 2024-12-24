@@ -14,6 +14,7 @@ import {
 import {
   BeakerIcon,
   BriefcaseIcon,
+  ChartBarSquareIcon,
   DocumentMagnifyingGlassIcon,
   DocumentTextIcon,
   HomeIcon,
@@ -42,7 +43,7 @@ export default function CommandMenu({ posts, repos }) {
       setOpen(false);
       router.push(slug);
     },
-    [router],
+    [router]
   );
 
   const handleKeyDown = useCallback(
@@ -70,7 +71,7 @@ export default function CommandMenu({ posts, repos }) {
         setCategory("Home");
       }
     },
-    [theme, setTheme, category, setCategory],
+    [theme, setTheme, category, setCategory]
   );
 
   useEffect(() => {
@@ -91,7 +92,7 @@ export default function CommandMenu({ posts, repos }) {
     Object.keys(grouped).forEach((category) => {
       grouped[category].sort(
         (a, b) =>
-          new Date(b.metadata.createdAt) - new Date(a.metadata.createdAt),
+          new Date(b.metadata.createdAt) - new Date(a.metadata.createdAt)
       );
     });
 
@@ -118,12 +119,12 @@ export default function CommandMenu({ posts, repos }) {
         <span className="text-xs text-zinc-600 dark:text-zinc-400">
           {new Date(post.metadata.createdAt).toLocaleDateString(
             "en-US",
-            DATE_FORMAT_OPTIONS,
+            DATE_FORMAT_OPTIONS
           )}
         </span>
       </CommandItem>
     ),
-    [handleChangePage],
+    [handleChangePage]
   );
 
   return (
@@ -188,15 +189,20 @@ export default function CommandMenu({ posts, repos }) {
 
               <CommandSeparator />
 
+              <CommandGroup heading="Others">
+                <CommandItem onSelect={() => window.location.replace("https://wrapped.raulcarini.dev")}>
+                  <ChartBarSquareIcon />
+                  2024 - Developer Wrapped
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandSeparator />
+
               <CommandGroup heading="Utils">
                 <CommandItem
                   onSelect={() => setTheme(theme === "dark" ? "light" : "dark")}
                 >
-                  {theme === "light" ? (
-                    <SunIcon className="size-4 group-hover:scale-110 duration-150" />
-                  ) : (
-                    <MoonIcon className="size-4 group-hover:scale-110 duration-150" />
-                  )}
+                  {theme === "light" ? <SunIcon /> : <MoonIcon />}
                   <span>Change Theme</span>
                   <CommandShortcut>⌘ ⇧ L</CommandShortcut>
                 </CommandItem>
@@ -207,7 +213,7 @@ export default function CommandMenu({ posts, repos }) {
             <>
               <CommandGroup heading="Projects">
                 {groupedPosts["project"]?.map((post) =>
-                  renderPost(post, <BriefcaseIcon />),
+                  renderPost(post, <BriefcaseIcon />)
                 )}
               </CommandGroup>
 
@@ -215,7 +221,7 @@ export default function CommandMenu({ posts, repos }) {
 
               <CommandGroup heading="Articles">
                 {groupedPosts["article"]?.map((post) =>
-                  renderPost(post, <DocumentTextIcon />),
+                  renderPost(post, <DocumentTextIcon />)
                 )}
               </CommandGroup>
 
@@ -223,7 +229,7 @@ export default function CommandMenu({ posts, repos }) {
 
               <CommandGroup heading="Updates">
                 {groupedPosts["update"]?.map((post) =>
-                  renderPost(post, <UserGroupIcon />),
+                  renderPost(post, <UserGroupIcon />)
                 )}
               </CommandGroup>
             </>
@@ -255,7 +261,7 @@ export default function CommandMenu({ posts, repos }) {
                     <span className="text-xs text-zinc-600 dark:text-zinc-400">
                       {new Date(repo.created_at).toLocaleDateString(
                         "en-US",
-                        DATE_FORMAT_OPTIONS,
+                        DATE_FORMAT_OPTIONS
                       )}
                     </span>
                   </CommandItem>
