@@ -8,7 +8,6 @@ import "./globals.css";
 import ThemeChanger from "@/components/ThemeChanger";
 import CommandMenu from "@/components/CommandMenu";
 import { getBlogPostsMetadata } from "@/app/blog/utils";
-import getRepositories from "@/components/utils/getRepositories";
 import CustomToaster from "@/components/ui/CustomToaster";
 
 export const metadata = {
@@ -28,9 +27,8 @@ export const metadata = {
   },
 };
 
-export default async function RootLayout({ children }) {
+export default function RootLayout({ children }) {
   const posts = getBlogPostsMetadata();
-  const repos = await getRepositories();
 
   return (
     <ViewTransitions>
@@ -154,7 +152,7 @@ export default async function RootLayout({ children }) {
                     </svg>
                   </a>
                 </div>
-                <CommandMenu posts={posts} repos={repos} />
+                <CommandMenu posts={posts} />
               </div>
             </footer>
             <CustomToaster />

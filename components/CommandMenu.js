@@ -25,14 +25,17 @@ import {
 } from "@heroicons/react/16/solid";
 import { useTransitionRouter } from "next-view-transitions";
 import { useTheme } from "next-themes";
-import { lang } from "@/components/Repositories";
+import { lang } from "@/lib/utils";
+
+import getRepositories from "@/components/utils/getRepositories";
 
 const DATE_FORMAT_OPTIONS = {
   year: "numeric",
   month: "long",
 };
 
-export default function CommandMenu({ posts, repos }) {
+export default function CommandMenu({ posts }) {
+  const { data: repos, error, isLoading } = getRepositories();
   const router = useTransitionRouter();
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
@@ -100,6 +103,7 @@ export default function CommandMenu({ posts, repos }) {
   }, [posts]);
 
   const languageColors = useMemo(() => {
+    if (isLoading || error) return {};
     return repos.reduce((acc, repo) => {
       if (!acc[repo.language]) {
         acc[repo.language] = lang.find((l) => l.name === repo.language)?.color;
