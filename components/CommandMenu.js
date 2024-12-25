@@ -69,12 +69,12 @@ export default function CommandMenu({ posts }) {
         setOpen(true);
         setCategory("Repos");
       }
-      if (e.key === "ArrowLeft" && category !== "Home") {
+      if (e.key === "ArrowLeft" && category !== "Home" && open) {
         e.preventDefault();
         setCategory("Home");
       }
     },
-    [theme, setTheme, category, setCategory]
+    [theme, setTheme, category, open]
   );
 
   useEffect(() => {
