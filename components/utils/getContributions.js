@@ -1,7 +1,17 @@
-export default async function getGithubContribution() {
-  const res = await fetch(
-    "https://github-contributions-api.jogruber.de/v4/R4ULtv?y=last",
-    { next: { revalidate: 43200 } }, // Revalidate every 12h
+"use client";
+
+import useSWR from "swr";
+import { fetcher } from "@/lib/fetcher";
+
+export default function getGithubContribution() {
+  const { data, error, isLoading } = useSWR(
+    `https://github-contributions-api.jogruber.de/v4/R4ULtv?y=last`,
+    fetcher,
+    {
+      revalidate: 43200,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
   );
-  return await res.json();
+  return { data, error, isLoading };
 }
