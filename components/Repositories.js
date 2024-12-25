@@ -1,38 +1,45 @@
+"use client";
+
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
-import getRepositories from "@/components/utils/getRepositories";
 import { Archived } from "@/components/ui/badges";
+import getRepositories from "@/components/utils/getRepositories";
+import { lang } from "@/lib/utils";
 
-export const lang = [
-  {
-    name: "JavaScript",
-    color: "#f1e05a",
-  },
-  {
-    name: "Python",
-    color: "#3572b0",
-  },
-  {
-    name: "C++",
-    color: "#f34b7d",
-  },
-  {
-    name: "Ruby",
-    color: "#701516",
-  },
-  {
-    name: "TypeScript",
-    color: "#2b7489",
-  },
-  {
-    name: "MDX",
-    color: "#fcb32c",
-  },
-];
+export default function Repositories() {
+  const { data, error, isLoading } = getRepositories();
 
-export default async function Repositories() {
-  const data = await getRepositories();
+  if (isLoading) {
+    return (
+      <div className="flex flex-col gap-6 md:gap-4">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 rounded-md"
+          >
+            <div className="flex-1 flex gap-1.5">
+              <div className="relative flex h-2 w-2 mt-2">
+                <div className="h-2 w-2 rounded-full bg-zinc-200 dark:bg-zinc-700 animate-pulse" />
+              </div>
+              <div className="flex flex-col gap-1 w-full">
+                <div className="h-5 w-32 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse" />
+                <div className="h-5 w-full max-w-96 mt-1 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
-  if (!data || data?.message) return <div>No repositories found.</div>;
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-32">
+        <p className="text-zinc-800 dark:text-zinc-200">
+          Failed to load repositories.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-6 md:gap-4">
