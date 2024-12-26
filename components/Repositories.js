@@ -18,11 +18,11 @@ export default function Repositories() {
           >
             <div className="flex-1 flex gap-1.5">
               <div className="relative flex h-2 w-2 mt-2">
-                <div className="h-2 w-2 rounded-full bg-zinc-200 dark:bg-zinc-700 animate-pulse" />
+                <div className="h-2 w-2 rounded-full bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse" />
               </div>
               <div className="flex flex-col gap-1 w-full">
-                <div className="h-5 w-32 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse" />
-                <div className="h-5 w-full max-w-96 mt-1 bg-zinc-200 dark:bg-zinc-700 rounded animate-pulse" />
+                <div className="h-5 w-32 bg-zinc-200 dark:bg-zinc-700 rounded motion-safe:animate-pulse" />
+                <div className="h-5 w-full max-w-96 mt-1 bg-zinc-200 dark:bg-zinc-700 rounded motion-safe:animate-pulse" />
               </div>
             </div>
           </div>

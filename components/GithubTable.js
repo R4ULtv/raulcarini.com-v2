@@ -14,12 +14,12 @@ export default function GithubTable() {
     return (
       <div className="flex flex-col gap-2">
         <p className="text-sm text-zinc-800 dark:text-zinc-200">
-          <span className="font-semibold w-10 h-4 bg-zinc-200 dark:bg-zinc-700 animate-pulse rounded inline-block align-middle" />{" "}
+          <span className="font-semibold w-10 h-4 bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse rounded inline-block align-middle" />{" "}
           contributions in the last year and{" "}
-          <span className="font-semibold w-3 h-4 bg-zinc-200 dark:bg-zinc-700 animate-pulse rounded inline-block align-middle" />{" "}
+          <span className="font-semibold w-3 h-4 bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse rounded inline-block align-middle" />{" "}
           new public repositories.
         </p>
-        <div className="w-full h-[106px] border border-zinc-200 dark:border-zinc-800 rounded-md animate-pulse flex items-center justify-center">
+        <div className="w-full h-[106px] border border-zinc-200 dark:border-zinc-800 rounded-md motion-safe:animate-pulse flex items-center justify-center">
           <TableCellsIcon className="size-6 text-zinc-300 dark:text-zinc-700" />
         </div>
         <div className="flex items-center justify-between gap-3 w-full text-xs text-zinc-700 dark:text-zinc-300">
@@ -34,7 +34,7 @@ export default function GithubTable() {
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
-                className="size-2.5 p-0 rounded-sm bg-zinc-200 dark:bg-zinc-700 animate-pulse"
+                className="size-2.5 p-0 rounded-sm bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse"
               />
             ))}{" "}
             More

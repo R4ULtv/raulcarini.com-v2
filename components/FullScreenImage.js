@@ -26,7 +26,7 @@ export default function FullScreenImage(props) {
         <DialogDescription className="sr-only">{props.alt}</DialogDescription>
         <div className="absolute -z-10">
           <svg
-            className="animate-spin size-6 text-zinc-200"
+            className="motion-safe:animate-spin size-6 text-zinc-200"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
