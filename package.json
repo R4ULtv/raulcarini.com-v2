@@ -35,7 +35,8 @@
     "shiki": "^1.24.1",
     "sonner": "^1.7.1",
     "swr": "^2.3.0",
-    "tailwind-merge": "^2.5.5"
+    "tailwind-merge": "^2.5.5",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
