@@ -12,6 +12,18 @@ export default function sitemap() {
       changeFrequency: "monthly",
       priority: 1,
     },
+    {
+      url: "https://www.raulcarini.dev/blog/categories",
+      lastModified: new Date(posts[0].metadata.createdAt),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.raulcarini.dev/projects",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...posts.map((blog) => ({
       url: `https://www.raulcarini.dev/blog/${blog.slug}`,
       lastModified: new Date(blog.metadata.createdAt),
