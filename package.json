@@ -29,7 +29,7 @@
     "numeral": "^2.0.6",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-email": "^3.0.3",
+    "react-email": "^3.0.4",
     "react-tweet": "^3.2.1",
     "resend": "^4.0.1",
     "shiki": "^1.24.1",
