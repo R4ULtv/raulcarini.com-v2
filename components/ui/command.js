@@ -24,7 +24,7 @@ const Command = React.forwardRef(({ className, ...props }, ref) => (
 ));
 Command.displayName = CommandPrimitive.displayName;
 
-const CommandDialog = ({ children, className, ...props }) => {
+const CommandDialog = ({ children, className, onKeyDown, ...props }) => {
   return (
     <Dialog {...props}>
       <DialogTitle className="sr-only">Command Menu</DialogTitle>
@@ -32,7 +32,7 @@ const CommandDialog = ({ children, className, ...props }) => {
         Go to the selected page or use a command.
       </DialogDescription>
       <DialogContent className={cn("overflow-hidden p-0 shadow-lg", className)}>
-        <Command className="outline-none [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12">
+        <Command onKeyDown={onKeyDown} className="outline-none [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12">
           {children}
         </Command>
       </DialogContent>
