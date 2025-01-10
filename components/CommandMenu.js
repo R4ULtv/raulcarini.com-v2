@@ -28,6 +28,7 @@ import { useTheme } from "next-themes";
 import { lang } from "@/lib/utils";
 
 import getRepositories from "@/components/utils/getRepositories";
+import { projects } from "@/lib/projects";
 
 const DATE_FORMAT_OPTIONS = {
   year: "numeric",
@@ -39,14 +40,16 @@ export default function CommandMenu({ posts }) {
   const router = useTransitionRouter();
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
-  const [category, setCategory] = useState("Home");
+  const [search, setSearch] = useState("");
+  const [pages, setPages] = useState([]);
+  const page = pages[pages.length - 1];
 
   const handleChangePage = useCallback(
     (slug) => {
       setOpen(false);
       router.push(slug);
     },
-    [router]
+    [router],
   );
 
   const handleKeyDown = useCallback(
@@ -62,19 +65,20 @@ export default function CommandMenu({ posts }) {
       if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === "F") {
         e.preventDefault();
         setOpen(true);
-        setCategory("Blog");
+        setPages([...pages, "Blog"]);
       }
       if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === "G") {
         e.preventDefault();
         setOpen(true);
-        setCategory("Repos");
+        setPages([...pages, "Repos"]);
       }
-      if (e.key === "ArrowLeft" && category !== "Home" && open) {
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === "P") {
         e.preventDefault();
-        setCategory("Home");
+        setOpen(true);
+        setPages([...pages, "Projects"]);
       }
     },
-    [theme, setTheme, category, open]
+    [theme, setTheme, pages, open],
   );
 
   useEffect(() => {
@@ -95,7 +99,7 @@ export default function CommandMenu({ posts }) {
     Object.keys(grouped).forEach((category) => {
       grouped[category].sort(
         (a, b) =>
-          new Date(b.metadata.createdAt) - new Date(a.metadata.createdAt)
+          new Date(b.metadata.createdAt) - new Date(a.metadata.createdAt),
       );
     });
 
@@ -123,12 +127,12 @@ export default function CommandMenu({ posts }) {
         <span className="text-xs text-zinc-600 dark:text-zinc-400">
           {new Date(post.metadata.createdAt).toLocaleDateString(
             "en-US",
-            DATE_FORMAT_OPTIONS
+            DATE_FORMAT_OPTIONS,
           )}
         </span>
       </CommandItem>
     ),
-    [handleChangePage]
+    [handleChangePage],
   );
 
   return (
@@ -144,16 +148,23 @@ export default function CommandMenu({ posts }) {
 
       <CommandDialog
         open={open}
-        onOpenChange={(open) => {
-          setOpen(open);
-          if (!open) setCategory("Home");
+        onOpenChange={setOpen}
+        onKeyDown={(e) => {
+          if (e.key === "Backspace" && !search) {
+            e.preventDefault();
+            setPages((pages) => pages.slice(0, -1));
+          }
         }}
         className="border-zinc-200 dark:border-zinc-800"
       >
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput
+          value={search}
+          onValueChange={setSearch}
+          placeholder="Type a command or search..."
+        />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          {category === "Home" && (
+          {!page && (
             <>
               <CommandGroup heading="Suggestions">
                 <CommandItem onSelect={() => handleChangePage("/")}>
@@ -166,7 +177,7 @@ export default function CommandMenu({ posts }) {
                   <DocumentTextIcon />
                   <span>Blog Page</span>
                 </CommandItem>
-                <CommandItem disabled>
+                <CommandItem onSelect={() => handleChangePage("/projects")}>
                   <BeakerIcon />
                   <span>Projects Page</span>
                 </CommandItem>
@@ -175,26 +186,31 @@ export default function CommandMenu({ posts }) {
               <CommandSeparator />
 
               <CommandGroup heading="Works">
-                <CommandItem onSelect={() => setCategory("Blog")}>
+                <CommandItem onSelect={() => setPages([...pages, "Blog"])}>
                   <DocumentMagnifyingGlassIcon />
                   <span>Blog Posts</span>
                   <CommandShortcut>⌘ ⇧ F</CommandShortcut>
                 </CommandItem>
-                <CommandItem onSelect={() => setCategory("Repos")}>
+                <CommandItem onSelect={() => setPages([...pages, "Repos"])}>
                   <MapIcon />
                   <span>Repositories</span>
                   <CommandShortcut>⌘ ⇧ G</CommandShortcut>
                 </CommandItem>
-                <CommandItem disabled>
+                <CommandItem onSelect={() => setPages([...pages, "Projects"])}>
                   <BriefcaseIcon />
                   <span>Projects</span>
+                  <CommandShortcut>⌘ ⇧ P</CommandShortcut>
                 </CommandItem>
               </CommandGroup>
 
               <CommandSeparator />
 
               <CommandGroup heading="Others">
-                <CommandItem onSelect={() => window.location.replace("https://wrapped.raulcarini.dev")}>
+                <CommandItem
+                  onSelect={() =>
+                    window.location.replace("https://wrapped.raulcarini.dev")
+                  }
+                >
                   <ChartBarSquareIcon />
                   2024 - Developer Wrapped
                 </CommandItem>
@@ -213,11 +229,11 @@ export default function CommandMenu({ posts }) {
               </CommandGroup>
             </>
           )}
-          {category === "Blog" && (
+          {page === "Blog" && (
             <>
               <CommandGroup heading="Projects">
                 {groupedPosts["project"]?.map((post) =>
-                  renderPost(post, <BriefcaseIcon />)
+                  renderPost(post, <BriefcaseIcon />),
                 )}
               </CommandGroup>
 
@@ -225,7 +241,7 @@ export default function CommandMenu({ posts }) {
 
               <CommandGroup heading="Articles">
                 {groupedPosts["article"]?.map((post) =>
-                  renderPost(post, <DocumentTextIcon />)
+                  renderPost(post, <DocumentTextIcon />),
                 )}
               </CommandGroup>
 
@@ -233,13 +249,13 @@ export default function CommandMenu({ posts }) {
 
               <CommandGroup heading="Updates">
                 {groupedPosts["update"]?.map((post) =>
-                  renderPost(post, <UserGroupIcon />)
+                  renderPost(post, <UserGroupIcon />),
                 )}
               </CommandGroup>
             </>
           )}
 
-          {category === "Repos" && (
+          {page === "Repos" && (
             <>
               <CommandGroup heading="Repositories">
                 {repos.map((repo) => (
@@ -265,8 +281,53 @@ export default function CommandMenu({ posts }) {
                     <span className="text-xs text-zinc-600 dark:text-zinc-400">
                       {new Date(repo.created_at).toLocaleDateString(
                         "en-US",
-                        DATE_FORMAT_OPTIONS
+                        DATE_FORMAT_OPTIONS,
                       )}
+                    </span>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </>
+          )}
+
+          {page === "Projects" && (
+            <>
+              <CommandGroup heading="Projects">
+                {projects.map((project) => (
+                  <CommandItem
+                    key={project.name}
+                    onSelect={() => window.open(project.url, "_blank")}
+                    className="flex flex-col items-start gap-0"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <span>{project.name}</span>
+
+                      <div className="bg-zinc-600 dark:bg-zinc-400 size-0.5 rounded-full" />
+
+                      <span className="text-xs text-zinc-600 dark:text-zinc-400">
+                        {new Date(project.createdAt).toLocaleDateString(
+                          "en-US",
+                          DATE_FORMAT_OPTIONS,
+                        )}
+                      </span>
+
+                      <div className="bg-zinc-600 dark:bg-zinc-400 size-0.5 rounded-full" />
+
+                      <span className="text-xs text-zinc-600 dark:text-zinc-400">
+                        {project.monthlyVisitors} visitors
+                      </span>
+
+                      {project.moneyEarned >= 0 && (
+                        <>
+                          <div className="bg-zinc-600 dark:bg-zinc-400 size-0.5 rounded-full" />
+                          <span className="text-xs text-zinc-600 dark:text-zinc-400">
+                            {project.moneyEarned} earned
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <span className="text-xs text-zinc-600 dark:text-zinc-400">
+                      {project.description}
                     </span>
                   </CommandItem>
                 ))}
@@ -275,18 +336,18 @@ export default function CommandMenu({ posts }) {
           )}
         </CommandList>
 
-        <div className="w-full text-sm px-3 py-1.5 border-t border-zinc-300 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300">
+        <div className="w-full text-sm px-3 py-1.5 border-t border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-1.5">
               <button
-                onClick={() => setCategory("Home")}
+                onClick={() => setPages((pages) => pages.slice(0, -1))}
                 className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center"
               >
                 Home
               </button>
-              {category !== "Home" && (
+              {page && (
                 <span className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center">
-                  {category}
+                  {page}
                 </span>
               )}
             </div>
