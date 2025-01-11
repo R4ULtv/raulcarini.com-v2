@@ -32,7 +32,10 @@ const CommandDialog = ({ children, className, onKeyDown, ...props }) => {
         Go to the selected page or use a command.
       </DialogDescription>
       <DialogContent className={cn("overflow-hidden p-0 shadow-lg", className)}>
-        <Command onKeyDown={onKeyDown} className="outline-none [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12">
+        <Command
+          onKeyDown={onKeyDown}
+          className="outline-none [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12"
+        >
           {children}
         </Command>
       </DialogContent>
