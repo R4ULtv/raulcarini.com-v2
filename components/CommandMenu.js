@@ -12,23 +12,33 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/menu";
+import {
   BeakerIcon,
   BriefcaseIcon,
   ChartBarSquareIcon,
   DocumentMagnifyingGlassIcon,
   DocumentTextIcon,
+  EnvelopeIcon,
   HomeIcon,
   MapIcon,
   MoonIcon,
   SunIcon,
   UserGroupIcon,
 } from "@heroicons/react/16/solid";
+
 import { useTransitionRouter } from "next-view-transitions";
 import { useTheme } from "next-themes";
-import { lang } from "@/lib/utils";
+import { toast } from "sonner";
 
 import getRepositories from "@/components/utils/getRepositories";
 import { projects } from "@/lib/projects";
+import { lang } from "@/lib/utils";
 
 const DATE_FORMAT_OPTIONS = {
   year: "numeric",
@@ -121,6 +131,7 @@ export default function CommandMenu({ posts }) {
       <CommandItem
         key={post.slug}
         onSelect={() => handleChangePage(`/blog/${post.slug}`)}
+        keywords={post.metadata.keywords.split(", ")}
       >
         {icon}
         <span>{post.metadata.title}</span>
@@ -205,6 +216,33 @@ export default function CommandMenu({ posts }) {
 
               <CommandSeparator />
 
+              <CommandGroup heading="Utils">
+                <CommandItem
+                  onSelect={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
+                  {theme === "light" ? <SunIcon /> : <MoonIcon />}
+                  <span>Change Theme</span>
+                  <CommandShortcut>⌘ ⇧ L</CommandShortcut>
+                </CommandItem>
+                <CommandItem
+                  onSelect={() => {
+                    window.navigator.clipboard.writeText(
+                      "contact@raulcarini.dev",
+                    );
+                    setOpen(false);
+                    toast.success("Email Copied to clipboard!");
+                  }}
+                >
+                  <EnvelopeIcon />
+                  Copy Contact Email
+                  <code className="border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 px-1 py-0.5 rounded-md text-xs">
+                    contact@raulcarini.dev
+                  </code>
+                </CommandItem>
+              </CommandGroup>
+
+              <CommandSeparator />
+
               <CommandGroup heading="Others">
                 <CommandItem
                   onSelect={() =>
@@ -213,18 +251,6 @@ export default function CommandMenu({ posts }) {
                 >
                   <ChartBarSquareIcon />
                   2024 - Developer Wrapped
-                </CommandItem>
-              </CommandGroup>
-
-              <CommandSeparator />
-
-              <CommandGroup heading="Utils">
-                <CommandItem
-                  onSelect={() => setTheme(theme === "dark" ? "light" : "dark")}
-                >
-                  {theme === "light" ? <SunIcon /> : <MoonIcon />}
-                  <span>Change Theme</span>
-                  <CommandShortcut>⌘ ⇧ L</CommandShortcut>
                 </CommandItem>
               </CommandGroup>
             </>
@@ -351,11 +377,35 @@ export default function CommandMenu({ posts }) {
                 </span>
               )}
             </div>
-            <div className="flex items-center gap-1.5 select-none">
-              <span className="text-xs font-bold">Open/Use</span>
-              <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md w-5 h-5 flex justify-center items-center">
-                ↵
-              </span>
+            <div className="flex items-center gap-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="text-xs font-bold flex items-center gap-1.5 select-none">
+                  Actions
+                  <span className="px-1 bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-md w-5 h-5 flex justify-center items-center">
+                    ↵
+                  </span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  side="top"
+                  align="end"
+                  sideOffset={12}
+                  alignOffset={-9}
+                >
+                  <DropdownMenuItem>
+                    Open/Use <DropdownMenuShortcut>↵</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    Move <DropdownMenuShortcut>↑ or ↓</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    Escape <DropdownMenuShortcut>esc</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    Return
+                    <DropdownMenuShortcut>←</DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </div>
