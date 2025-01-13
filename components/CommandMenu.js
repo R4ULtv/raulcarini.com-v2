@@ -124,7 +124,7 @@ export default function CommandMenu({ posts }) {
       }
       return acc;
     }, {});
-  }, [repos]);
+  }, [repos, isLoading, error]);
 
   const renderPost = useCallback(
     (post, icon) => (
