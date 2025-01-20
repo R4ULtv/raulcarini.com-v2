@@ -7,8 +7,12 @@ import getRepositories from "@/components/utils/getRepositories";
 import { TableCellsIcon } from "@heroicons/react/16/solid";
 
 export default function GithubTable() {
-  const { data, isLoading } = getGithubContribution();
-  const { data: repos, isLoading: isLoadingRepos } = getRepositories();
+  const { data, isLoading, error } = getGithubContribution();
+  const {
+    data: repos,
+    isLoading: isLoadingRepos,
+    error: errorRepos,
+  } = getRepositories();
 
   if (isLoading || isLoadingRepos) {
     return (
@@ -44,9 +48,19 @@ export default function GithubTable() {
     );
   }
 
+  if (error || errorRepos) {
+    return (
+      <div className="flex items-center justify-center h-32">
+        <p className="text-zinc-600 dark:text-zinc-400">
+          Failed to load contributions.
+        </p>
+      </div>
+    );
+  }
+
   const oneYearAgo = new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
   const recentRepos = repos.filter(
-    (repo) => new Date(repo.created_at) > oneYearAgo
+    (repo) => new Date(repo.created_at) > oneYearAgo,
   );
 
   const renderRow = (dayNum) => (
@@ -61,7 +75,7 @@ export default function GithubTable() {
       )}
       {data.contributions
         .filter(
-          (contribution) => new Date(contribution.date).getDay() === dayNum
+          (contribution) => new Date(contribution.date).getDay() === dayNum,
         )
         .map((contribution, index) => (
           <td

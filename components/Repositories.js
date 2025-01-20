@@ -34,7 +34,7 @@ export default function Repositories() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-32">
-        <p className="text-zinc-800 dark:text-zinc-200">
+        <p className="text-zinc-600 dark:text-zinc-400">
           Failed to load repositories.
         </p>
       </div>
