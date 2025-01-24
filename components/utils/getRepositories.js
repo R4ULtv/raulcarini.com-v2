@@ -13,5 +13,8 @@ export default function getRepositories() {
       revalidateOnReconnect: false,
     }
   );
-  return { data, error, isLoading };
+
+  const filteredData = data?.filter(repo => !repo.fork);
+
+  return { data: filteredData, error, isLoading };
 }
