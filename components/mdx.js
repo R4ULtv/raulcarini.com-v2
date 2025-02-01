@@ -5,6 +5,7 @@ import { Link } from "next-view-transitions";
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { Tweet } from "react-tweet";
 
+import remarkGfm from "remark-gfm";
 import { codeToHtml } from "shiki/bundle/web";
 import { CopyToClipboard } from "@/components/ui/CopyToClipboard";
 import { TwitterBadge } from "@/components/ui/badges";
@@ -120,18 +121,22 @@ export function CustomMDX(props) {
         />
       );
     },
-    code: (props) => {
-      return (
-        <code className="bg-zinc-200 dark:bg-zinc-800 px-1 py-0.5 rounded text-zinc-700 dark:text-zinc-300">
-          {props.children}
-        </code>
-      );
-    },
+    code: (props) => (
+      <code className="bg-zinc-200 dark:bg-zinc-800 px-1 py-0.5 rounded text-zinc-700 dark:text-zinc-300">
+        {props.children}
+      </code>
+    ),
+    table: (props) => (
+      <table className="table-auto prose-td:text-zinc-700 dark:prose-td:text-zinc-300">
+        {props.children}
+      </table>
+    ),
   };
 
   return (
     <MDXRemote
       {...props}
+      options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
       components={{ ...components, ...(props.components || {}) }}
     />
   );
