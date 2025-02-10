@@ -14,7 +14,7 @@ export default function getRepositories() {
     }
   );
 
-  const filteredData = data?.filter(repo => !repo.fork);
+  const filteredData = Array.isArray(data) ? data.filter(repo => !repo.fork) : [];
 
   return { data: filteredData, error, isLoading };
 }
