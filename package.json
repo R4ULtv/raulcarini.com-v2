@@ -33,8 +33,8 @@
     "react-tweet": "^3.2.1",
     "remark-gfm": "^4.0.0",
     "resend": "^4.1.2",
-    "shiki": "^2.2.0",
-    "sonner": "^1.7.3",
+    "shiki": "^3.0.0",
+    "sonner": "^2.0.1",
     "swr": "^2.3.2",
     "tailwind-merge": "^2.6.0",
     "vaul": "^1.1.2"
