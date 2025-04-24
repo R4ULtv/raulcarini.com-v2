@@ -12,13 +12,15 @@ We've previously explored the comparison between [Turbopack and Webpack](/blog/t
 
 This marks a significant step towards bringing the speed benefits of Turbopack, which over 50% of development sessions on Next.js 15 are already using, to the production build process.
 
-## Trying Out Turbopack Production Builds
+## Trying Out Turbopack Production Builds in 15.3
 
 You can start experimenting with Turbopack builds in Next.js 15.3 today. After upgrading to 15.3, simply run your build command with the `--turbopack` flag:
 
 ```bash
 next build --turbopack
 ```
+
+This simple addition to your build command is all that's needed to instruct Next.js to use the Turbopack engine for generating your production-ready application.
 
 ## Current Functionality and Progress
 
@@ -32,7 +34,7 @@ Given this promising progress and alpha status, it's crucial to understand the c
 
 The team is diligently working to achieve 100% compatibility and close any performance gaps through various optimizations like scope hoisting and improved chunking.
 
-## Performance Improvements
+## Performance Improvements Observed
 
 One of the most compelling aspects of Turbopack is its performance potential, especially when leveraging multi-core processors. Vercel has observed significant speedups compared to the previous Webpack implementation:
 
