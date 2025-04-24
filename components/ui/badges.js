@@ -35,13 +35,23 @@ export function ExternalLink({ href, src, alt, text }) {
       target="_blank"
       className="inline-flex px-1.5 not-prose items-center rounded border border-zinc-200 bg-zinc-50 p-1 text-sm leading-4 text-zinc-700 no-underline dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={14}
-        height={14}
-        className="mr-1 rounded-full"
-      />
+      {href.startsWith("/") ? (
+        <Image
+          src={src}
+          alt={alt}
+          width={14}
+          height={14}
+          className="mr-1 rounded-full"
+        />
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          width={14}
+          height={14}
+          className="mr-1 rounded-full"
+        />
+      )}
       <span>{text}</span>
     </Link>
   );

@@ -51,14 +51,21 @@ export default function Home() {
             alt={"shortly logo"}
             text={"Shortly"}
           />{" "}
+          ,{" "}
+          <ExternalLink
+            href="https://colors.raulcarini.dev"
+            src="https://colors.raulcarini.dev/favicon.ico"
+            alt="colors icon"
+            text="Tailwind CSS Colors"
+          />{" "}
           and the{" "}
           <ExternalLink
-            href={"https://kits.pedebeats.com"}
-            src={"/assets/icons/pedebeats.png"}
-            alt={"pedebeats logo"}
-            text={"PedeBeats"}
+            href="https://learn-the-web.vercel.app"
+            src="https://learn-the-web.vercel.app/favicon.ico"
+            alt="learn-the-web icon"
+            text="Learn The Web"
           />{" "}
-          e-commerce platform. Soon, more projects that I am building in secret
+          a learning platform. Soon, more projects that I am building in secret
           will arrive.
         </p>
 
