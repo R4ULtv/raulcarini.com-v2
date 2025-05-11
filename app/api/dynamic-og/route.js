@@ -47,7 +47,7 @@ export async function GET(request) {
         </span>
         <span
           tw={
-            "mt-6 text-center text-4xl " +
+            "mt-6 text-center text-3xl " +
             (theme === "light" ? "text-zinc-700" : "text-zinc-300")
           }
         >
