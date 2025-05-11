@@ -8,7 +8,7 @@ export async function GET(request) {
   const theme = searchParams.get("theme") || "light";
 
   const fontData = await fetch(
-    new URL("/assets/Geist-Black.ttf", import.meta.url)
+    new URL("/assets/Geist-Black.ttf", import.meta.url),
   ).then((res) => res.arrayBuffer());
 
   return new ImageResponse(
@@ -39,7 +39,7 @@ export async function GET(request) {
         </div>
         <span
           tw={
-            "text-center text-8xl " +
+            "text-center text-7xl " +
             (theme === "light" ? "text-zinc-800" : "text-zinc-200")
           }
         >
@@ -65,6 +65,6 @@ export async function GET(request) {
           style: "normal",
         },
       ],
-    }
+    },
   );
 }
