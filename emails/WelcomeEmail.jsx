@@ -20,7 +20,7 @@ export const WelcomeEmail = ({ fname, lname, email }) => {
       <Preview>Thanks for joining my newsletter.</Preview>
       <Tailwind>
         <Body className="my-auto mx-auto font-sans px-2">
-          <Container className="bg-zinc-100 border border-solid border-zinc-300 rounded my-10 mx-auto p-5 max-w-xl">
+          <Container className="bg-zinc-100 border border-solid border-zinc-300 rounded-sm my-10 mx-auto p-5 max-w-xl">
             <Section className="mt-6">
               <Img
                 src={`${process.env.HOST_NAME}/logo.png`}
@@ -51,7 +51,7 @@ export const WelcomeEmail = ({ fname, lname, email }) => {
             </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
               <Button
-                className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline text-center px-5 py-3"
+                className="bg-[#000000] rounded-sm text-white text-[12px] font-semibold no-underline text-center px-5 py-3"
                 href={"https://www.raulcarini.dev/blog"}
               >
                 Check out my blog

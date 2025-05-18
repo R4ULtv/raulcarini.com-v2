@@ -34,7 +34,7 @@ const CommandDialog = ({ children, className, onKeyDown, ...props }) => {
       <DialogContent className={cn("overflow-hidden p-0 shadow-lg", className)}>
         <Command
           onKeyDown={onKeyDown}
-          className="outline-none [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12"
+          className="outline-hidden [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12"
         >
           {children}
         </Command>
@@ -52,7 +52,7 @@ const CommandInput = React.forwardRef(({ className, ...props }, ref) => (
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        "flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-zinc-500 disabled:cursor-not-allowed disabled:opacity-50",
+        "flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-zinc-500 disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
       {...props}
@@ -108,7 +108,7 @@ const CommandItem = React.forwardRef(({ className, ...props }, ref) => (
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-pointer text-zinc-800 dark:text-zinc-200 gap-1.5 select-none items-center rounded-md px-2 py-2 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected='true']:bg-zinc-300 dark:data-[selected='true']:bg-zinc-700 transition-colors duration-150 ease-out data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+      "relative flex cursor-pointer text-zinc-800 dark:text-zinc-200 gap-1.5 select-none items-center rounded-md px-2 py-2 text-sm outline-hidden data-[disabled=true]:pointer-events-none data-[selected='true']:bg-zinc-300 dark:data-[selected='true']:bg-zinc-700 transition-colors duration-150 ease-out data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
       className,
     )}
     {...props}

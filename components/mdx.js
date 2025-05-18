@@ -122,7 +122,7 @@ export function CustomMDX(props) {
       );
     },
     code: (props) => (
-      <code className="bg-zinc-200 dark:bg-zinc-800 px-1 py-0.5 rounded text-zinc-700 dark:text-zinc-300">
+      <code className="bg-zinc-200 dark:bg-zinc-800 px-1 py-0.5 rounded-sm text-zinc-700 dark:text-zinc-300">
         {props.children}
       </code>
     ),

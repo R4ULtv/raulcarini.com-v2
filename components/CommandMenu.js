@@ -367,12 +367,12 @@ export default function CommandMenu({ posts }) {
             <div className="flex items-center gap-1.5">
               <button
                 onClick={() => setPages((pages) => pages.slice(0, -1))}
-                className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center"
+                className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-sm flex justify-center items-center"
               >
                 Home
               </button>
               {page && (
-                <span className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded flex justify-center items-center">
+                <span className="px-1 text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 ring-1 ring-zinc-500 rounded-sm flex justify-center items-center">
                   {page}
                 </span>
               )}

@@ -20,7 +20,7 @@ export default function FullScreenImage(props) {
       </DialogTrigger>
       <DialogContent
         closeButton={false}
-        className="p-0 border-0 max-w-none flex items-center justify-center w-fit outline-none bg-transparent dark:bg-transparent"
+        className="p-0 border-0 max-w-none flex items-center justify-center w-fit outline-hidden bg-transparent dark:bg-transparent"
       >
         <DialogTitle className="sr-only">FullScreen Image</DialogTitle>
         <DialogDescription className="sr-only">{props.alt}</DialogDescription>

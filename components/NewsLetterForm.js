@@ -94,7 +94,7 @@ export default function NewsLetterForm() {
           <button
             onClick={handleUnSubscribe}
             disabled={loading}
-            className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-none font-medium duration-75"
+            className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-hidden font-medium duration-75"
           >
             Unsubscribe
           </button>
@@ -119,7 +119,7 @@ export default function NewsLetterForm() {
               type="text"
               placeholder="John"
               autoComplete="given-name"
-              className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
+              className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-hidden duration-75"
             />
           </div>
           <div className="flex flex-col gap-1 w-full">
@@ -133,7 +133,7 @@ export default function NewsLetterForm() {
               type="text"
               placeholder="Doe"
               autoComplete="family-name"
-              className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
+              className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-hidden duration-75"
             />
           </div>
         </div>
@@ -148,13 +148,13 @@ export default function NewsLetterForm() {
             type="email"
             placeholder="jonhdoe@example.com"
             autoComplete="email"
-            className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-none duration-75"
+            className="w-full py-1.5 px-3 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 placeholder:text-zinc-500/75 rounded-md outline-hidden duration-75"
           />
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-none font-medium duration-75 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-min py-2 px-4 bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 focus:ring-1 hover:ring-1 ring-zinc-500 rounded-md outline-hidden font-medium duration-75 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? "Loading..." : "Subscribe"}
         </button>

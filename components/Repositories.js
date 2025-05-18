@@ -21,8 +21,8 @@ export default function Repositories() {
                 <div className="h-2 w-2 rounded-full bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse" />
               </div>
               <div className="flex flex-col gap-1 w-full">
-                <div className="h-5 w-32 bg-zinc-200 dark:bg-zinc-700 rounded motion-safe:animate-pulse" />
-                <div className="h-5 w-full max-w-96 mt-1 bg-zinc-200 dark:bg-zinc-700 rounded motion-safe:animate-pulse" />
+                <div className="h-5 w-32 bg-zinc-200 dark:bg-zinc-700 rounded-sm motion-safe:animate-pulse" />
+                <div className="h-5 w-full max-w-96 mt-1 bg-zinc-200 dark:bg-zinc-700 rounded-sm motion-safe:animate-pulse" />
               </div>
             </div>
           </div>

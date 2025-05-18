@@ -18,9 +18,9 @@ export default function GithubTable() {
     return (
       <div className="flex flex-col gap-2">
         <p className="text-sm text-zinc-800 dark:text-zinc-200">
-          <span className="font-semibold w-10 h-4 bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse rounded inline-block align-middle" />{" "}
+          <span className="font-semibold w-10 h-4 bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse rounded-sm inline-block align-middle" />{" "}
           contributions in the last year and{" "}
-          <span className="font-semibold w-3 h-4 bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse rounded inline-block align-middle" />{" "}
+          <span className="font-semibold w-3 h-4 bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse rounded-sm inline-block align-middle" />{" "}
           new public repositories.
         </p>
         <div className="w-full h-[106px] border border-zinc-200 dark:border-zinc-800 rounded-md motion-safe:animate-pulse flex items-center justify-center">
@@ -38,7 +38,7 @@ export default function GithubTable() {
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
-                className="size-2.5 p-0 rounded-sm bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse"
+                className="size-2.5 p-0 rounded-xs bg-zinc-200 dark:bg-zinc-700 motion-safe:animate-pulse"
               />
             ))}{" "}
             More
@@ -80,7 +80,7 @@ export default function GithubTable() {
         .map((contribution, index) => (
           <td
             key={index}
-            className={`w-2.5 p-0 rounded-sm -outline-offset-1 level-${contribution.level}`}
+            className={`w-2.5 p-0 rounded-xs -outline-offset-1 level-${contribution.level}`}
             title={`${contribution.count} contributions on ${new Date(contribution.date).toLocaleDateString("en-US", { month: "long", day: "numeric" })}`}
           />
         ))}
@@ -139,7 +139,7 @@ export default function GithubTable() {
           {[0, 1, 2, 3, 4].map((level) => (
             <div
               key={level}
-              className={`size-2.5 p-0 rounded-sm level-${level}`}
+              className={`size-2.5 p-0 rounded-xs level-${level}`}
             />
           ))}{" "}
           More

@@ -45,11 +45,11 @@ export default function ShareDialog({ slug }) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <button className="outline-none text-zinc-800 dark:text-zinc-200 p-1 group">
+          <button className="outline-hidden text-zinc-800 dark:text-zinc-200 p-1 group">
             <ShareIcon className="size-4 group-hover:scale-110 transition duration-75 ease-out" />
           </button>
         </DialogTrigger>
-        <DialogContent className="border-zinc-200 dark:border-zinc-800 outline-none gap-0 max-w-md">
+        <DialogContent className="border-zinc-200 dark:border-zinc-800 outline-hidden gap-0 max-w-md">
           <DialogTitle
             as="h3"
             className="text-lg font-medium leading-6 text-zinc-800 dark:text-zinc-200"
@@ -61,7 +61,7 @@ export default function ShareDialog({ slug }) {
               Copy this link to share this blog post:
             </DialogDescription>
             <div className="mt-3 relative text-zinc-800 dark:text-zinc-200">
-              <p className="w-full bg-transparent rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm outline-none">
+              <p className="w-full bg-transparent rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm outline-hidden">
                 {link}
               </p>
               <button
@@ -110,11 +110,11 @@ export default function ShareDialog({ slug }) {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <button className="outline-none text-zinc-800 dark:text-zinc-200 p-1 group">
+        <button className="outline-hidden text-zinc-800 dark:text-zinc-200 p-1 group">
           <ShareIcon className="size-4 group-hover:scale-110 transition duration-75 ease-out" />
         </button>
       </DrawerTrigger>
-      <DrawerContent className="outline-none">
+      <DrawerContent className="outline-hidden">
         <DrawerHeader className="p-0 px-4 my-4 text-left">
           <DrawerTitle className="text-lg font-medium leading-6 text-zinc-800 dark:text-zinc-200">
             Copy the Link
@@ -124,7 +124,7 @@ export default function ShareDialog({ slug }) {
           </DrawerDescription>
         </DrawerHeader>
         <div className="pb-4 px-4">
-          <p className="w-full bg-transparent rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm outline-none">
+          <p className="w-full bg-transparent rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 py-2 text-sm outline-hidden">
             {link}
           </p>
         </div>
@@ -138,7 +138,7 @@ export default function ShareDialog({ slug }) {
             </button>
           </DrawerClose>
           <DrawerClose asChild>
-            <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-none disabled:pointer-events-none border border-zinc-200 dark:border-zinc-800 h-10 px-4 py-2">
+            <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium outline-hidden disabled:pointer-events-none border border-zinc-200 dark:border-zinc-800 h-10 px-4 py-2">
               Cancel
             </button>
           </DrawerClose>

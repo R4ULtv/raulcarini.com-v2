@@ -73,7 +73,7 @@ export default async function Blog(props) {
         <CustomMDX source={post.content} />
       ) : (
         <div className="my-32 flex flex-col items-center justify-center gap-1.5">
-          <div className="text-3xl font-black tracking-wide bg-gradient-to-b from-zinc-200 to-zinc-500 bg-clip-text text-transparent">
+          <div className="text-3xl font-black tracking-wide bg-linear-to-b from-zinc-200 to-zinc-500 bg-clip-text text-transparent">
             Coming Soon
           </div>
           <div className="max-w-lg text-center mx-auto">
