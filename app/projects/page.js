@@ -51,7 +51,7 @@ export default function ProjectsPage() {
               {project.description}
             </p>
             <div className="flex items-center flex-wrap gap-x-3 gap-y-1">
-              <div className="flex items-center gap-1 text-zinc-400 text-sm">
+              <div className="flex items-center gap-1 text-zinc-600 dark:text-zinc-400 text-sm">
                 <CalendarDateRangeIcon className="size-4" />
                 <span className="hidden md:block">Created on</span>
                 <span className="md:hidden">
@@ -65,13 +65,13 @@ export default function ProjectsPage() {
                   })}
                 </span>
               </div>
-              <div className="flex items-center gap-1 text-zinc-400 text-sm">
+              <div className="flex items-center gap-1 text-zinc-600 dark:text-zinc-400 text-sm">
                 <UsersIcon className="size-4" />
                 <span className="hidden md:block">Monthly Visitors</span>
                 <span>{project.monthlyVisitors}</span>
               </div>
               {project.moneyEarned >= 0 && (
-                <div className="flex items-center gap-1 text-zinc-400 text-sm">
+                <div className="flex items-center gap-1 text-zinc-600 dark:text-zinc-400 text-sm">
                   <CurrencyDollarIcon className="size-4" />
                   <span className="hidden md:block">Money Earned</span>
                   <span>{project.moneyEarned}</span>
