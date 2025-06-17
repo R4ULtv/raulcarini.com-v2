@@ -166,7 +166,7 @@ export default function CommandMenu({ posts }) {
             setPages((pages) => pages.slice(0, -1));
           }
         }}
-        className="border-zinc-200 dark:border-zinc-800 max-w-xl"
+        className="border-zinc-200 dark:border-zinc-800 max-w-lg"
       >
         <CommandInput
           value={search}
