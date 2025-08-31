@@ -1,4 +1,4 @@
-import { GeistSans } from "geist/font/sans";
+import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -9,6 +9,16 @@ import ThemeChanger from "@/components/ThemeChanger";
 import CommandMenu from "@/components/CommandMenu";
 import { getBlogPostsMetadata } from "@/app/blog/utils";
 import CustomToaster from "@/components/ui/CustomToaster";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata = {
   metadataBase: process.env.HOST_NAME,
@@ -34,15 +44,10 @@ export default function RootLayout({ children }) {
     <ViewTransitions>
       <html
         lang="en"
-        className="antialiased scroll-smooth"
+        className={`${geistMono.variable} ${geistSans.variable} antialiased scroll-smooth`}
         suppressHydrationWarning
       >
-        <body
-          className={
-            GeistSans.className +
-            " bg-zinc-100 dark:bg-zinc-900 selection:bg-zinc-400/25 dark:selection:bg-zinc-600/25 relative"
-          }
-        >
+        <body className="bg-zinc-100 dark:bg-zinc-900 selection:bg-zinc-400/25 dark:selection:bg-zinc-600/25 relative">
           <Analytics />
           <SpeedInsights />
 
