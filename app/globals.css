@@ -2,9 +2,11 @@
 @plugin "@tailwindcss/typography";
 @import "tw-animate-css";
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:is(.dark *));
 
-@theme {
+@theme inline {
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
     --animate-ping: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
