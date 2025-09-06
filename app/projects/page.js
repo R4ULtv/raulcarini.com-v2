@@ -29,7 +29,6 @@ export default function ProjectsPage() {
                 alt={project.name}
                 width={240}
                 height={135}
-                quality={100}
                 className="group-hover:scale-105 w-full h-auto transition-transform duration-150 ease-out"
               />
             </a>
