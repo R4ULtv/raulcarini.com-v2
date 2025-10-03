@@ -17,7 +17,7 @@ import lake2 from "@/public/assets/lake2.png";
 import city from "@/public/assets/city.png";
 import sea from "@/public/assets/sea.png";
 import FullScreenImage from "@/components/FullScreenImage";
-import GithubTable from "@/components/GithubTable";
+import GitHubContributions from "@/components/GithubTable";
 
 export default function Home() {
   const posts = getBlogPosts();
@@ -210,7 +210,12 @@ export default function Home() {
             #
           </span>
         </a>
-        <GithubTable />
+        <GitHubContributions
+          username="r4ultv"
+          showLearnMore
+          showLegend
+          showStats
+        />
       </div>
 
       <div>
