@@ -86,7 +86,7 @@ const GithubRepositories = ({
               href={repo.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex justify-between items-start gap-3 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-muted/50 duration-200 ease-out"
+              className="flex justify-between items-start gap-3 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-muted/50 transition-colors duration-200 ease-out"
             >
               <div className="relative flex h-2 w-2 mt-2">
                 <span

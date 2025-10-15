@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/content";
 
 export default async function Home() {
-  const posts = (await getAllPosts());
+  const posts = await getAllPosts();
 
   return (
     <section id="blog">
@@ -11,7 +11,7 @@ export default async function Home() {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-muted/50 dark:hover:bg-muted/50 duration-200 ease-out"
+            className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-muted/50 transition-colors duration-200 ease-out"
           >
             <div className="flex-1 flex flex-col">
               <p className="font-medium">
@@ -24,7 +24,7 @@ export default async function Home() {
                       month: "long",
                       day: "numeric",
                       year: "numeric",
-                    }
+                    },
                   )}
                 </span>
               </p>

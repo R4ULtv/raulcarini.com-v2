@@ -27,11 +27,11 @@ const ThemeSwitch = ({
       {...props}
     >
       <MoonIcon
-        className="hidden dark:block fill-transparent group-hover:fill-foreground group-hover:rotate-12 group-hover:scale-110 transition-all duration-200 ease-out"
+        className="hidden dark:block fill-transparent group-hover:fill-foreground group-hover:rotate-12 group-hover:scale-110 transition-all duration-250 ease-out"
         aria-hidden="true"
       />
       <SunIcon
-        className="dark:hidden fill-transparent group-hover:fill-foreground group-hover:rotate-12 group-hover:scale-110 transition-all duration-200 ease-out"
+        className="dark:hidden fill-transparent group-hover:fill-foreground group-hover:rotate-12 group-hover:scale-110 transition-all duration-250 ease-out"
         aria-hidden="true"
       />
     </Button>

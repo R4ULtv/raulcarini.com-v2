@@ -25,7 +25,7 @@ export default async function Home() {
       <section id="about">
         <a
           href={"#about"}
-          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:ease-out"
+          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:duration-200 after:ease-out"
         >
           About
         </a>
@@ -106,7 +106,7 @@ export default async function Home() {
               width={320}
               alt="Campfire"
               placeholder="blur"
-              className="hover:scale-105 transition-transform ease-out duration-200"
+              className="hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
           <div className="relative sm:row-span-2 row-span-1 overflow-hidden rounded-lg">
@@ -115,7 +115,7 @@ export default async function Home() {
               width={320}
               alt="Raul Carini"
               placeholder="blur"
-              className="object-cover object-center absolute size-full hover:scale-105 transition-transform ease-out duration-200"
+              className="object-cover object-center absolute size-full hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
           <div className="relative overflow-hidden rounded-lg">
@@ -124,7 +124,7 @@ export default async function Home() {
               width={320}
               alt="Mountains"
               placeholder="blur"
-              className="hover:scale-105 transition-transform ease-out duration-200"
+              className="hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
           <div className="relative row-span-2 col-span-1 overflow-hidden rounded-lg">
@@ -133,7 +133,7 @@ export default async function Home() {
               width={320}
               alt="Raul Carini"
               placeholder="blur"
-              className="hover:scale-105 transition-transform ease-out duration-200"
+              className="hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
           <div className="relative row-span-2 col-span-1 overflow-hidden rounded-lg">
@@ -142,7 +142,7 @@ export default async function Home() {
               width={320}
               alt="Raul Carini"
               placeholder="blur"
-              className="hover:scale-105 transition-transform ease-out duration-200"
+              className="hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
           <div className="relative overflow-hidden rounded-lg">
@@ -151,7 +151,7 @@ export default async function Home() {
               width={320}
               alt="Lake"
               placeholder="blur"
-              className="hover:scale-105 transition-transform ease-out duration-200"
+              className="hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
         </div>
@@ -190,7 +190,7 @@ export default async function Home() {
               width={320}
               alt="Sea view"
               placeholder="blur"
-              className="hover:scale-105 transition-transform ease-out duration-200"
+              className="hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
           <div className="relative overflow-hidden rounded-lg">
@@ -199,7 +199,7 @@ export default async function Home() {
               width={320}
               alt="Lake view"
               placeholder="blur"
-              className="hover:scale-105 transition-transform ease-out duration-200"
+              className="hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
           <div className="relative col-span-2 sm:col-span-1 overflow-hidden rounded-lg">
@@ -208,7 +208,7 @@ export default async function Home() {
               width={640}
               alt="City with montains"
               placeholder="blur"
-              className="hover:scale-105 transition-transform ease-out duration-200"
+              className="hover:scale-105 transition-transform duration-300 ease-out"
             />
           </div>
         </div>
@@ -217,7 +217,7 @@ export default async function Home() {
       <section id="blog">
         <a
           href={"#blog"}
-          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:ease-out"
+          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:duration-200 after:ease-out"
         >
           Blog
         </a>
@@ -226,7 +226,7 @@ export default async function Home() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-muted/50 duration-200 ease-out"
+              className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-muted/50 transition-colors duration-200 ease-out"
             >
               <div className="flex-1 flex flex-col">
                 <p className="font-medium">
@@ -262,7 +262,7 @@ export default async function Home() {
       <section id="contributions">
         <a
           href={"#contributions"}
-          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:ease-out"
+          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:duration-200 after:ease-out"
         >
           Github Contributions
         </a>
@@ -271,7 +271,7 @@ export default async function Home() {
       <section id="repositories">
         <a
           href={"#repositories"}
-          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:ease-out"
+          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:duration-200 after:ease-out"
         >
           Public Repositories
         </a>
@@ -280,7 +280,7 @@ export default async function Home() {
       <section id="contact">
         <a
           href={"#contact"}
-          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:ease-out"
+          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:duration-200 after:ease-out"
         >
           Contact
         </a>

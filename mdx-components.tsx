@@ -95,7 +95,7 @@ async function CodeBlock(props: any) {
       <div dangerouslySetInnerHTML={{ __html: html }} />
       <CopyButton
         text={props.children.props.children.trim()}
-        className="absolute top-2 right-2 opacity-50 hover:opacity-90 transition-opacity ease-out duration-200"
+        className="absolute top-2 right-2 opacity-50 hover:opacity-90 transition-opacity duration-150 ease-out"
       />
     </div>
   );
