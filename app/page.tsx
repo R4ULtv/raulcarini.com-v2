@@ -2,19 +2,20 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/content";
 import { Badge } from "@/components/ui/badge";
 import GitHubContributions from "@/components/github/github-contributions-advanced-fetcher";
+import GithubRepositories from "@/components/github/github-repositories";
 
 import Image from "next/image";
 
 import dlynr from "@/app/assets/dlynr.png";
-import dlynr2 from "@/app/assets/dlynr2.png";
 import mont from "@/app/assets/mont.png";
-import campfire from "@/app/assets/campfire.png";
+import mont2 from "@/app/assets/mont2.png";
+import swag from "@/app/assets/swag.jpg";
 import lake from "@/app/assets/lake.png";
-import tree from "@/app/assets/tree.png";
+import job from "@/app/assets/job.jpg";
 
 import lake2 from "@/app/assets/lake2.png";
 import city from "@/app/assets/city.png";
-import sea from "@/app/assets/sea.png";
+import croatia from "@/app/assets/croatia.png";
 
 export default async function Home() {
   const posts = (await getAllPosts()).slice(0, 5);
@@ -101,7 +102,7 @@ export default async function Home() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 my-3">
           <div className="relative overflow-hidden rounded-lg">
             <Image
-              src={campfire}
+              src={mont2}
               width={320}
               alt="Campfire"
               placeholder="blur"
@@ -128,7 +129,7 @@ export default async function Home() {
           </div>
           <div className="relative row-span-2 col-span-1 overflow-hidden rounded-lg">
             <Image
-              src={dlynr2}
+              src={swag}
               width={320}
               alt="Raul Carini"
               placeholder="blur"
@@ -137,7 +138,7 @@ export default async function Home() {
           </div>
           <div className="relative row-span-2 col-span-1 overflow-hidden rounded-lg">
             <Image
-              src={tree}
+              src={job}
               width={320}
               alt="Raul Carini"
               placeholder="blur"
@@ -185,7 +186,7 @@ export default async function Home() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-3">
           <div className="relative overflow-hidden rounded-lg">
             <Image
-              src={sea}
+              src={croatia}
               width={320}
               alt="Sea view"
               placeholder="blur"
@@ -225,7 +226,7 @@ export default async function Home() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-muted/50 dark:hover:bg-muted/50 duration-200 ease-out"
+              className="flex justify-between items-center gap-4 py-1 sm:py-3 px-3 -mx-3 group rounded-md hover:bg-muted/50 duration-200 ease-out"
             >
               <div className="flex-1 flex flex-col">
                 <p className="font-medium">
@@ -238,7 +239,7 @@ export default async function Home() {
                         month: "long",
                         day: "numeric",
                         year: "numeric",
-                      }
+                      },
                     )}
                   </span>
                 </p>
@@ -249,7 +250,10 @@ export default async function Home() {
             </Link>
           ))}
           <div className="flex items-center justify-start">
-            <Link href="/blog" className="py-1 text-sm text-muted-foreground">
+            <Link
+              href="/blog"
+              className="py-1 text-sm text-muted-foreground hover:underline"
+            >
               Load more blog posts...
             </Link>
           </div>
@@ -264,6 +268,15 @@ export default async function Home() {
         </a>
         <GitHubContributions username="r4ultv" />
       </section>
+      <section id="repositories">
+        <a
+          href={"#repositories"}
+          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:ease-out"
+        >
+          Public Repositories
+        </a>
+        <GithubRepositories username="r4ultv" limit={6} />
+      </section>
       <section id="contact">
         <a
           href={"#contact"}
@@ -275,7 +288,7 @@ export default async function Home() {
           Want to get in touch? Email me at{" "}
           <a
             href="mailto:contact@raulcarini.dev"
-            className="underline hover:no-underline"
+            className="hover:underline text-foreground"
           >
             contact@raulcarini.dev
           </a>
