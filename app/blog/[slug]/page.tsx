@@ -1,8 +1,9 @@
 import PageViews from "@/components/page-views";
 import { formatTimeAgo } from "@/lib/time";
 import { baseURL } from "@/lib/url";
-import { getAllPosts } from "@/lib/content";
+import { generateShortSlug, getAllPosts } from "@/lib/content";
 import { Metadata } from "next";
+import ShareButton from "@/components/share-button";
 
 export default async function Page({
   params,
@@ -21,9 +22,15 @@ export default async function Page({
             day: "numeric",
             year: "numeric",
           })}{" "}
-          ({formatTimeAgo(metadata.createdAt)})
+          ({formatTimeAgo(metadata.createdAt)}) • <PageViews path={slug} />
         </span>
-        <PageViews path={slug} />
+        <ShareButton
+          slug={
+            metadata.shortSlug
+              ? metadata.shortSlug
+              : generateShortSlug(metadata.title)
+          }
+        />
       </div>
       <Post />
     </article>
