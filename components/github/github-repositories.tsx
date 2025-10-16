@@ -3,7 +3,6 @@
 import { fetcher } from "@/lib/fetcher";
 import * as React from "react";
 import useSWR from "swr";
-import { Star, GitFork } from "lucide-react";
 
 interface GithubRepository {
   id: number;
