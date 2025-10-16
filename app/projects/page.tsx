@@ -1,6 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { cn } from "@/lib/utils";
+import Projects from "@/components/svg/projects";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -19,6 +21,15 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Learn The Web",
+    description:
+      "An interactive learning platform for web development fundamentals and modern practices.",
+    url: "https://learn-the-web.vercel.app",
+    icon: "https://learn-the-web.vercel.app/favicon.ico",
+    tags: ["Education", "Next.js", "MDX"],
+    featured: true,
+  },
+  {
     title: "UI Components",
     description:
       "A collection of reusable UI components built with React and Tailwind CSS.",
@@ -28,12 +39,21 @@ const projects: Project[] = [
     featured: true,
   },
   {
+    title: "Text Editor",
+    description:
+      "Create blogging content with ease. Markdown editor with built-in AI capabilities.",
+    url: "https://editor.raulcarini.dev",
+    icon: "https://editor.raulcarini.dev/favicon.ico",
+    tags: ["Markdown", "AI", "Next.js"],
+    featured: true,
+  },
+  {
     title: "lazypr",
     description:
-      "A tool to streamline your pull request workflow and make code reviews easier.",
+      "The lazy way to write pull requests. AI-powered CLI tool for streamlined PR creation.",
     url: "https://lazypr.vercel.app/",
     icon: "https://lazypr.vercel.app/favicon.ico",
-    tags: ["Next.js", "GitHub API", "Developer Tools"],
+    tags: ["CLI", "AI", "GitHub API"],
     featured: true,
   },
   {
@@ -42,17 +62,56 @@ const projects: Project[] = [
       "A personal digital archive for storing and organizing memories, thoughts, and collections.",
     url: "https://archive.raulcarini.dev/",
     icon: "https://archive.raulcarini.dev/favicon.ico",
-    tags: ["Next.js", "Archive", "Cloudflare"],
+    tags: ["Next.js", "Cloudflare R2", "Archive"],
     featured: true,
   },
   {
-    title: "Learn The Web",
+    title: "Multi-Region R2 Bucket System",
     description:
-      "An interactive learning platform for web development fundamentals and modern practices.",
-    url: "https://learn-the-web.vercel.app",
-    icon: "https://learn-the-web.vercel.app/favicon.ico",
-    tags: ["Education", "Next.js", "MDX"],
-    featured: true,
+      "A multi-region system with Cloudflare Worker and Cloudflare R2 Buckets.",
+    url: "https://github.com/R4ULtv/multi-region-r2-bucket-system",
+    icon: "https://github.com/favicon.ico",
+    tags: ["Cloudflare", "Multi-Region", "Workers"],
+  },
+  {
+    title: "AI Models Database",
+    description:
+      "An open-source database of AI models with detailed information and specifications.",
+    url: "https://models.raulcarini.dev",
+    icon: "https://models.raulcarini.dev/favicon.ico",
+    tags: ["Database", "AI", "Next.js"],
+  },
+  {
+    title: "Tailwind Color Palette",
+    description:
+      "Tailwind CSS colors in HSL, RGB, HEX, and OKLCH formats with easy copy functionality.",
+    url: "https://colors.raulcarini.dev",
+    icon: "https://colors.raulcarini.dev/favicon.ico",
+    tags: ["Tailwind CSS", "Colors", "Tool"],
+  },
+  {
+    title: "LLMs Speed Test",
+    description:
+      "Benchmark your LLMs in seconds. Test and compare language model performance.",
+    url: "https://snappy.raulcarini.dev",
+    icon: "https://snappy.raulcarini.dev/favicon.ico",
+    tags: ["LLMs", "Benchmark", "Ollama"],
+  },
+  {
+    title: "Shadcn Registry",
+    description:
+      "Cloudflare Worker registry for shadcn/ui components with usage stats.",
+    url: "https://github.com/R4ULtv/shadcn-registry",
+    icon: "https://github.com/favicon.ico",
+    tags: ["Shadcn", "Registry", "Cloudflare"],
+  },
+  {
+    title: "Spotify Web Player",
+    description:
+      "Listen to your music anytime, anywhere. Custom Spotify web player interface.",
+    url: "https://web-player.raulcarini.dev",
+    icon: "https://web-player.raulcarini.dev/favicon.ico",
+    tags: ["Spotify", "Music", "Web Player"],
   },
 ];
 
@@ -62,18 +121,30 @@ export default function ProjectsPage() {
 
   return (
     <div className="space-y-10 sm:space-y-16">
+      <div className="relative mb-10 md:mb-16 md:-mx-8 overflow-hidden">
+        <div className="relative">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider font-mono">
+              Projects
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+          </div>
+          <div className="flex items-start gap-3">
+            <Projects className="fill-muted-foreground hover:fill-foreground transition-colors duration-300 ease-out size-auto hidden md:block" />
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+                Things I&apos;ve Built
+              </h1>
+              <p className="text-lg text-muted-foreground text-pretty">
+                From component libraries to developer tools, these are the
+                projects I&apos;ve shipped.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <section id="projects">
-        <a
-          href={"#projects"}
-          className="py-5 sm:py-4 block font-medium group after:content-['#'] after:ml-1 after:opacity-0 hover:after:opacity-90 after:transition-opacity after:duration-200 after:ease-out"
-        >
-          Projects
-        </a>
-        <p className="text-muted-foreground mb-6">
-          A collection of projects I&apos;ve built, ranging from web
-          applications to learning platforms and developer tools.
-        </p>
-
         {featuredProjects.length > 0 && (
           <div className="mb-8">
             <h2 className="text-sm font-medium text-muted-foreground mb-4">
@@ -96,7 +167,11 @@ export default function ProjectsPage() {
                         height={20}
                         alt={`${project.title} Icon`}
                         src={project.icon}
-                        className="rounded"
+                        className={cn(
+                          "rounded",
+                          project.icon.startsWith("https://github.com") &&
+                            "dark:invert",
+                        )}
                       />
                     </div>
                   )}
@@ -160,7 +235,11 @@ export default function ProjectsPage() {
                         height={20}
                         alt={`${project.title} Icon`}
                         src={project.icon}
-                        className="rounded"
+                        className={cn(
+                          "rounded",
+                          project.icon.startsWith("https://github.com") &&
+                            "dark:invert",
+                        )}
                       />
                     </div>
                   )}

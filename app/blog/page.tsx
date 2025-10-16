@@ -13,8 +13,8 @@ export default async function Home() {
   const posts = await getAllPosts();
 
   return (
-    <>
-      <div className="relative mb-10 md:mb-16 md:-mx-8 overflow-hidden">
+    <div className="space-y-10 sm:space-y-16">
+      <section className="relative md:-mx-8 overflow-hidden">
         <div className="relative">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
@@ -36,7 +36,7 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <section id="blog">
         <div className="flex flex-col gap-6 md:gap-4">
@@ -69,6 +69,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 }
