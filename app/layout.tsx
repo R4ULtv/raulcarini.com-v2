@@ -5,6 +5,8 @@ import "./globals.css";
 import { baseURL } from "@/lib/url";
 import { ThemeProvider } from "next-themes";
 import ThemeSwitch from "@/components/theme-switch";
+import { Button } from "@/components/ui/button";
+import { ProjectorIcon, RssIcon } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,7 +52,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" disableTransitionOnChange>
           <main className="max-w-[45rem] mx-auto py-10 sm:py-16 px-4 sm:px-6">
-            <header className="mb-10 sm:mb-16 flex items-start justify-between">
+            <header className="mb-10 sm:mb-16 flex items-start gap-1">
               <div className="flex flex-col items-start">
                 <Link
                   href={"/"}
@@ -62,6 +64,28 @@ export default function RootLayout({
                   Full Stack Developer
                 </span>
               </div>
+              <nav className="ml-auto flex gap-1 text-sm">
+                <Button variant="ghost" size="sm" asChild>
+                  <Link
+                    href="/blog"
+                    aria-label="Blog Page"
+                    className="hover:underline text-muted-foreground"
+                  >
+                    <RssIcon />
+                    <span className="hidden sm:inline">Blog</span>
+                  </Link>
+                </Button>
+                <Button variant="ghost" size="sm" asChild>
+                  <Link
+                    href="/projects"
+                    aria-label="Projects Page"
+                    className="hover:underline text-muted-foreground"
+                  >
+                    <ProjectorIcon />
+                    <span className="hidden sm:inline">Projects</span>
+                  </Link>
+                </Button>
+              </nav>
               <ThemeSwitch />
             </header>
             {children}
