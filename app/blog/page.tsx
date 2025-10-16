@@ -1,5 +1,12 @@
 import Link from "next/link";
 import { getAllPosts } from "@/lib/content";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Thoughts on software development, web technologies, and building projects.",
+};
 
 export default async function Home() {
   const posts = await getAllPosts();
