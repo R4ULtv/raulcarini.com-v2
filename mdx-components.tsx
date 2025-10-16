@@ -8,7 +8,6 @@ import { YouTubeEmbed } from "@next/third-parties/google";
 import { Badge } from "@/components/ui/badge";
 import CopyButton from "@/components/copy-button";
 
-import type { BundledLanguage } from "shiki";
 import { codeToHtml } from "shiki";
 
 export function slugify(str: React.ReactElement) {
@@ -41,11 +40,12 @@ const TwitterBadge = ({ username }: { username: string }) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img
-          src={"https://unavatar.io/twitter/" + username}
-          alt={"profile image " + username}
+        <Image
+          unoptimized
           width={14}
           height={14}
+          alt={"profile image " + username}
+          src={"https://unavatar.io/x/" + username}
           className="rounded-full"
         />
         {username}
@@ -74,8 +74,12 @@ function CustomLink(props: React.ComponentProps<"a">) {
 
 function CustomTweet(props: TweetProps) {
   const components = {
-    AvatarImg: (props: ImageProps) => <Image {...props} className="my-0" />,
-    MediaImg: (props: ImageProps) => <Image {...props} fill className="my-0" />,
+    AvatarImg: ({ alt, ...props }: ImageProps) => (
+      <Image unoptimized alt={alt} {...props} fill className="my-0" />
+    ),
+    MediaImg: ({ alt, ...props }: ImageProps) => (
+      <Image unoptimized alt={alt} {...props} fill className="my-0" />
+    ),
   };
 
   return (
@@ -84,17 +88,25 @@ function CustomTweet(props: TweetProps) {
     </div>
   );
 }
-async function CodeBlock(props: any) {
-  const html = await codeToHtml(props.children.props.children.trim(), {
-    lang: props.children.props.className.replace("language-", ""),
+async function CodeBlock(props: React.ComponentProps<"pre">) {
+  const codeElement = props.children as React.ReactElement<{
+    children: string;
+    className: string;
+  }>;
+
+  const codeContent = codeElement.props.children.trim();
+  const language = codeElement.props.className.replace("language-", "");
+
+  const html = await codeToHtml(codeContent, {
+    lang: language,
     themes: { dark: "vitesse-dark", light: "vitesse-light" },
   });
 
   return (
-    <div className="relative not-prose mt-6 [&_pre]:py-3 [&_pre]:px-4 [&_pre]:rounded-md [&_pre]:min-h-12 [&_pre]:overflow-auto text-sm">
+    <div className="relative not-prose text-sm mt-6 [&_pre]:py-3 [&_pre]:px-4 [&_pre]:rounded-md [&_pre]:min-h-12 [&_pre]:overflow-auto">
       <div dangerouslySetInnerHTML={{ __html: html }} />
       <CopyButton
-        text={props.children.props.children.trim()}
+        text={codeContent}
         className="absolute top-2 right-2 opacity-50 hover:opacity-90 transition-opacity duration-150 ease-out"
       />
     </div>
