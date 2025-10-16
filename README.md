@@ -4,49 +4,14 @@ A modern personal portfolio and blog built with Next.js 15, featuring MDX-powere
 
 ## ✨ Features
 
-- **📝 MDX Blog System**: Write rich, interactive blog posts with MDX syntax
-  - Auto-discovery of all `.mdx` files in `/content` directory
-  - Automatic sorting by publication date
-  - Custom MDX components (Tweet embeds, YouTube videos, enhanced code blocks)
-  - Static generation for optimal performance
-
-- **🎨 Syntax Highlighting**: Beautiful code blocks powered by Shiki
-  - `vitesse-dark` and `vitesse-light` themes
-  - One-click copy button on all code blocks
-  - Build-time syntax highlighting for zero client-side overhead
-
-- **🖼️ Dynamic OG Images**: Automatically generated social preview images
-  - Built with `@takumi-rs/image-response` (Rust-based, blazing fast)
-  - WebP format, 1200x630px
-  - Custom design for each blog post
-
-- **📊 Page View Tracking**: Real-time page views with Upstash Redis
-  - Edge runtime for low latency
-  - Optimistic updates with SWR
-  - Privacy-focused (no personal data stored)
-
-- **💻 GitHub Integration**: Showcase your coding activity
-  - Contribution heatmap visualization
-  - Public repositories display
-  - Real-time data fetching with SWR
-
-- **🌗 Dark Mode**: Seamless theme switching with `next-themes`
-  - System preference detection
-  - Persistent user preference
-  - No flash of unstyled content
-
-- **⚡ Modern Stack**:
-  - Next.js 15.5.4 with App Router
-  - React 19.1.0
-  - Tailwind CSS v4 with OKLch color space
-  - TypeScript with strict mode
-  - Turbopack for faster builds and development
-
-- **🔍 SEO Optimized**:
-  - Dynamic `sitemap.xml` generation
-  - Dynamic `robots.txt`
-  - Metadata API for all pages
-  - Semantic HTML structure
+- **📝 MDX Blog** - Write rich blog posts with custom components (Tweet embeds, YouTube videos)
+- **🎨 Syntax Highlighting** - Beautiful code blocks with Shiki (`vitesse-dark`/`vitesse-light` themes)
+- **🖼️ Dynamic OG Images** - Automatically generated social preview images (WebP, 1200x630px)
+- **📊 Page View Tracking** - Real-time view counts with Upstash Redis (Edge runtime)
+- **💻 GitHub Integration** - Contribution heatmap and repository visualization
+- **🌗 Dark Mode** - Seamless theme switching with system preference detection
+- **⚡ Modern Stack** - Next.js 15.5.4, React 19.1.0, Tailwind CSS v4, TypeScript
+- **🔍 SEO Optimized** - Dynamic sitemap/robots.txt, metadata API, semantic HTML
 
 ## 🚀 Getting Started
 
@@ -111,35 +76,6 @@ console.log(greeting);
 ```
 
 Posts are automatically discovered and sorted by `createdAt` date (newest first).
-
-## 📁 Project Structure
-
-```
-raulcarini.com-v2/
-├── app/
-│   ├── page.tsx                    # Home page
-│   ├── blog/
-│   │   ├── page.tsx                # Blog listing
-│   │   └── [slug]/page.tsx         # Blog post pages
-│   ├── api/
-│   │   ├── dynamic-og/route.tsx    # OG image generation
-│   │   └── views/[path]/route.ts   # Page view tracking
-│   ├── layout.tsx                  # Root layout
-│   ├── robots.ts                   # Dynamic robots.txt
-│   └── sitemap.ts                  # Dynamic sitemap
-├── components/
-│   ├── ui/                         # Shadcn-style UI components
-│   ├── github-contributions.tsx    # GitHub heatmap
-│   ├── page-views.tsx              # View counter
-│   └── theme-switch.tsx            # Dark mode toggle
-├── content/                        # MDX blog posts
-├── lib/
-│   ├── content.ts                  # Content discovery & parsing
-│   ├── fetcher.ts                  # SWR fetcher utility
-│   ├── typography.css              # Custom prose styles
-│   └── utils.ts                    # Utility functions
-├── mdx-components.tsx              # Global MDX component overrides
-```
 
 ## 🔧 Available Scripts
 
