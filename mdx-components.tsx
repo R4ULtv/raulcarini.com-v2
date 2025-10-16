@@ -75,7 +75,7 @@ function CustomLink(props: React.ComponentProps<"a">) {
 function CustomTweet(props: TweetProps) {
   const components = {
     AvatarImg: ({ alt, ...props }: ImageProps) => (
-      <Image unoptimized alt={alt} {...props} fill className="my-0" />
+      <Image unoptimized alt={alt} {...props} className="my-0" />
     ),
     MediaImg: ({ alt, ...props }: ImageProps) => (
       <Image unoptimized alt={alt} {...props} fill className="my-0" />
