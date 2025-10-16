@@ -43,7 +43,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const { default: Post, metadata } = await import(`@/content/${slug}.mdx`);
+  const { metadata } = await import(`@/content/${slug}.mdx`);
 
   return {
     metadataBase: new URL(baseURL),
