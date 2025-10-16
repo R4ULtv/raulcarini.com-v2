@@ -3,7 +3,7 @@
 import { MoonIcon, SunIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
-import { useCallback } from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const ThemeSwitch = ({
@@ -12,10 +12,25 @@ const ThemeSwitch = ({
 }: React.HTMLAttributes<HTMLButtonElement>) => {
   const { theme, setTheme } = useTheme();
 
-  const handleToggleTheme = useCallback(() => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
+  const toggleTheme = React.useCallback(() => {
+    setTheme(theme === "light" ? "dark" : "light");
   }, [theme, setTheme]);
+
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        (event.metaKey || event.ctrlKey) &&
+        event.shiftKey &&
+        event.key.toLowerCase() === "l"
+      ) {
+        event.preventDefault();
+        toggleTheme();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [toggleTheme]);
 
   return (
     <Button
@@ -23,7 +38,7 @@ const ThemeSwitch = ({
       variant="ghost"
       className={cn("size-8 group", className)}
       aria-label="Toggle theme between light and dark mode"
-      onClick={handleToggleTheme}
+      onClick={toggleTheme}
       {...props}
     >
       <MoonIcon
