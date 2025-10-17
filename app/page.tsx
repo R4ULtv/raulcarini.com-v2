@@ -104,7 +104,7 @@ export default async function Home() {
           <ImageViewer
             src={mont2}
             width={320}
-            alt="Campfire"
+            alt="Alps, Italy"
             placeholder="blur"
           />
           <ImageViewer
@@ -118,7 +118,7 @@ export default async function Home() {
           <ImageViewer
             src={mont}
             width={320}
-            alt="Mountains"
+            alt="Alps, Italy"
             placeholder="blur"
           />
           <ImageViewer
@@ -131,11 +131,16 @@ export default async function Home() {
           <ImageViewer
             src={job}
             width={320}
-            alt="Raul Carini"
+            alt="Work outside, Alps, Italy"
             placeholder="blur"
             className="row-span-2 col-span-1"
           />
-          <ImageViewer src={lake} width={320} alt="Lake" placeholder="blur" />
+          <ImageViewer
+            src={lake}
+            width={320}
+            alt="Lake Alps, Italy"
+            placeholder="blur"
+          />
         </div>
 
         <p className="text-zinc-600 dark:text-zinc-400 mt-2">
@@ -169,7 +174,7 @@ export default async function Home() {
           <ImageViewer
             src={croatia}
             width={320}
-            alt="Sea view"
+            alt="Croatia"
             placeholder="blur"
           />
           <ImageViewer
@@ -181,7 +186,7 @@ export default async function Home() {
           <ImageViewer
             src={city}
             width={640}
-            alt="City with montains"
+            alt="Lake Garda, Italy"
             placeholder="blur"
             className="col-span-2 sm:col-span-1"
           />
