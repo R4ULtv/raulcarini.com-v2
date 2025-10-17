@@ -3,6 +3,7 @@ import { getAllPosts } from "@/lib/content";
 import { Badge } from "@/components/ui/badge";
 import GitHubContributions from "@/components/github/github-contributions-advanced-fetcher";
 import GithubRepositories from "@/components/github/github-repositories";
+import { ImageViewer } from "@/components/image-viewer";
 
 import Image from "next/image";
 
@@ -100,60 +101,41 @@ export default async function Home() {
         </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 my-3">
-          <div className="relative overflow-hidden rounded-lg">
-            <Image
-              src={mont2}
-              width={320}
-              alt="Campfire"
-              placeholder="blur"
-              className="hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
-          <div className="relative sm:row-span-2 row-span-1 overflow-hidden rounded-lg">
-            <Image
-              src={dlynr}
-              width={320}
-              alt="Raul Carini"
-              placeholder="blur"
-              className="object-cover object-center absolute size-full hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
-          <div className="relative overflow-hidden rounded-lg">
-            <Image
-              src={mont}
-              width={320}
-              alt="Mountains"
-              placeholder="blur"
-              className="hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
-          <div className="relative row-span-2 col-span-1 overflow-hidden rounded-lg">
-            <Image
-              src={swag}
-              width={320}
-              alt="Raul Carini"
-              placeholder="blur"
-              className="hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
-          <div className="relative row-span-2 col-span-1 overflow-hidden rounded-lg">
-            <Image
-              src={job}
-              width={320}
-              alt="Raul Carini"
-              placeholder="blur"
-              className="hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
-          <div className="relative overflow-hidden rounded-lg">
-            <Image
-              src={lake}
-              width={320}
-              alt="Lake"
-              placeholder="blur"
-              className="hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
+          <ImageViewer
+            src={mont2}
+            width={320}
+            alt="Campfire"
+            placeholder="blur"
+          />
+          <ImageViewer
+            src={dlynr}
+            width={320}
+            alt="Raul Carini"
+            placeholder="blur"
+            className="sm:row-span-2 row-span-1"
+            objectFit="cover"
+          />
+          <ImageViewer
+            src={mont}
+            width={320}
+            alt="Mountains"
+            placeholder="blur"
+          />
+          <ImageViewer
+            src={swag}
+            width={320}
+            alt="Raul Carini"
+            placeholder="blur"
+            className="row-span-2 col-span-1"
+          />
+          <ImageViewer
+            src={job}
+            width={320}
+            alt="Raul Carini"
+            placeholder="blur"
+            className="row-span-2 col-span-1"
+          />
+          <ImageViewer src={lake} width={320} alt="Lake" placeholder="blur" />
         </div>
 
         <p className="text-zinc-600 dark:text-zinc-400 mt-2">
@@ -184,33 +166,25 @@ export default async function Home() {
           profile.
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-3">
-          <div className="relative overflow-hidden rounded-lg">
-            <Image
-              src={croatia}
-              width={320}
-              alt="Sea view"
-              placeholder="blur"
-              className="hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
-          <div className="relative overflow-hidden rounded-lg">
-            <Image
-              src={lake2}
-              width={320}
-              alt="Lake view"
-              placeholder="blur"
-              className="hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
-          <div className="relative col-span-2 sm:col-span-1 overflow-hidden rounded-lg">
-            <Image
-              src={city}
-              width={640}
-              alt="City with montains"
-              placeholder="blur"
-              className="hover:scale-105 transition-transform duration-300 ease-out"
-            />
-          </div>
+          <ImageViewer
+            src={croatia}
+            width={320}
+            alt="Sea view"
+            placeholder="blur"
+          />
+          <ImageViewer
+            src={lake2}
+            width={320}
+            alt="Lake view"
+            placeholder="blur"
+          />
+          <ImageViewer
+            src={city}
+            width={640}
+            alt="City with montains"
+            placeholder="blur"
+            className="col-span-2 sm:col-span-1"
+          />
         </div>
       </section>
 
