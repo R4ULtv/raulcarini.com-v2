@@ -4,6 +4,7 @@ import * as React from "react";
 import { CheckIcon, Link2Icon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 const ShareButton = ({ slug }: { slug: string }) => {
   const [copied, setCopied] = React.useState(false);
@@ -12,6 +13,7 @@ const ShareButton = ({ slug }: { slug: string }) => {
     try {
       await navigator.clipboard.writeText(`https://shrly.cc/${slug}`);
       setCopied(true);
+      toast.success("Link copied to clipboard");
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error("Failed to copy text: ", error);
