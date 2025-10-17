@@ -114,6 +114,15 @@ const projects: Project[] = [
   },
 ];
 
+function isGithubHost(iconUrl: string): boolean {
+  try {
+    const url = new URL(iconUrl);
+    return url.hostname === "github.com";
+  } catch {
+    return false;
+  }
+}
+
 export default function ProjectsPage() {
   const featuredProjects = projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
@@ -168,8 +177,7 @@ export default function ProjectsPage() {
                         src={project.icon}
                         className={cn(
                           "rounded",
-                          project.icon.startsWith("https://github.com") &&
-                            "dark:invert",
+                          isGithubHost(project.icon) && "dark:invert",
                         )}
                       />
                     </div>
@@ -236,8 +244,7 @@ export default function ProjectsPage() {
                         src={project.icon}
                         className={cn(
                           "rounded",
-                          project.icon.startsWith("https://github.com") &&
-                            "dark:invert",
+                          isGithubHost(project.icon) && "dark:invert",
                         )}
                       />
                     </div>
