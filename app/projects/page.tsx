@@ -39,15 +39,6 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Text Editor",
-    description:
-      "Create blogging content with ease. Markdown editor with built-in AI capabilities.",
-    url: "https://editor.raulcarini.dev",
-    icon: "https://editor.raulcarini.dev/favicon.ico",
-    tags: ["Markdown", "AI", "Next.js"],
-    featured: true,
-  },
-  {
     title: "lazypr",
     description:
       "The lazy way to write pull requests. AI-powered CLI tool for streamlined PR creation.",
@@ -74,6 +65,14 @@ const projects: Project[] = [
     tags: ["Cloudflare", "Multi-Region", "Workers"],
   },
   {
+    title: "Tailwind Color Palette",
+    description:
+      "Tailwind CSS colors in HSL, RGB, HEX, and OKLCH formats with easy copy functionality.",
+    url: "https://colors.raulcarini.dev",
+    icon: "https://colors.raulcarini.dev/favicon.ico",
+    tags: ["Tailwind CSS", "Colors", "Tool"],
+  },
+  {
     title: "AI Models Database",
     description:
       "An open-source database of AI models with detailed information and specifications.",
@@ -82,12 +81,12 @@ const projects: Project[] = [
     tags: ["Database", "AI", "Next.js"],
   },
   {
-    title: "Tailwind Color Palette",
+    title: "Text Editor",
     description:
-      "Tailwind CSS colors in HSL, RGB, HEX, and OKLCH formats with easy copy functionality.",
-    url: "https://colors.raulcarini.dev",
-    icon: "https://colors.raulcarini.dev/favicon.ico",
-    tags: ["Tailwind CSS", "Colors", "Tool"],
+      "Create blogging content with ease. Markdown editor with built-in AI capabilities.",
+    url: "https://editor.raulcarini.dev",
+    icon: "https://editor.raulcarini.dev/favicon.ico",
+    tags: ["Markdown", "AI", "Next.js"],
   },
   {
     title: "LLMs Speed Test",
